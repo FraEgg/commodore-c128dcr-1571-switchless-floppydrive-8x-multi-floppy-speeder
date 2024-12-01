@@ -250,13 +250,15 @@ Der Periphal interface Adapter (PIA) steuert die parallele Datenübertragung des
 
 ### BOM - Parallelport-Adapter-Platine
 
-| Reference                        | Value                                            | Datasheet                                             | Footprint                                                                                                                | Qty | DNP | Note      |
-| -------------------------------- | ------------------------------------------------ | ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | --- | --- | --------- |
-| PCB Parallelport-Adapter-Platine |                                                  |                                                       |                                                                                                                          | 1   |     |           |
-| CN1                              | Connector                                        | https://www.aliexpress.com/item/1005008071308576.html | MicroMatch 1,27 mm,2X05 (MICMA10B)                                                                                       | 1   |     | recommend |
-| U4                               | Gold Round Female Male Pin Sensor Crystal Socket | https://www.aliexpress.com/item/32972142300.html      | D0.5mm D0.45-0.6mm PCB Gold Round Female Male Pin Sensor Crystal Socket Dim1.4*7.4mm,No Plastic for 2.54 Hole Pin Header | 40  |     |           |
-| CN2                              | Connector                                        | https://www.aliexpress.com/item/1005004266492521.html | IDC-Header_2x05_P2.54mm_Vertical                                                                                         | 1   |     | optional  |
-| Cable                            | Flat Ribbon                                      | https://www.aliexpress.com/item/1005004316520454.html | 1.27mm PITCH color Flat Ribbon Cable Rainbow DuPont Wire for FC dupont Connector 2.54mm IDC                              | 1   |     |           |
+| Reference                        | Value                                                  | Datasheet                                             | Footprint                                                                                                                | Qty | DNP | Note      |
+| -------------------------------- | ------------------------------------------------------ | ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | --- | --- | --------- |
+| PCB Parallelport-Adapter-Platine |                                                        |                                                       |                                                                                                                          | 1   |     |           |
+| CN1                              | Connector                                              | https://www.aliexpress.com/item/1005008071308576.html | MicroMatch 1,27 mm,2X05 (MICMA10B)                                                                                       | 1   |     | recommend |
+| U4                               | Gold Round Female Male Pin Sensor Crystal Socket       | https://www.aliexpress.com/item/32972142300.html      | D0.5mm D0.45-0.6mm PCB Gold Round Female Male Pin Sensor Crystal Socket Dim1.4*7.4mm,No Plastic for 2.54 Hole Pin Header | 40  |     |           |
+| CN2                              | Connector                                              | https://www.aliexpress.com/item/1005004266492521.html | IDC-Header_2x05_P2.54mm_Vertical                                                                                         | 1   |     | optional  |
+| Cable                            | Flat Ribbon                                            | https://www.aliexpress.com/item/1005004316520454.html | 1.27mm PITCH color Flat Ribbon Cable Rainbow DuPont Wire for FC dupont Connector 2.54mm IDC                              | 1   |     |           |
+| CN1                              | Micromatch IDC Header Connector                        | https://www.aliexpress.com/item/4001278233965.html    | Micromatch Red 2.54mm Pitch Double Row Female IDC Box Header Connector 10P 2x05                                          | 2   |     |           |
+| CN2                              | tch Female IDC Socket Connector Ribbon Cable Connector | https://www.aliexpress.com/item/1005002804645942.html | 2.54mm Pitch Female IDC Socket Connector Ribbon Cable Connector 10 PIN                                                   | 2   |     | optional  |
 
 
 
@@ -303,6 +305,16 @@ Die Installation des Multi-Speeders auf dem C128DCR Mainboard. Der Multi-Speeder
 6. [Weitere Dokumente](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/tree/main/docs)
    
    
+
+## Shared Projects auf PCBWay.com
+
+1. [8x Multi-Floppy Speeder 32KB RAM Expansion für den Commodore C128DCR](https://www.pcbway.com/project/shareproject/Switchless_8x_Multi_Floppy_Speeder_with_32_KB_RAM_Expansion_for_the_Commodore_C1_557a83c8.html)
+
+2. [C128/C64 Kernal-Switcher für 8x Multi-Floppy-Speeder C128DCR](https://www.pcbway.com/project/shareproject/C128_C64_U32_Kernal_Switcher_Adapter_for_Switchless_8x_Multi_Floppy_Speeder_with_f113e895.html)
+
+3. [Parallel-Port-Adapter für 8x Multi-Floppy-Speeder C128DCR](https://www.pcbway.com/project/shareproject/Parallelport_Adapter_U4_for_Switchless_8x_Multi_Floppy_Speeder_with_32_KB_RAM_Ex_558623e7.html)
+
+
 
 ## Hilfreiche Links
 
