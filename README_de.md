@@ -68,63 +68,17 @@ Die Kernal-Switcher-Platine ist eine Adapterplatine für ein 512KB EPROM 27C040 
 
 
 
-## ROM-Organisation
+## ROM/RAM Organisation
 
 Die Firmware (Kernals) für das 1571 Diskettenlaufwerk und C128/C64 werden jeweils in einem 512KB EPROM vom Typ 27C040 oder 29F040 (PLCC32) in jeweils 8x 64KB Bänke organisiert. Jede Bank 0-7 stellt den kompletten 64KB Adressenbereich dar.
 
 Hier habe ich Test-Kernals zur Verfügung gestellt [[hier]](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/tree/main/kernals).
 
-### Internes 1571 Diskettenlaufwerk
+### 512 KB ROM Internes 1571 Diskettenlaufwerk
 
 Der Adressendekoder der Multi-Speeder-Platine blendet im Diskettenlaufwerk jeweils das ROM in den bereichen `$8000 bis $FFFF` ein.
 
-**Bitte beachten das beim Betrieb der Multi-Speeder-Platine das original DOS-ROM U102 ersatzlos herausgenommen werden muss, da der Multi-Speeder jetzt über das eigene EPROM das gewählte DOS-Kernal zur Verfügung stellt! Der Verbleib würde ein Adressenkonflikt erzeugen und das Diskettenlaufwerk würde nicht mehr korrekt funktionieren**
-
-Die unten aufgeühre Konfoguartion ist ein Beispiel von mir, die ich getestet habe.
-
-| Bank | Command | EPROM Adressenbereich | 1571 Adressenbereich | System                                      |
-| ---- | ------- | --------------------- | -------------------- | ------------------------------------------- |
-| 0    | 1@RNROM | `$08000 - $0FFFF`     | `$8000 - $FFFF`      | DolphinDos3                                 |
-| 1    | 2@RNROM | `$18000 - $1FFFF`     | `$8000 - $FFFF`      | DolphinDos3 with Custom Silverdr C64 Kernal |
-| 2    | 3@RNROM | `$28000 - $2FFFF`     | `$8000 - $FFFF`      | JiffyDOS 128                                |
-| 3    | 4@RNROM | `$38000 - $3FFFF`     | `$8000 - $FFFF`      | JiffyDOS 128  with Custom C64 Kernal        |
-| 4    | 5@RNROM | `$48000 - $4FFFF`     | `$8000 - $FFFF`      | JiffyDOS 128  with Custom C64 Kernal        |
-| 5    | 6@RNROM | `$58000 - $5FFFF`     | `$8000 - $FFFF`      | CBMDOS  with Custom C64 Kernal              |
-| 6    | 7@RNROM | `$68000 - $6FFFF`     | `$8000 - $FFFF`      | CBMDOS (Reserved)                           |
-| 7    | 8@RNROM | `$78000 - $7FFFF`     | `$8000 - $FFFF`      | CBMDOS                                      |
-
-### C128/C64 Kernals
-
-Das Kernal ROM 27256 (U32) ist beim C128DCR grundsätzlich wie folgt aufgebaut:
-
-| ROM Adressenbereich | ROM Typ                      | CPU Adressenbereich |
-| ------------------- | ---------------------------- | ------------------- |
-| `$0000 - $1FFF`     | C64 Basic V2 `$A000 - $BFFF` | 8KB                 |
-| `$2000 - $3FFF`     | C64 Kernal  `$E000 - $FFFF`  | 8KB                 |
-| `$4000 - $7FFF`     | C128 Kernal/System           | 16 KB               |
-
-
-
-Die C128/C64 Kernal-Switcher-Platine für den U32 Sockel ist wie folgt organisiert. Wichtig ist zu beachten, dass derzeit bei dem 512KB EPROM 27C040 und 29F040 immer nur der obere ROM-Bereich 32KB der 64KB Bänke von `$x8000 - $xFFFF` genutzt wird. Somit müssen die Kernals ab `$x8000` platziert werden. 
-
-| Bank | Command | EPROM Adressbereich                                            | C64/C128 Kernal ROM                                                                  |
-| ---- | ------- | -------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| 0    | 1@RNROM | `$08000 - $09FFF`<br/>`$0A000 - $0BFFF`<br/>`$0C0000 - $0FFFF` | C64 Basic V2<br/>DolphinDos 3 C64 Kernal<br/>DolphinDos 3 C128 Kernal                |
-| 1    | 2@RNROM | `$08000 - $09FFF`<br/>`$0A000 - $0BFFF`<br/>`$0C0000 - $0FFFF` | C64 Basic V2<br/>DolphinDos 3 C64 Cusom Kernal silverdr<br/>DolphinDos 3 C128 Kernal |
-| 2    | 3@RNROM | `$08000 - $09FFF`<br/>`$0A000 - $0BFFF`<br/>`$0C0000 - $0FFFF` | C64 Basic V2<br/> JiffyDOS C64 Kernal<br/>JiffyDOS C128 Kernal                       |
-| 3    | 4@RNROM | `$08000 - $09FFF`<br/>`$0A000 - $0BFFF`<br/>`$0C0000 - $0FFFF` | C64 Basic V2<br/>DD-Jiffy-SD2IEC C64 Kernal<br/>JiffyDOS C128 Kernal                 |
-| 4    | 5@RNROM | `$08000 - $09FFF`<br/>`$0A000 - $0BFFF`<br/>`$0C0000 - $0FFFF` | C64 Basic V2<br/>JaffyDOS 1.3 C64 Kernal<br/>JiffyDOS C128 Kernal                    |
-| 5    | 6@RNROM | `$08000 - $09FFF`<br/>`$0A000 - $0BFFF`<br/>`$0C0000 - $0FFFF` | C64 Basic V2<br/>EXOS V3 C64 Kernal<br/>CBM C128 Kernal                              |
-| 6    | 7@RNROM | `$08000 - $09FFF`<br/>`$0A000 - $0BFFF`<br/>`$0C0000 - $0FFFF` | C64 Basic V2<br/>CBM C64 Kernal<br/>CBM C128 Kernal                                  |
-| 7    | 8@RNROM | `$08000 - $09FFF`<br/>`$0A000 - $0BFFF`<br/>`$0C0000 - $0FFFF` | C64 Basic V2<br/>CBM C64 Kernal<br/>CBM C128 Kernal *1)                              |
-
-*1) Reserviert für eigene Konfiguration*
-
-
-
-**Beim umschalten kann es Probleme geben, wenn das Diskettenlaufwerk im 2MHz modus betrieben wird. Dann einfach mehrmals z.B. mit (LOAD"x@RNROM",8,1) das gewünschte ROM versuchen umschalten. Das Problem liegt am Timing in Verbindung mit dem ATMega und 74AHTC273 Flip-Flop unter 2MHz. Am besten funktioniert das System mit einem 74AHTC273 von NXP. Diese sind aber schwer verfügbar.** 
-
-## 32KB RAM Erweiterung des 1571 Diskettenlaufwerks
+### 32KB RAM Erweiterung des 1571 Diskettenlaufwerks
 
 Das 1571 Diskettenlaufwerk hat wie das 1541 Diskettenlaufwerk standardmäßig nur 2KB Arbeitsspeicher. Das ist sehr eng bemessen und damit kann kein ganzer Track in den Arbeitsspeicher eingelesen werden. DolphinDOS 3 nutzt deshalb zusätzlichen Speicher und liest bei einer Diskettendrehung einen kompletten Track von der Diskette ein. Dazu wird mindestens 8KB zusätzlicher RAM-Speicher benötigt. Der Multi-Speeder verfügt über ein 62256 32KB SRAM oder 6264 8KB SRAM. Dieser zusätzliche 8KB Speicherbereich wird im CPU-Adressenraum bei `6000 - 7FFF` im Speicher des 1571 Diskettenlaufwerks zur Verfügung gestellt. Bei der Nutzung eines 32KB SRAM können die 8K Bänke des Speicher über den PIA Baustein Port PB0 und PB1 geschaltet werden. Bei Nutzung des 32KB SRAM müssen Jumper A14RAM (J7) und A15RAM (J8) auf dem Multi-Speeder-Platine geschlossen werden, damit das Bankswitching funktioniert.
 
@@ -188,20 +142,75 @@ Der Wechsel der Speeder kann am Computer durch einfache Befehle ausgelöst werde
    
    
 
-### Übersicht der C128/C64 und DOS-Kernals
+## Übersicht der C128/C64 und DOS-Kernals
+
+### C128/C64 Kernals U32
+
+Die C128/C64 Kernal-Switcher-Platine für den U32 Sockel ist wie folgt organisiert. Wichtig ist zu beachten, dass derzeit bei dem 512KB EPROM 27C040 und 29F040 immer nur der obere ROM-Bereich 32KB der 64KB Bänke von `$x8000 - $xFFFF` genutzt wird. Somit müssen die Kernals ab `$x8000` platziert werden
+
+
+
+Das Kernal ROM 27256 (U32) (C128/C64 Kernals) ist beim C128DCR grundsätzlich wie folgt aufgebaut:
+
+| ROM Adressenbereich | ROM Typ                      |       |
+| ------------------- | ---------------------------- | ----- |
+| `$0000 - $1FFF`     | C64 Basic V2 `$A000 - $BFFF` | 8KB   |
+| `$2000 - $3FFF`     | C64 Kernal  `$E000 - $FFFF`  | 8KB   |
+| `$4000 - $7FFF`     | C128 Kernal/System           | 16 KB |
+
+
+
+### 1571 DOS Kernal (U101 Multi-Speeder)
+
+Das Kernal ROM des Laufwerks beginnt bei `$x8000 - $xFFFF` und je nach aktiver Bank 0-7 wird der entsprechende Bereich dort in den Adressenraum der CPU eingeblendet.
+
+
+
+| Bank | Switch  | Eprom Adresse     | CPU             |
+| ---- | ------- | ----------------- | --------------- |
+| 0    | 1@RNROM | `$08000 - $0FFFF` | `$8000 - $FFFF` |
+| 1    | 2@RNROM | `$18000 - $1FFFF` | `$8000 - $FFFF` |
+| 2    | 3@RNROM | `$28000 - $2FFFF` | `$8000 - $FFFF` |
+| 3    | 4@RNROM | `$38000 - $3FFFF` | `$8000 - $FFFF` |
+| 4    | 5@RNROM | `$48000 - $4FFFF` | `$8000 - $FFFF` |
+| 5    | 6@RNROM | `$58000 - $5FFFF` | `$8000 - $FFFF` |
+| 6    | 7@RNROM | `$68000 - $6FFFF` | `$8000 - $FFFF` |
+| 7    | 8@RNROM | `$78000 - $7FFFF` | `$8000 - $FFFF` |
+
+
 
 ROM Bank-Belegung anhand meiner Beispielkonfiguration:
 
-| Bank | Switch  | System          | C128                | C64                          | 1571             |
-| ---- | ------- | --------------- | ------------------- | ---------------------------- | ---------------- |
-| 0    | 1@RNROM | DolphinDos 3    | DolphinDos 3 Kernal | DolphinDos 3 Kernal          | DolphinDos 3 DOS |
-| 1    | 2@RNROM | DolphinDos 3    | DolphinDos 3 Kernal | DolphinDos 3 Custom          | DolphinDos 3 DOS |
-| 2    | 3@RNROM | JiffyDOS V6.01  | JiffyDOS 128        | JiffyDOS 64                  | JiffyDos 1571    |
-| 3    | 4@RNROM | JiffyDOS SD2IEC | JiffyDOS 128        | DD-JD-SD2IEC Custom silverdr | JiffyDOS 1571    |
-| 4    | 5@RNROM | JaffyDOS 1.3    | JiffyDOS 128        | JaffyDOS 1.3                 | JiffyDOS 1571    |
-| 5    | 6@RNROM | EXOS V3         | CBM                 | EXOS V3                      | CBM              |
-| 6    | 7@RNROM | CBM Original    | CBM                 | CBM                          | CBM              |
-| 7    | 8@RNROM | CBM Original    | CBM                 | CBM                          | CBM              |
+| Bank | Switch  | System            | U32 C128 | U32 C64      | U101 1571    | EPROM           |
+| ---- | ------- | ----------------- | -------- | ------------ | ------------ | --------------- |
+| 0    | 1@RNROM | CBM               | CBM      | CBM          | CBM          | `$08000-$0FFFF` |
+| 1    | 2@RNROM | CBM RAM Exp       | CBM      | CBM          | CBM RAM Exp. | `$18000-$1FFFF` |
+| 2    | 3@RNROM | DolphinDos 3      | DD3      | DD3          | DD3          | `$28000-$2FFFF` |
+| 3    | 4@RNROM | DolphinDos 3      | DD3      | DD3-Custom   | DD3          | `$38000-$3FFFF` |
+| 4    | 5@RNROM | CBM-DD-SD2IEC     | CBM      | DD-JD-SD2IEC | CBM RAM Exp. | `$48000-$4FFFF` |
+| 5    | 6@RNROM | CBM               | CBM      | JaffyDos 1.3 | CBM RAM Exp. | `$58000-$5FFFF` |
+| 6    | 7@RNROM | CBM (reserved JD) | CBM      | CBM          | CBM RAM Exp. | `$68000-$6FFFF` |
+| 7    | 8@RNROM | CBM (reserved JD) | CBM      | CBM          | CBM RAM Exp. | `$78000-$7FFFF` |
+
+"CBM RAM Exp." ist das original CBMDOS der 1571 mit einem Patch für die RAM-Erweiterung des Multi-Speeders. Dieser Patch enthält einen TrackCache und so kann das 1571 Diskettenlaufwerk einen kompletten Track auf einmal einlesen. Das alleine beschleunigt den Ladevorgang schon erheblich. Das JiffyDOS 128 gibt es auch in einer Version mit dem Patch und beschleunigt das lesen nochmal um den Faktor 2-3.
+
+
+
+Weitere Informationen dazu auf Github von ytmytm: [GitHub - ytmytm/1571-TrackCacheROM: A firmware patch for Commodore 1571 drive and internal C128D drive enabling RAM expansion use for track cache](https://github.com/ytmytm/1571-TrackCacheROM) 
+
+
+
+JiffyDOS 128 läuft perfekt auf dem Multi-Speeder. Besonders mit dem RAM-Expansion Patch ist JiffyDOS im C128 und C64 nochmal erheblich schneller. JiffyDOS habe ich nicht zum Download angeboten, da es noch kommerziell vertrieben wird.
+
+
+
+**Bitte beachten das beim Betrieb der Multi-Speeder-Platine das original DOS-ROM U102 ersatzlos herausgenommen werden muss, da der Multi-Speeder jetzt über das eigene EPROM das gewählte DOS-Kernal zur Verfügung stellt! Der Verbleib würde ein Adressenkonflikt erzeugen und das Diskettenlaufwerk würde nicht mehr korrekt funktionieren**
+
+
+
+**Beim umschalten kann es Probleme geben, wenn das Diskettenlaufwerk im 2MHz modus betrieben wird. Dann einfach mehrmals z.B. mit (LOAD"x@RNROM",8,1) das gewünschte ROM versuchen umschalten. Das Problem liegt am Timing in Verbindung mit dem ATMega und 74AHTC273 Flip-Flop unter 2MHz. Am besten funktioniert das System mit einem 74AHTC273 von NXP. Diese sind aber schwer verfügbar.** 
+
+
 
 ## Periphal interface Adapter (PIA)
 
@@ -313,8 +322,8 @@ Die Installation des Multi-Speeders auf dem C128DCR Mainboard. Der Multi-Speeder
 2. [C128/C64 Kernal-Switcher für 8x Multi-Floppy-Speeder C128DCR](https://www.pcbway.com/project/shareproject/C128_C64_U32_Kernal_Switcher_Adapter_for_Switchless_8x_Multi_Floppy_Speeder_with_f113e895.html)
 
 3. [Parallel-Port-Adapter für 8x Multi-Floppy-Speeder C128DCR](https://www.pcbway.com/project/shareproject/Parallelport_Adapter_U4_for_Switchless_8x_Multi_Floppy_Speeder_with_32_KB_RAM_Ex_558623e7.html)
-
-
+   
+   
 
 ## Hilfreiche Links
 
@@ -333,6 +342,8 @@ Zu diesem Projekt haben viele beigetragen und ist das Ergebnis vieler Entwickler
 2. RetroNynjah hat mir geholfen seinen Switchless Multi-ROM auf den 8x Multi-Speeder zu integrieren. [GitHub - RetroNynjah/Switchless-Multi-ROM-for-27128-27256](https://github.com/RetroNynjah/Switchless-Multi-ROM-for-27128-27256)
 
 3. Die hilfreiche Seite mit technischen Daten zu DD3 von silverdr. [https://e4aws.silverdr.com/projects/dolphindos3/](https://e4aws.silverdr.com/projects/dolphindos3/)
+
+4. Ytmytm für seinen TrackCache: [GitHub - ytmytm/1571-TrackCacheROM: A firmware patch for Commodore 1571 drive and internal C128D drive enabling RAM expansion use for track cache](https://github.com/ytmytm/1571-TrackCacheROM) 
    
    
 
@@ -360,3 +371,5 @@ Ich wünsche euch viel Freude mit meinem 8x Multi-Floppy-Speeder 32KB RAM Expans
 
 Viele Grüße
 Frank Eggen 
+
+
