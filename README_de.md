@@ -24,7 +24,7 @@ Zudem ist der "Switchless 8x Multi-Floppy-Speeder" vollständig RAMBoard-kompati
 
 ## Benchmark
 
-Hier habe ich einige Benchmarks mit dem 8x Multi-Speeder 32KB RAM erstellt > hier <
+Hier habe ich einige Benchmarks mit dem 8x Multi-Speeder 32KB RAM erstellt > [[hier]](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/blob/main/benchmark/README.md)
 
 ## Funktionsweise
 

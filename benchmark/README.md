@@ -8,25 +8,25 @@ https://e4aws.silverdr.com/projects/speed_test/
 
 Standard 1571 CBM-DOS (C64 Mode):
 
-![CBMDOS (C64 Mode)](file:///C:/Users/Frank%20Eggen/OneDrive/Dokumente/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/benchmark/IMG_20241204_195851.jpg "CBMDOS (C64 Mode)")
+![CBMDOS (C64 Mode)](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/blob/main/benchmark/IMG_20241204_195851.jpg?raw=true"CBMDOS (C64 Mode)")
 
 
 
 Dolphin Dos 3 1571 (C64 Mode):
 
-![DolphinDos 3 (C64 Mode)](file:///C:/Users/Frank%20Eggen/OneDrive/Dokumente/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/benchmark/IMG_20241204_203727.jpg "DolphinDos 3 (C64 Mode)")
+![DolphinDos 3 (C64 Mode)](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/blob/main/benchmark/IMG_20241204_203727.jpg?raw=true"DolphinDos 3 (C64 Mode)")
 
 
 
 JiffyDOS 1571D(PAL):
 
-![JiffyDOS (C64 Mode)](file:///C:/Users/Frank%20Eggen/OneDrive/Dokumente/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/benchmark/IMG_20241204_205006.jpg "JiffyDOS (C64 Mode)")
+![JiffyDOS (C64 Mode)](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/blob/main/benchmark/IMG_20241204_205006.jpg?raw=true"JiffyDOS (C64 Mode)")
 
 
 
 JiffyDOS 128D PAL with RAM-Expansion patch (TrackCache):
 
-![JiffyDOS with RAM Expansion Patch (TrackCache)](file:///C:/Users/Frank%20Eggen/OneDrive/Dokumente/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/benchmark/IMG_20241204_210317.jpg "JiffyDOS with RAM Expansion Patch (TrackCache)")
+![JiffyDOS with RAM Expansion Patch (TrackCache)](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/blob/main/benchmark/IMG_20241204_210317.jpg?raw=true"JiffyDOS with RAM Expansion Patch (TrackCache)")
 
 
 

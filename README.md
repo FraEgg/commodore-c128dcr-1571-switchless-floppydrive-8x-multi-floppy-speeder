@@ -28,7 +28,7 @@ The Switchless 8x Multi-Floppy Speeder with 32 KB RAM expansion for the Commodor
 
 ## Benchmark
 
-Here I have created some benchmarks with the 8x Multi-Speeder 32KB RAM [here]
+Here I have created some benchmarks with the 8x Multi-Speeder 32KB RAM [[here]](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/blob/main/benchmark/README.md)
 
 
 
