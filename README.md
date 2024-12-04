@@ -1,6 +1,6 @@
 # Switchless 8x Multi-Floppy Speeder with 32 KB RAM Expansion for the Commodore C128 DCR and Internal 1571 Floppy Drive (DolphinDOS 3 Compatible)
 
-Here is an German version [> German <](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/blob/main/README_de.md)!
+Here is an German version [[German]](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/blob/main/README_de.md) !
 
 <img title="8x Multi-Floppy-Speeder 32KB RAM Expasion for the internal 1571 Floppydrive C128DCR - DolphinDos 3" src="https://raw.githubusercontent.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/refs/heads/main/images/V2.0_C128DCR_Multi-Floppy-Speeder-Set-Title.jpg" alt="loading-ag-1227" data-align="center" style="zoom:25%;">
 
@@ -26,6 +26,12 @@ The Switchless 8x Multi-Floppy Speeder with 32 KB RAM expansion for the Commodor
    
    
 
+## Benchmark
+
+Here I have created some benchmarks with the 8x Multi-Speeder 32KB RAM [here]
+
+
+
 ## Functionality
 
 The "Switchless 8x Multi-Floppy Speeder" for the Commodore C128DCR is based on the further development of the 8x Multi-Floppy Speeder for the 1541 floppy drive. A 512 KB EPROM (27C040 or 29F040) can store up to eight kernel operating systems for the 1571 floppy drive. A Peripheral Interface Adapter (PIA, type 6821 or 6521) extends the floppy drive with an 8-bit parallel port.
@@ -33,6 +39,8 @@ The "Switchless 8x Multi-Floppy Speeder" for the Commodore C128DCR is based on t
 In combination with the 32 KB RAM expansion (SRAM 62256), it is possible to run DolphinDOS 3. This allows the drive to read entire tracks in one revolution, significantly accelerating program loading in DolphinDOS 3 mode on both the C128 and C64 by a factor of 38.
 
 A microcontroller (Atmel ATMEGA328p) manages the operating modes of the speeder. It monitors the data bus of the 6502 CPU in the internal 1571 floppy drive and automatically switches the corresponding ROM banks as soon as a specific command (string) is detected. The U32 Kernel Adapter is also connected to the speeder, allowing the microcontroller to synchronize the switching of the 8 ROM banks. This ensures that the kernel corresponding to the 1571 DOS kernel is automatically activated for C128 or C64 mode. The 8 C128/C64 kernels are also stored in an EPROM (27C040 or 29F040).
+
+
 
 ## Components
 
@@ -196,15 +204,15 @@ The drive's Kernal ROM starts at `$x8000 - $xFFFF`, and depending on the active 
 | 6    | 7@RNROM | CBM (reserved JD) | CBM      | CBM          | CBM RAM Exp. | `$68000-$6FFFF` |
 | 7    | 8@RNROM | CBM (reserved JD) | CBM      | CBM          | CBM RAM Exp. | `$78000-$7FFFF` |
 
- 
 
-**CBM RAM Exp.** refers to the original CBMDOS of the 1571 with a patch for the Multi-Speeder's RAM expansion. This patch includes a track cache, allowing the 1571 disk drive to read an entire track at once. This significantly accelerates the loading process. A version of JiffyDOS 128 with this patch is also available, further speeding up reading by a factor of 2-3.
+
+**CBM RAM Exp.** refers to the original CBMDOS of the 1571 with a patch for the Multi-Speeder's RAM expansion. This patch includes a track cache, allowing the 1571 disk drive to read an entire track at once. This significantly accelerates the loading process. A version of JiffyDOS 128 with this patch is also available, further speeding up reading by 20%.
 
 More details are available on GitHub by ytmytm: [GitHub - ytmytm/1571-TrackCacheROM: A firmware patch for Commodore 1571 drive and internal C128D drive enabling RAM expansion use for track cache](https://github.com/ytmytm/1571-TrackCacheROM).
 
 
 
-JiffyDOS 128 works perfectly with the Multi-Speeder. Especially with the RAM expansion patch, JiffyDOS on the C128 and C64 becomes significantly faster. JiffyDOS is not provided for download as it is still commercially distributed.
+JiffyDOS 128 runs perfectly on the Multi-Speeder. Especially with the RAM expansion patch, JiffyDOS is considerably faster on the C128 and C64. I have not offered JiffyDOS for download, as it is still distributed commercially.
 
 
 
@@ -215,8 +223,8 @@ JiffyDOS 128 works perfectly with the Multi-Speeder. Especially with the RAM exp
 
 2. **Switching Issues in 2MHz Mode:**  
    Switching issues may occur when operating the disk drive in 2MHz mode. If this happens, repeatedly attempt to switch the ROM (e.g., using `LOAD"x@RNROM",8,1`) until the desired ROM is successfully loaded. The problem is caused by timing issues related to the interaction of the ATMega and 74AHTC273 Flip-Flop under 2MHz. The system works best with an NXP 74AHTC273, though these are difficult to source.
-
-
+   
+   
 
 ### Peripheral Interface Adapter (PIA)
 
@@ -354,8 +362,8 @@ This project is the result of the contributions of many and reflects the efforts
 
 4. **Ytmytm**, for his TrackCache:  
    [GitHub - ytmytm/1571-TrackCacheROM: A firmware patch for Commodore 1571 drive and internal C128D drive enabling RAM expansion use for track cache](https://github.com/ytmytm/1571-TrackCacheROM)
-
-
+   
+   
 
 ### Disclaimer
 

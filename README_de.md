@@ -22,6 +22,10 @@ Zudem ist der "Switchless 8x Multi-Floppy-Speeder" vollständig RAMBoard-kompati
    
    
 
+## Benchmark
+
+Hier habe ich einige Benchmarks mit dem 8x Multi-Speeder 32KB RAM erstellt > hier <
+
 ## Funktionsweise
 
 Der Switchless 8x Multi-Floppy-Speeder" für den Commodore C128DCR basiert auf der Weiterentwicklung des 8x Multi-Floppy-Speeders für das 1541-Diskettenlaufwerk. In einem 512 KB EPROM (27C040 oder 29F040) können bis zu acht Kernal-Betriebssysteme für das 1571-Diskettenlaufwerk gespeichert werden. Ein Peripheral Interface Adapter (PIA, Typ 6821 oder 6521) erweitert das Diskettenlaufwerk um einen 8-Bit-Parallelport.
@@ -192,7 +196,7 @@ ROM Bank-Belegung anhand meiner Beispielkonfiguration:
 | 6    | 7@RNROM | CBM (reserved JD) | CBM      | CBM          | CBM RAM Exp. | `$68000-$6FFFF` |
 | 7    | 8@RNROM | CBM (reserved JD) | CBM      | CBM          | CBM RAM Exp. | `$78000-$7FFFF` |
 
-"CBM RAM Exp." ist das original CBMDOS der 1571 mit einem Patch für die RAM-Erweiterung des Multi-Speeders. Dieser Patch enthält einen TrackCache und so kann das 1571 Diskettenlaufwerk einen kompletten Track auf einmal einlesen. Das alleine beschleunigt den Ladevorgang schon erheblich. Das JiffyDOS 128 gibt es auch in einer Version mit dem Patch und beschleunigt das lesen nochmal um den Faktor 2-3.
+"CBM RAM Exp." ist das original CBMDOS der 1571 mit einem Patch für die RAM-Erweiterung des Multi-Speeders. Dieser Patch enthält einen TrackCache und so kann das 1571 Diskettenlaufwerk einen kompletten Track auf einmal einlesen. Das JiffyDOS 128 gibt es auch in einer Version mit dem Patch und beschleunigt das lesen nochmal um 20%.
 
 
 
@@ -371,5 +375,3 @@ Ich wünsche euch viel Freude mit meinem 8x Multi-Floppy-Speeder 32KB RAM Expans
 
 Viele Grüße
 Frank Eggen 
-
-
