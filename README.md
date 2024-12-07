@@ -387,3 +387,9 @@ I wish you much joy with my 8x Multi-Floppy-Speeder 32KB RAM Expansion for the C
 
 Best regards,  
 Frank Eggen
+
+
+
+## Update
+
+* 2024-12-07 PCB Gerber file update to version 2.0b - Errors R2 and R3 corrected. 5V must be applied between pull-up resistors R2-R3.

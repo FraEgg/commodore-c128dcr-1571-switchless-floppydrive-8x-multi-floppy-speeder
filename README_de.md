@@ -375,3 +375,11 @@ Ich wünsche euch viel Freude mit meinem 8x Multi-Floppy-Speeder 32KB RAM Expans
 
 Viele Grüße
 Frank Eggen 
+
+
+
+## Update
+
+- 2024-12-07 PCB-Gerberdatei Update auf Version 2.0b - Fehler R2 und R3 bereinigt. Zwischen Pull-Up-Widerständen R2-R3 müssen 5V anliegen.
+
+
