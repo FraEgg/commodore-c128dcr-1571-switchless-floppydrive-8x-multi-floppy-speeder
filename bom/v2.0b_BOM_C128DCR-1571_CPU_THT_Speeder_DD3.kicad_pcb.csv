@@ -1,0 +1,21 @@
+"null","Sourced","Placed","References","Value","Footprint","Datasheet","Description","Quantity"
+1,"","","C1, C2, C5, C6, C7","0,1uF","C_Disc_D3.0mm_W2.0mm_P2.50mm","https://www.aliexpress.com/item/32971478818.html","Unpolarized capacitor",5
+2,"","","C3, C4","22pF","C_Disc_D3.0mm_W2.0mm_P2.50mm","https://www.aliexpress.com/item/32971478818.html","Unpolarized capacitor",2
+3,"","","R2, R4, R5","10K","R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal","https://www.aliexpress.com/item/1005001627995396.html","10k ohm 1/4W Metal Film Resistor 0.25W 1%",3
+4,"","","R3","560R","R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal","https://www.aliexpress.com/item/1005001627995396.html","560 ohm 1/4W Metal Film Resistor 0.25W",1
+5,"","","D1","LED","LED_D3.0mm","https://www.aliexpress.com/item/1005005708510866.html","3mm 5mm F3 F5 Round LED",1
+6,"","","U1","6502 Socket","DIP-40_W15.24mm_Socket","http://www.6502.org/documents/datasheets/mos/mos_6500_mpu_mar_1980.pdf","8-bit NMOS Microprocessor, 64K, DIP-40",1
+7,"","","U2","2x20 CONN HDR","DIP-40_W15.24mm_Socket_LongPads","https://www.digikey.de/de/products/detail/mill-max-manufacturing-corp/334-40-140-00-020000/7746412","Male Header Single Row 40 Pin (2x20 Pin) 2.54mm Pin Connector Strip Round Needle Connector",1
+8,"","","U3","EPROM","PLCC-32_THT-Socket","https://www.aliexpress.com/item/1005003414421776.html","PLCC-32 DIP THT Socket",1
+9,"","","U4","W65C21N (PIA)","DIP-40_W15.24mm_Socket","https://www.westerndesigncenter.com/wdc/w65c21-chip.php","W65C21N or MC6821 / MC68B21 2MHz comp.",1
+10,"","","U5","74AHCT273N","DIP-20_W7.62mm","https://www.ti.com/lit/ds/symlink/sn74ahct273.pdf","8-bit D Flip-Flop, reset",1
+11,"","","U6","ATmega328-PU","DIP-28_W7.62mm","https://ww1.microchip.com/downloads/en/DeviceDoc/ATmega48A-PA-88A-PA-168A-PA-328-P-DS-DS40002061B.pdf","8-Bit Mikrocontroller - MCU AVR 32K FLSH 1K EE2K SRAM-20MHz IND",1
+12,"","","U7","ATF16V8B(QL)","DIP-20_W7.62mm","https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-0364-PLD-ATF16V8B-8BQ-8BQL-Datasheet.pdf","High-performance EE PLD DIP-20",1
+13,"","","U8","62256 SRAM","SOP-28_8.4x18.16mm_P1.27mm","https://www.digikey.de/de/products/detail/alliance-memory-inc/AS6C62256-55SCN/4234593","256K (32K x 8) Static RAM, 70ns, SO-28",1
+14,"","","Y1","22.1184 MHz","Crystal_HC49-4H_Vertical","https://www.aliexpress.com/item/1005006870244655.html","21.1184 Mhz Quartz Crystal Resonator Passive Oscillator HC 49S",1
+15,"","","SW1","Button 6x6,5mm","JTP-1130","https://www.aliexpress.com/item/1005003168146560.html","Tactile Tact Mini Push Button Switch PCB Panel Momentary DIP 4 Pin Self-Reset Switch 6x6,5mm",1
+16,"","","CN1","Parallel1","IDC-Header_2x05_P2.54mm_Vertical","https://www.aliexpress.com/item/1005007307830993.html","Pin 2.54mm IDC Socket Header Male Socket",1
+17,"","","CN2","Parallel2","MICMA10B","https://www.aliexpress.com/item/1005008071308576.html","Micromatch Red 2.54mm Pitch Double Row Female IDC Box Header Connector 10P",1
+18,"","","J4","ROM Select","PinHeader_1x03_P2.54mm_Vertical","https://www.aliexpress.com/item/1005005992030371.html","2.54mm Single Row Male Curved Needle Pin Header Connector",1
+19,"","","J5","SPI","PinHeader_2x03_P2.54mm_Vertical","https://www.aliexpress.com/item/4000303366348.html","2.54mm Pitch 2x3 6 Pin Male Double Row Straight Pin Header Strip Connector",1
+20,"","","J6","BANK Switch","PinHeader_1x03_P2.54mm_Vertical","https://www.aliexpress.com/item/1005005992030371.html","2.54mm Single Row Male Curved Needle Pin Header Connector",1

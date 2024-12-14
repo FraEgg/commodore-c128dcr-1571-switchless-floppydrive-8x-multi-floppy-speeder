@@ -1,0 +1,21 @@
+﻿Designator,Quantity,Value,Footprint,Package,MPN,DNP,Mount_Type,Description
+"C1, C2, C5, C6, C7",5,"0,1uF",C_Disc_D3.0mm_W2.0mm_P2.50mm,,,,tht,Unpolarized capacitor
+"C3, C4",2,22pF,C_Disc_D3.0mm_W2.0mm_P2.50mm,,,,tht,Unpolarized capacitor
+CN1,1,Parallel1,IDC-Header_2x05_P2.54mm_Vertical,,,,tht,Pin 2.54mm IDC Socket Header Male Socket
+CN2,1,Parallel2,MICMA10B,,,,tht,Micromatch Red 2.54mm Pitch Double Row Female IDC Box Header Connector 10P
+D1,1,LED,LED_D3.0mm,,,,tht,3mm 5mm F3 F5 Round LED
+J4,1,ROM Select,PinHeader_1x03_P2.54mm_Vertical,,,,tht,2.54mm Single Row Male Curved Needle Pin Header Connector
+J5,1,SPI,PinHeader_2x03_P2.54mm_Vertical,,,,tht,2.54mm Pitch 2x3 6 Pin Male Double Row Straight Pin Header Strip Connector
+J6,1,BANK Switch,PinHeader_1x03_P2.54mm_Vertical,,,,tht,2.54mm Single Row Male Curved Needle Pin Header Connector
+"R2, R4, R5",3,10K,R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal,,,,tht,10k ohm 1/4W Metal Film Resistor 0.25W 1%
+R3,1,560R,R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal,,,,tht,560 ohm 1/4W Metal Film Resistor 0.25W
+SW1,1,"Button 6x6,5mm",JTP-1130,,,,tht,"Tactile Tact Mini Push Button Switch PCB Panel Momentary DIP 4 Pin Self-Reset Switch 6x6,5mm"
+U1,1,6502 Socket,DIP-40_W15.24mm_Socket,,,Yes,tht,"8-bit NMOS Microprocessor, 64K, DIP-40"
+U2,1,2x20 CONN HDR,DIP-40_W15.24mm_Socket_LongPads,,,Yes,tht,Male Header Single Row 40 Pin (2x20 Pin) 2.54mm Pin Connector Strip Round Needle Connector
+U3,1,EPROM,PLCC-32_THT-Socket,,,,tht,PLCC-32 DIP THT Socket
+U4,1,W65C21N (PIA),DIP-40_W15.24mm_Socket,,,,tht,W65C21N or MC6821 / MC68B21 2MHz comp.
+U5,1,74AHCT273N,DIP-20_W7.62mm,,,,tht,"8-bit D Flip-Flop, reset"
+U6,1,ATmega328-PU,DIP-28_W7.62mm,,,,tht,8-Bit Mikrocontroller - MCU AVR 32K FLSH 1K EE2K SRAM-20MHz IND
+U7,1,ATF16V8B(QL),DIP-20_W7.62mm,,,,tht,High-performance EE PLD DIP-20
+U8,1,62256 SRAM,SOP-28_8.4x18.16mm_P1.27mm,,,,smt,"256K (32K x 8) Static RAM, 70ns, SO-28"
+Y1,1,22.1184 MHz,Crystal_HC49-4H_Vertical,,,,tht,21.1184 Mhz Quartz Crystal Resonator Passive Oscillator HC 49S
