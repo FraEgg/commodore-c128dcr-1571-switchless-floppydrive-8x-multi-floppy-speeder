@@ -236,6 +236,10 @@ Der Periphal interface Adapter (PIA) steuert die parallele Datenübertragung des
 
 ## Bill of Materials
 
+Die BOM-Liste steht hier zum Download bereit > [ hier](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/tree/main/bom) <.
+
+
+
 ### BOM - Multi-Speeder
 
 | Reference                           | Value                            | Datasheet                                                                                                                                                            | Footprint                                                                                           | Qty | DNP | Note                                                                                                                                                                                          |

@@ -240,6 +240,10 @@ The Peripheral Interface Adapter (PIA) controls the parallel data transfer betwe
 
 ## Bill of Materials
 
+The BOM list is available for download > [here](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/tree/main/bom) <.
+
+
+
 ### BOM - Multi-Speeder
 
 | Reference                           | Value                            | Datasheet                                                                                                                                                            | Footprint                                                                                           | Qty | DNP | Note                                                                                                                                                                                                                                                                                   |
@@ -366,8 +370,8 @@ This project is the result of the contributions of many and reflects the efforts
    [GitHub - ytmytm/1571-TrackCacheROM: A firmware patch for Commodore 1571 drive and internal C128D drive enabling RAM expansion use for track cache](https://github.com/ytmytm/1571-TrackCacheROM)
 
 5. Stefan Kauf for his support with the idea of the Mult-Speeder and its templates.
-
-
+   
+   
 
 ### Disclaimer
 
@@ -397,5 +401,3 @@ Frank Eggen
 ## Update
 
 * 2024-12-07 PCB Gerber file update to version 2.0b - Errors R2 and R3 corrected. 5V must be applied between pull-up resistors R2-R3.
-
-
