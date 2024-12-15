@@ -231,8 +231,14 @@ Der Periphal interface Adapter (PIA) steuert die parallele Datenübertragung des
 2. W65C21S6TPG-14 (Western Design Center)
 
 3. EF68B21 (STMicroelectronics) 
-   
-   
+
+
+
+## Diagnosetool
+
+Für den Multi-Speeder-DD3 habe ich ein Programm zu testen des RAM erstellt. Es testet den Zugriff auf das RAM und das RAM Bank-Switching. Das Tool ist für den C64 Modus geschrieben, damit es auf für die C64/1541 Version des Multi-Speeders-DD3 nutzbar ist.  [Link](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/tree/main/tools)
+
+
 
 ## Bill of Materials
 
@@ -361,6 +367,8 @@ Zu diesem Projekt haben viele beigetragen und ist das Ergebnis vieler Entwickler
 
 5. Stefan Kauf für seine Unterstützung bei der Idee des Mult-Speeders und seinen Vorlagen.
 
+
+
 ## Haftungsausschluß
 
 Ich habe dieses Projekt mit großer Sorgfalt gestaltet und getestet. Aber Fehler können immer passieren. Dieses Projekt ist ein Hobbyprojekt. Ich übernehme deshalb keine Garantie für die Funktion oder für etwaige Schäden, die durch den Einbau oder die Nutzung dieses Projektes in jeglicher Art entstehen könnten.
@@ -391,3 +399,5 @@ Frank Eggen
 ## Update
 
 - 2024-12-07 PCB-Gerberdatei Update auf Version 2.0b - Fehler R2 und R3 bereinigt. Zwischen Pull-Up-Widerständen R2-R3 müssen 5V anliegen.
+
+

@@ -235,8 +235,14 @@ The Peripheral Interface Adapter (PIA) controls the parallel data transfer betwe
 1. **MC6821P** (Motorola)
 2. **W65C21S6TPG-14** (Western Design Center)
 3. **EF68B21** (STMicroelectronics)
-   
-   
+
+
+
+## Diagnostic tool
+
+I have created a program to test the RAM for the Multi-Speeder-DD3. It tests the access to the RAM and the RAM bank switching. The tool is written for the C64 mode, so that it can be used for the C64/1541 version of the Multi-Speeder-DD3.  [Link](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/tree/main/tools)
+
+
 
 ## Bill of Materials
 
