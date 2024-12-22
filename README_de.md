@@ -226,13 +226,12 @@ JiffyDOS 128 läuft perfekt auf dem Multi-Speeder. Besonders mit dem RAM-Expansi
 
 Der Periphal interface Adapter (PIA) steuert die parallele Datenübertragung des Diskettenlaufwerks mit dem C128/C64 über die Parallelport-Adapter-Platine oder einem Parallel Userport Kabel. Getestet habe ich folgende PIA Versionen:
 
-1. MC6821P (Motorola)
-
-2. W65C21S6TPG-14 (Western Design Center)
-
-3. EF68B21 (STMicroelectronics) 
-
-
+1. **MC68B21P** (Motorola) (2MHz) 
+2. **W65C21N6TPG-14** oder **W65C21S6TPG-14** (Western Design Center)   
+3. **EF68B21** (STMicroelectronics) (2MHz)
+4. **R65C21P2** (Rockwell) (2MHz)
+   
+   
 
 ## Diagnosetool
 
@@ -262,7 +261,7 @@ Die BOM-Liste steht hier zum Download bereit > [ hier](https://github.com/FraEgg
 | U2                                  | Pin Header                       | https://www.aliexpress.com/item/1005007564228387.html                                                                                                                | 2.54mm Pin Header Male Single Row 20/40 Pin 2.54mm Round Pin Connector                              | 2   |     |                                                                                                                                                                                               |
 | U3                                  | Socket                           |                                                                                                                                                                      | PLCC-32_THT-Socket                                                                                  | 1   |     |                                                                                                                                                                                               |
 | U3                                  | EPROM 29F040                     | https://www.aliexpress.com/item/1005007299303666.html                                                                                                                | PLCC-32                                                                                             | 1   |     | alternativ 27C040 PLCC-32                                                                                                                                                                     |
-| U4                                  | IC W65C21S6TPG-14                | https://www.mouser.de/datasheet/2/436/w65c21-661.pdf <br/>https://de.aliexpress.com/item/1005006827509758.html<br/>https://de.aliexpress.com/item/4001175531491.html | DIP-40 W15.24mm                                                                                     | 1   |     | alternativ<br/>MC68B21P, R65C21P2                                                                                                                                                             |
+| U4                                  | IC W65C21N6TPG-14                | https://www.mouser.de/datasheet/2/436/w65c21-661.pdf <br/>https://de.aliexpress.com/item/1005006827509758.html<br/>https://de.aliexpress.com/item/4001175531491.html | DIP-40 W15.24mm                                                                                     | 1   |     | alternativ<br/>MC68B21P, EF68B21, R65C21P2, W65C21S6TPG-14                                                                                                        |
 | U5                                  | IC 74AHCT273D                    | https://www.nexperia.com/product/74AHCT273D                                                                                                                          | DIP-28_W7.62mm                                                                                      | 1   |     | Am besten funktionieren die 74AHCT273D von Nexperia. Bei anderen Herstellern kann es sonst im 2MHz zu Problemen bei der ROM Umschaltung kommen.                                               |
 | U6                                  | IC ATmega328P                    | https://www.aliexpress.com/item/32901846548.html                                                                                                                     | Package_DIP:DIP-28_W7.62mm                                                                          | 1   |     |                                                                                                                                                                                               |
 | U7                                  | IC ATF16V8B                      | https://www.aliexpress.com/item/4000830127120.html                                                                                                                   | Package_DIP:DIP-20_W7.62mm                                                                          | 1   |     | GAL16V8                                                                                                                                                                                       |
@@ -366,8 +365,8 @@ Zu diesem Projekt haben viele beigetragen und ist das Ergebnis vieler Entwickler
 4. Ytmytm für seinen TrackCache: [GitHub - ytmytm/1571-TrackCacheROM: A firmware patch for Commodore 1571 drive and internal C128D drive enabling RAM expansion use for track cache](https://github.com/ytmytm/1571-TrackCacheROM)
 
 5. Stefan Kauf für seine Unterstützung bei der Idee des Mult-Speeders und seinen Vorlagen.
-
-
+   
+   
 
 ## Haftungsausschluß
 
