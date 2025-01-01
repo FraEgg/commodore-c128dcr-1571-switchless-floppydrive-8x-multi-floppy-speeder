@@ -236,8 +236,8 @@ The Peripheral Interface Adapter (PIA) controls the parallel data transfer betwe
 2. **W65C21N6TPG-14** or **W65C21S6TPG-14** (Western Design Center)   
 3. **EF68B21** (STMicroelectronics) (2MHz)
 4. **R65C21P2** (Rockwell) (2MHz)
-
-
+   
+   
 
 ## Diagnostic tool
 
@@ -267,7 +267,7 @@ The BOM list is available for download > [here](https://github.com/FraEgg/commod
 | U2                                  | Pin Header                       | https://www.aliexpress.com/item/1005007564228387.html                                                                                                                | 2.54mm Pin Header Male Single Row 20/40 Pin 2.54mm Round Pin Connector                              | 2   |     |                                                                                                                                                                                                                                                                                        |
 | U3                                  | Socket                           |                                                                                                                                                                      | PLCC-32_THT-Socket                                                                                  | 1   |     |                                                                                                                                                                                                                                                                                        |
 | U3                                  | EPROM 29F040                     | https://www.aliexpress.com/item/1005007299303666.html                                                                                                                | PLCC-32                                                                                             | 1   |     | alternativ 27C040 PLCC-32                                                                                                                                                                                                                                                              |
-| U4                                  | IC W65C21N6TPG-14                | https://www.mouser.de/datasheet/2/436/w65c21-661.pdf <br/>https://de.aliexpress.com/item/1005006827509758.html<br/>https://de.aliexpress.com/item/4001175531491.html | DIP-40 W15.24mm                                                                                     | 1   |     | alternativ<br/>MC68B21P, R65C21P2                                                                                                                                                                                                                          |
+| U4                                  | IC W65C21N6TPG-14                | https://www.mouser.de/datasheet/2/436/w65c21-661.pdf <br/>https://de.aliexpress.com/item/1005006827509758.html<br/>https://de.aliexpress.com/item/4001175531491.html | DIP-40 W15.24mm                                                                                     | 1   |     | alternativ<br/>MC68B21P, R65C21P2                                                                                                                                                                                                                                                      |
 | U5                                  | IC 74AHCT273N                    | https://www.nexperia.com/product/74AHCT273D                                                                                                                          | DIP-28_W7.62mm                                                                                      | 1   |     |                                                                                                                                                                                                                                                                                        |
 | U6                                  | IC ATmega328P                    | https://www.aliexpress.com/item/32901846548.html                                                                                                                     | Package_DIP:DIP-28_W7.62mm                                                                          | 1   |     |                                                                                                                                                                                                                                                                                        |
 | U7                                  | IC ATF16V8B                      | https://www.aliexpress.com/item/4000830127120.html                                                                                                                   | Package_DIP:DIP-20_W7.62mm                                                                          | 1   |     | GAL16V8                                                                                                                                                                                                                                                                                |
@@ -403,9 +403,10 @@ I wish you much joy with my 8x Multi-Floppy-Speeder 32KB RAM Expansion for the C
 Best regards,  
 Frank Eggen
 
+E-Mail: [retro@emden.net](mailto:retro@emden.net)
+
 
 
 ## Update
 
 * 2024-12-07 PCB Gerber file update to version 2.0b - Errors R2 and R3 corrected. 5V must be applied between pull-up resistors R2-R3.
-  
