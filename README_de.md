@@ -382,11 +382,13 @@ Zu diesem Projekt haben viele beigetragen und ist das Ergebnis vieler Entwickler
 
 2. RetroNynjah hat mir geholfen seinen Switchless Multi-ROM auf den 8x Multi-Speeder zu integrieren. [GitHub - RetroNynjah/Switchless-Multi-ROM-for-27128-27256](https://github.com/RetroNynjah/Switchless-Multi-ROM-for-27128-27256)
 
-3. Die hilfreiche Seite mit technischen Daten zu DD3 von silverdr. [https://e4aws.silverdr.com/projects/dolphindos3/](https://e4aws.silverdr.com/projects/dolphindos3/)
+3. **Jim Drew and Joeri van Haren**, für Hilfe und für die Review-Version 2.1 by Jim Drew
 
-4. Ytmytm für seinen TrackCache: [GitHub - ytmytm/1571-TrackCacheROM: A firmware patch for Commodore 1571 drive and internal C128D drive enabling RAM expansion use for track cache](https://github.com/ytmytm/1571-TrackCacheROM)
+4. Die hilfreiche Seite mit technischen Daten zu DD3 von silverdr. [https://e4aws.silverdr.com/projects/dolphindos3/](https://e4aws.silverdr.com/projects/dolphindos3/)
 
-5. Stefan Kauf für seine Unterstützung bei der Idee des Mult-Speeders und seinen Vorlagen.
+5. Ytmytm für seinen TrackCache: [GitHub - ytmytm/1571-TrackCacheROM: A firmware patch for Commodore 1571 drive and internal C128D drive enabling RAM expansion use for track cache](https://github.com/ytmytm/1571-TrackCacheROM)
+
+6. Stefan Kauf für seine Unterstützung bei der Idee des Mult-Speeders und seinen Vorlagen.
    
    
 
