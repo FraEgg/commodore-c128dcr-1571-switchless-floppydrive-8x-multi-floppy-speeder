@@ -38,7 +38,7 @@ The bank switching failed here. The jumpers A14RAM and A15RAM may be open. In th
 
 ### Example of ram bank switching for developers
 
-To switch the memory banks, proceed as follows:
+It would be really great if there were developers who could help exploit the possibilities of the Multi-Speeder. Here is an example in Asembler for developers how to change the memory banks of the Multi-Speeder in 1571. The memory is divided into four 8K banks. These are displayed at `$6000 - $7FFF` in the 1571. The banks are easily switched by the 65c21/6821 PIA via ports PB0 = A13 and PB1 = A14. By default, A13/A15 are set to high. 
 
 ```
 LDA #$00           ; PIA DDR for output ($00)
@@ -47,7 +47,7 @@ LDA #$FF           ; Set PIA output for Port PB0-PB7
 STA $5002          ; Init PIA Port PB0-PB7 aktiv
 
 LDA #$00
-STA $5002          ; Set PIA Port PB0-PB1 low         (RAM BANK 0 active)
+STA $5002          ; Set PIA Port PB0-PB1 low        (RAM BANK 0 active)
 ...
 LDA #$01
 STA $5002         ; Set PIA Port PB0 high / PB1 low  (RAM BANK 1 active)

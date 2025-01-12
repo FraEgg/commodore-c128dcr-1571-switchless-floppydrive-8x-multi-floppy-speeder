@@ -236,8 +236,6 @@ The Peripheral Interface Adapter (PIA) controls the parallel data transfer betwe
 2. **W65C21N6TPG-14** or **W65C21S6TPG-14** (Western Design Center)   
 3. **EF68B21** (STMicroelectronics) (2MHz)
 4. **R65C21P2** (Rockwell) (2MHz)
-   
-   
 
 ## Diagnostic tool
 
@@ -248,6 +246,34 @@ I have created a program to test the RAM for the Multi-Speeder-DD3. It tests the
 ## Bill of Materials
 
 The BOM list is available for download > [here](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/tree/main/bom) <.
+
+
+
+### Example of ram bank switching via PIA (for developers)
+
+It would be really great if there were developers who could help exploit the possibilities of the Multi-Speeder. Here is an example in Asembler for developers how to change the memory banks of the Multi-Speeder in 1571. The memory is divided into four 8K banks. These are displayed at `$6000 - $7FFF` in the 1571. The banks are easily switched by the 65c21/6821 PIA via ports PB0 = A13 and PB1 = A14. By default, A13/A15 are set to high.
+ 
+
+```
+LDA #$00           ; PIA DDR for output ($00)
+STA $5003          ; Init PIA DDR Port PB0-PB7 output direction
+LDA #$FF           ; Set PIA output for Port PB0-PB7
+STA $5002          ; Init PIA Port PB0-PB7 aktiv
+
+LDA #$00
+STA $5002          ; Set PIA Port PB0-PB1 low        (RAM BANK 0 active)
+...
+LDA #$01
+STA $5002         ; Set PIA Port PB0 high / PB1 low  (RAM BANK 1 active)
+...
+LDA #$02
+STA $5002         ; Set PIA Port PB0 low / PB1 high  (RAM BANK 2 active)
+...
+LDA #$03
+STA $5002         ; Set PIA Port PB0 high / PB1 high (RAM BANK 3 active)`
+```
+
+
 
 
 
@@ -437,3 +463,5 @@ E-Mail: [retro@emden.net](mailto:retro@emden.net)
 
 * 2024-12-07 PCB Gerber file update to version 2.0b - Errors R2 and R3 corrected. 5V must be applied between pull-up resistors R2-R3.
 * 2025-01-02 Add links 1541 8x Switchless Multi-Speeder 32KB
+
+

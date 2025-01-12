@@ -245,6 +245,32 @@ Die BOM-Liste steht hier zum Download bereit > [ hier](https://github.com/FraEgg
 
 
 
+### Ein Beispiel für das RAM Bank Switching für Entwickler
+
+Es wäre wirklich toll, wenn es Entwickler gibt, die helfen die möglichkeiten des Multi-Speeders auszunutzen. Anbei ein Beispiel in Asembler für Entwickler, wie die Speicherbänke des Multi-Speeders in 1571 gewechselt werden können. Der Speicher ist in vier 8K Bänken eingeteilt. Diese werden bei '$6000 - $7FFF' in der 1571 eingeblendet. Umgeschaltet werden die Bänke ganz einfach durch den 65c21/6821 PIA über die Ports PB0 = A13 und PB1 = A14. Default sind A13/A15 auf high gesetzt.  
+
+
+```
+LDA #$00           ; PIA DDR for output ($00)
+STA $5003          ; Init PIA DDR Port PB0-PB7 output direction
+LDA #$FF           ; Set PIA output for Port PB0-PB7
+STA $5002          ; Init PIA Port PB0-PB7 aktiv
+
+LDA #$00
+STA $5002          ; Set PIA Port PB0-PB1 low        (RAM BANK 0 active)
+...
+LDA #$01
+STA $5002         ; Set PIA Port PB0 high / PB1 low  (RAM BANK 1 active)
+...
+LDA #$02
+STA $5002         ; Set PIA Port PB0 low / PB1 high  (RAM BANK 2 active)
+...
+LDA #$03
+STA $5002         ; Set PIA Port PB0 high / PB1 high (RAM BANK 3 active)`
+```
+
+
+
 ### BOM - Multi-Speeder
 
 | Reference                           | Value                            | Datasheet                                                                                                                                                            | Footprint                                                                                           | Qty | DNP | Note                                                                                                                                                                                          |
