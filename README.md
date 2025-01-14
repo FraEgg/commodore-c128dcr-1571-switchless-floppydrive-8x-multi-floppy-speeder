@@ -232,11 +232,10 @@ JiffyDOS 128 runs perfectly on the Multi-Speeder. Especially with the RAM expans
 
 The Peripheral Interface Adapter (PIA) controls the parallel data transfer between the floppy drive and the C128/C64 via the Parallel Port Adapter Board or a parallel user port cable. I have tested the following PIA versions:
 
-1. **MC6821P** (Motorola)
-2. **W65C21S6TPG-14** (Western Design Center)
-3. **EF68B21** (STMicroelectronics)
-
-
+1. **MC68B21P** (Motorola) (2MHz) 
+2. **W65C21N6TPG-14** or **W65C21S6TPG-14** (Western Design Center)   
+3. **EF68B21** (STMicroelectronics) (2MHz)
+4. **R65C21P2** (Rockwell) (2MHz)
 
 ## Diagnostic tool
 
@@ -247,6 +246,34 @@ I have created a program to test the RAM for the Multi-Speeder-DD3. It tests the
 ## Bill of Materials
 
 The BOM list is available for download > [here](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/tree/main/bom) <.
+
+
+
+### Example of ram bank switching via PIA (for developers)
+
+It would be really great if there were developers who could help exploit the possibilities of the Multi-Speeder. Here is an example in Asembler for developers how to change the memory banks of the Multi-Speeder in 1571. The memory is divided into four 8K banks. These are displayed at `$6000 - $7FFF` in the 1571. The banks are easily switched by the 65c21/6821 PIA via ports PB0 = A13 and PB1 = A14. By default, A13/A15 are set to high.
+ 
+
+```
+LDA #$00           ; PIA DDR for output ($00)
+STA $5003          ; Init PIA DDR Port PB0-PB7 output direction
+LDA #$FF           ; Set PIA output for Port PB0-PB7
+STA $5002          ; Init PIA Port PB0-PB7 aktiv
+
+LDA #$00
+STA $5002          ; Set PIA Port PB0-PB1 low        (RAM BANK 0 active)
+...
+LDA #$01
+STA $5002         ; Set PIA Port PB0 high / PB1 low  (RAM BANK 1 active)
+...
+LDA #$02
+STA $5002         ; Set PIA Port PB0 low / PB1 high  (RAM BANK 2 active)
+...
+LDA #$03
+STA $5002         ; Set PIA Port PB0 high / PB1 high (RAM BANK 3 active)`
+```
+
+
 
 
 
@@ -266,7 +293,7 @@ The BOM list is available for download > [here](https://github.com/FraEgg/commod
 | U2                                  | Pin Header                       | https://www.aliexpress.com/item/1005007564228387.html                                                                                                                | 2.54mm Pin Header Male Single Row 20/40 Pin 2.54mm Round Pin Connector                              | 2   |     |                                                                                                                                                                                                                                                                                        |
 | U3                                  | Socket                           |                                                                                                                                                                      | PLCC-32_THT-Socket                                                                                  | 1   |     |                                                                                                                                                                                                                                                                                        |
 | U3                                  | EPROM 29F040                     | https://www.aliexpress.com/item/1005007299303666.html                                                                                                                | PLCC-32                                                                                             | 1   |     | alternativ 27C040 PLCC-32                                                                                                                                                                                                                                                              |
-| U4                                  | IC W65C21S6TPG-14                | https://www.mouser.de/datasheet/2/436/w65c21-661.pdf <br/>https://de.aliexpress.com/item/1005006827509758.html<br/>https://de.aliexpress.com/item/4001175531491.html | DIP-40 W15.24mm                                                                                     | 1   |     | alternativ<br/>MC68B21P, R65C21P2                                                                                                                                                                                                                                                      |
+| U4                                  | IC W65C21N6TPG-14                | https://www.mouser.de/datasheet/2/436/w65c21-661.pdf <br/>https://de.aliexpress.com/item/1005006827509758.html<br/>https://de.aliexpress.com/item/4001175531491.html | DIP-40 W15.24mm                                                                                     | 1   |     | alternativ<br/>MC68B21P, R65C21P2                                                                                                                                                                                                                                                      |
 | U5                                  | IC 74AHCT273N                    | https://www.nexperia.com/product/74AHCT273D                                                                                                                          | DIP-28_W7.62mm                                                                                      | 1   |     |                                                                                                                                                                                                                                                                                        |
 | U6                                  | IC ATmega328P                    | https://www.aliexpress.com/item/32901846548.html                                                                                                                     | Package_DIP:DIP-28_W7.62mm                                                                          | 1   |     |                                                                                                                                                                                                                                                                                        |
 | U7                                  | IC ATF16V8B                      | https://www.aliexpress.com/item/4000830127120.html                                                                                                                   | Package_DIP:DIP-20_W7.62mm                                                                          | 1   |     | GAL16V8                                                                                                                                                                                                                                                                                |
@@ -350,6 +377,30 @@ The Multi-Speeder is installed in place of the 6502 CPU (U101). The 6502 CPU is 
 3. [Parallel-Port-Adapter for 8x Multi-Floppy-Speeder C128DCR](https://www.pcbway.com/project/shareproject/Parallelport_Adapter_U4_for_Switchless_8x_Multi_Floppy_Speeder_with_32_KB_RAM_Ex_558623e7.html)
    
    
+   
+   
+
+### Weitere Projekte auf PCBWay.com:
+
+### Commodore 1541 Switchless 8x Multi-Speeder
+
+1. [Switchless Floppy Drive 8x Multi Floppy Speeder (THT) for the Commodore 1541 Disk Drive (V2.2c)](https://www.pcbway.com/project/shareproject/Switchless_Floppy_Drive_8x_Multi_Floppy_Speeder_for_the_Commodore_1541_Disk_Driv_369dbba4.html)
+
+2. [Switchless Floppy Drive 8x Multi Floppy Speeder (SMD) for the Commodore 1541 Disk Drive (V2.2c)](https://www.pcbway.com/project/shareproject/Switchless_Floppy_Drive_8x_Multi_Floppy_Speeder_for_the_Commodore_1541_Disk_Driv_33eedf94.html)
+
+3. [Parallel Cable Sets for the Commodore 1541 Disk Drive (SpeedDOS, DolphinDOS) with the C64/C128](https://www.pcbway.com/project/shareproject/C64_Userport_Adapter_Parallel_Cable_Set_for_the_Commodore_1541_Disk_Drive_Spe_3b86d1f8.html)
+
+### Commodore 1541 Parallel Port Adapter VIA 6522
+
+1. [1541-I/1541-II Parallel Adapter (Duo/Slim) - Parallel Cable Set for the Commodore 1541 Disk Drive (SpeedDOS, DolphinDOS) with the C64/C128](https://www.pcbway.com/project/shareproject/1541_I_1541_II_Parallel_Adapter_Duo_Slim_Parallel_Cable_Set_for_the_Commodor_57072954.html)
+
+2. [1541-I/1541C Parallel Adapter - Parallel Cable Set for the Commodore 1541 Disk Drive (SpeedDOS, DolphinDOS) with the C64/C128](https://www.pcbway.com/project/shareproject/1541_I_1541C_Parallel_Adapter_Parallel_Cable_Set_for_the_Commodore_1541_Disk_D_a27176a6.html)
+
+3. [C64 User Port Adapter - Parallel Cable Set for the Commodore 1541 Disk Drive (SpeedDOS, DolphinDOS) with the C64/C128](https://www.pcbway.com/project/shareproject/C64_Userport_Adapter_Parallel_Cable_Set_for_the_Commodore_1541_Disk_Drive_Spe_3b86d1f8.html)
+   
+   
+   
+   
 
 ## Useful links
 
@@ -369,13 +420,15 @@ This project is the result of the contributions of many and reflects the efforts
 2. **RetroNynjah**, who helped integrate his switchless Multi-ROM into the 8x Multi-Speeder.  
    [GitHub - RetroNynjah/Switchless-Multi-ROM-for-27128-27256](https://github.com/RetroNynjah/Switchless-Multi-ROM-for-27128-27256)
 
-3. The informative site with technical details about DD3 by **silverdr**.  
+3. **Jim Drew and Joeri van Haren**, for Help and Revised Version 2.1 by Jim Drew 
+
+4. The informative site with technical details about DD3 by **silverdr**.  
    [DolphinDOS3](https://e4aws.silverdr.com/projects/dolphindos3/)
 
-4. **Ytmytm**, for his TrackCache:  
+5. **Ytmytm**, for his TrackCache:  
    [GitHub - ytmytm/1571-TrackCacheROM: A firmware patch for Commodore 1571 drive and internal C128D drive enabling RAM expansion use for track cache](https://github.com/ytmytm/1571-TrackCacheROM)
 
-5. Stefan Kauf for his support with the idea of the Mult-Speeder and its templates.
+6. Stefan Kauf for his support with the idea of the Mult-Speeder and its templates.
    
    
 
@@ -402,8 +455,13 @@ I wish you much joy with my 8x Multi-Floppy-Speeder 32KB RAM Expansion for the C
 Best regards,  
 Frank Eggen
 
+E-Mail: [retro@emden.net](mailto:retro@emden.net)
+
 
 
 ## Update
 
 * 2024-12-07 PCB Gerber file update to version 2.0b - Errors R2 and R3 corrected. 5V must be applied between pull-up resistors R2-R3.
+* 2025-01-02 Add links 1541 8x Switchless Multi-Speeder 32KB
+
+
