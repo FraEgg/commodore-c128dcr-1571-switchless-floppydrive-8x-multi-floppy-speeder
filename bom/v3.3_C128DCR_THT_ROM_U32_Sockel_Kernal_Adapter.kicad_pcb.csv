@@ -1,0 +1,4 @@
+"Reference","Value","Datasheet","Footprint","Qty","DNP"
+"J3","Bank Switch","https://de.aliexpress.com/item/1005005992030371.html","Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical","1",""
+"U1","U32 Header","http://ww1.microchip.com/downloads/en/DeviceDoc/doc0015.pdf","Package_DIP:DIP-28_W15.24mm","1",""
+"U2","EPROM","http://www.issi.com/WW/pdf/61-64C5128AL.pdf","Package_LCC:PLCC-32_THT-Socket","1",""
