@@ -18,6 +18,8 @@ Additionally, the **switchless 8x Multi-Floppy-Speeder** is fully **RAMBoard-com
 
 I have also developed this Multi-Speeder for **external 1571, 1541, and 1541-II floppy drives** with various matching **PCBs**. These can be operated in combination with each other.  
 
+---
+
 ## Features
 
 1. 8 x 64 KB kernel ROM banks for C128/C64 mode  
@@ -30,6 +32,8 @@ I have also developed this Multi-Speeder for **external 1571, 1541, and 1541-II 
 8. New useful functions with DolphinDos 25  
 9. Compatibility with RAMBoard for nibbler copy programs  
 
+---
+
 ## Functionality
 
 A **512 KB EPROM** (type **27C040** or **29F040**, U3) can store up to eight **kernel operating systems** for the **1571 floppy drive**. A **Peripheral Interface Adapter (PIA)** of type **6821** or **W65C21** (U4) expands the floppy drive with an additional **8-bit parallel port**.  
@@ -39,6 +43,8 @@ Together with the **512 KB RAM expansion (U8)**, it is possible to run **Dolphin
 A **microcontroller (Atmel ATMEGA328p)** controls the **Speeder's operating modes**. It monitors the **data bus of the 6502 CPU** in the floppy drive and automatically switches the appropriate **ROM banks** as soon as a specific command (character string) is detected.  
 
 The **U32 kernel adapter** for **C128/C64 mode** is also connected to the Speeder, allowing the microcontroller to **synchronize the switching of the eight ROM banks**. This means that the **C128 or C64 mode kernel corresponding to the 1571 DOS kernel** is automatically activated. The **eight C128/C64 kernels** are also stored in an **EPROM** of type **27C040** or **29F040**.  
+
+---
 
 ### 512 KB ROM and RAM Expansion for the 1571 Floppy Drive
 
@@ -50,7 +56,7 @@ The **Multi-Speeder** includes an **AS6C4008 512 KB SRAM**. This additional RAM 
 
 At the end of the documentation, there is a small **assembly program** that demonstrates how **bank switching** works.  
 
-
+---
 
 ### Memory Map 1571 Floppy Drive + C128DCR 1571 Multi-Speeder V3.3
 
@@ -68,6 +74,8 @@ At the end of the documentation, there is a small **assembly program** that demo
 
 [^1] Additionally provided by the Multi-Floppy-Speeder.  
 
+---
+
 ## Components
 
 The "Switchless 8x Multi-Floppy-Speeder" for the Commodore C128DCR consists of the following components:  
@@ -77,8 +85,8 @@ The "Switchless 8x Multi-Floppy-Speeder" for the Commodore C128DCR consists of t
 2. Parallel port adapter board for CIA2 6526 (U4 C128) with parallel cable (optional for DolphinDos3/DolphinDos25)  
 
 3. C128/C64 Kernel Switcher board for 27256 ROM1 (U32)  
-   
-   
+
+---   
 
 ### (1) Multi-Speeder Board
 
@@ -94,7 +102,7 @@ The Multi-Speeder board features a **(J3) connector**, allowing the Multi-Speede
 
 This function is particularly useful if the **floppy drive crashes** and no longer responds to **DOS commands** from the computer—for example, when an incorrect or experimental **DOS ROM in the EPROM** has been activated.  
 
-
+---
 
 ### (2) Parallel Port Adapter Board
 
@@ -108,9 +116,11 @@ The **Parallel Port Adapter Board** also includes a **10-pin ribbon cable**, whi
 
 In the latest version, the **Parallel Port Adapter Board** features only a **red Micromatch connector**.  
 
+---
+
 ### (3) C128/C64 Kernel Switcher Board
 
-<img title="8x Multi-Floppy-Speeder Kernal Switcher C128DCR" src="file:///C:/Users/Frank%20Eggen/OneDrive/Dokumente/Git/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/images/V3.3_U32_Kernal-Switcher-Platine.jpg" alt="loading-ag-2816" style="zoom:25%;" data-align="center">
+<img title="8x Multi-Floppy-Speeder Kernal Switcher C128DCR" src="https://raw.githubusercontent.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/refs/heads/main/images/V3.3_U32_Kernal-Switcher-Platine.jpg" alt="loading-ag-2816" style="zoom:25%;" data-align="center">
 
 The **Kernel Switcher Board** is an **adapter board** for a **512 KB EPROM (27C040 or 29F040)**, which contains **eight 64 KB C128/C64 kernel ROM banks**. It is installed in place of the original **kernel PROM** in the **socket (U32)** of the **C128DCR**.  
 
@@ -122,6 +132,8 @@ The **switcher** features a **connector (J3) for A16/A17/A18**, which must be co
 If **J4** on the **Multi-Switcher** is left open, then the **floppy drive will not be reinitialized (no reset) when switching the DOS kernel**.  
 
 The **Kernel Switcher V1.2** (newer version) also includes an additional **fourth connection (A15) at J3**, which is **not used in the C128DCR**.  
+
+---
 
 ### Switchless - Selecting Operating Modes (ROM Bank)
 

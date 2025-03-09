@@ -1,11 +1,8 @@
 # Switchless 8x Multi-Floppy-Speeder V3.3 with 512 KB RAM expansion for the Commodore C128 DCR and the internal 1571 floppy drive (DolphinDOS 3 / new DolphinDOS 25)
 
-=============================================================================================================================================
+## C128/C64 and 1571 Test-Kernels
 
-
-### C128/C64 and 1571 Test-Kernels
-
-<img title="8x Multi-Floppy-Speeder Kernal Switcher C128DCR" src="file:///C:/Users/Frank%20Eggen/OneDrive/Dokumente/Git/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/images/V3.3_U32_Kernal-Switcher-Platine.jpg" alt="loading-ag-280" style="zoom:25%;" data-align="center">
+<img title="8x Multi-Floppy-Speeder Kernal Switcher C128DCR" src="https://raw.githubusercontent.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/refs/heads/main/images/V3.3_U32_Kernal-Switcher-Platine.jpg" alt="loading-ag-280" style="zoom:25%;" data-align="center">
 
 Here I have prepared two EPROMs for the Multi-Speeder and the C128/C64 U32 Kernal-Switcher. This contains the DolphinDos 3/DolphinDos 25 and the original CBM-DOS. 
 
@@ -21,11 +18,13 @@ JiffyDOS can be added by each owner himself. Since JiffyDOS is still being marke
 
 On the new Kernal-Switcher PCB above v1.2 the Adressline A15 is unused on J3. 
 
+---
+
 # ROM Organization
 
 The firmware (kernels) for the 1571 floppy drive and C128/C64 are stored in a 512 KB EPROM of type 27C040 or 29F040 (PLCC32) and organized into 8x 64 KB banks. Each bank (0–7) represents the complete 64 KB address range.
 
-
+---
 
 ## Internal 1571 Floppy Drive
 
@@ -48,7 +47,7 @@ Here is the configuration of the example kernals:
 | 6    | 7@RNROM | CBM (reserved JD) | CBM      | CBM          | CBM RAM Exp. | `$68000-$6FFFF`                |
 | 7    | 8@RNROM | CBM (reserved JD) | CBM      | CBM          | CBM RAM Exp. | `$78000-$7FFFF`                |
 
-
+---
 
 ## C128/C64 Kernels
 

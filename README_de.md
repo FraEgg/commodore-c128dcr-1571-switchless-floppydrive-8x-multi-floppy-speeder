@@ -20,6 +20,8 @@ Zusätzlich ist der **switchless 8x Multi-Floppy-Speeder** vollständig **RAMBoa
 
 Diesen Multi-Speeder habe ich ebenfalls für die **externen Diskettenlaufwerke 1571, 1541 und 1541-II** mit verschiedenen passenden **PCBs** entwickelt. Diese können miteinander kombiniert betrieben werden.  
 
+---
+
 ## Funktionen
 
 1. 8 x 64 KB Kernals-ROM-Bänke für C128/C64-Modus
@@ -31,8 +33,8 @@ Diesen Multi-Speeder habe ich ebenfalls für die **externen Diskettenlaufwerke 1
 7. U4 6526-CIA-Adapter für den Parallelport des internen 1571-Diskettenlaufwerks
 8. Neue nützliche Fuktionen mit DolphinDos 25 
 9. Kompatibilität mit RAMBoard für Nibbler-Kopierprogramme
-   
-   
+
+---
 
 ## Funktionsweise
 
@@ -44,7 +46,7 @@ Ein **Mikrocontroller (Atmel ATMEGA328p)** steuert die **Betriebsmodi des Speede
 
 Der **U32-Kernal-Adapter** für den **C128-/C64-Modus** ist ebenfalls mit dem Speeder verbunden, sodass der Mikrocontroller die **acht ROM-Bänke synchron** schalten kann. Dies bedeutet, dass der zum **1571-DOS-Kernal passende Kernal für den C128- oder C64-Modus** automatisch aktiviert wird. Die **acht C128-/C64-Kernals** befinden sich ebenfalls in einem **EPROM** vom Typ **27C040** bzw. **29F040**.  
 
-
+---
 
 ### 512 KB ROM- und RAM-Erweiterung für das 1571-Diskettenlaufwerk
 
@@ -56,7 +58,7 @@ Der **Multi-Speeder** verfügt über ein **AS6C4008 512 KB SRAM**. Dieses zusät
 
 Am Ende der Dokumentation gibt es ein kleines **Assemblerprogramm**, das zeigt, wie das **Bank-Switching** funktioniert.  
 
-
+---
 
 ### Memory Map 1571 Diskettenlaufwerk + C128DCR 1571 Multi-Speeder V3.3
 
@@ -74,7 +76,7 @@ Am Ende der Dokumentation gibt es ein kleines **Assemblerprogramm**, das zeigt, 
 
  [^1] Zusätzlich durch den Multi-Floppy-Speeder bereitgestellt.
 
-
+---
 
 ## Teile
 
@@ -85,8 +87,8 @@ Der "Switchless 8x Multi-Floppy-Speeder" für den Commodore C128DCR besteht auf 
 2. Parallelport-Adapter-Platine für CIA2 6526 (U4 C128) mit Parallelkabel (optional für DolphinDos3/DolphinDos25)
 
 3. C128/C64 Kernal-Switcher-Platine für 27256 ROM1 (U32)
-   
-   
+
+---   
 
 ### (1) Multi-Speeder-Platine
 
@@ -102,7 +104,7 @@ Die Multi-Speeder-Platine verfügt über **(J3)** eine Möglichkeit, den Multi-S
 
 Diese Funktion ist besonders hilfreich, wenn das **Laufwerk abgestürzt** ist und nicht mehr über **DOS-Kommandos** vom Computer aus reagiert – beispielsweise, wenn ein fehlerhaftes oder experimentelles **DOS-ROM im EPROM** aktiviert wurde.  
 
-
+---
 
 ### (2) Parallelport-Adapter-Platine
 
@@ -116,11 +118,11 @@ Zur **Parallelport-Adapter-Platine** gehört außerdem ein **10-poliges Flachban
 
 In der neuesten Version verfügt die **Parallelport-Adapter-Platine** ausschließlich über einen **roten Micromatch-Anschluss**.  
 
-
+---
 
 ### (3) C128/C64 Kernal-Switcher-Platine
 
-<img title="8x Multi-Floppy-Speeder Kernal Switcher C128DCR" src="file:///C:/Users/Frank%20Eggen/OneDrive/Dokumente/Git/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/images/V3.3_U32_Kernal-Switcher-Platine.jpg" alt="loading-ag-2816" style="zoom:25%;" data-align="center">
+<img title="8x Multi-Floppy-Speeder Kernal Switcher C128DCR" src="https://raw.githubusercontent.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/refs/heads/main/images/V3.3_U32_Kernal-Switcher-Platine.jpg" alt="loading-ag-2816" style="zoom:25%;" data-align="center">
 
 Die **Kernal-Switcher-Platine** ist eine **Adapterplatine** für ein **512 KB EPROM (27C040 oder 29F040)**, das **acht 64 KB große C128-/C64-Kernal-ROM-Bänke** enthält. Sie wird im **C128DCR** anstelle des originalen **Kernal-PROMs** in den **Sockel (U32)** eingesetzt.  
 
@@ -133,7 +135,7 @@ Wenn **J4** auf dem **Multi-Switcher** geöffnet wird, dann wird das **Disketten
 
 Der **Kernal-Switcher V1.2** (neuere Version, oben) verfügt an **J3** zusätzlich über einen **vierten Anschluss (A15)**. Dieser wird beim **C128DCR nicht genutzt**.  
 
-
+---
 
 ## Switchless - Wahl der Betriebsmodi (ROM-Bank)
 
@@ -182,7 +184,7 @@ Wenn das **1571-Diskettenlaufwerk** im **2-MHz-Modus** läuft (**C128-Modus/Dolp
 
 Eine zuverlässige Funktion kann erreicht werden, indem der **Quarz Y1** auf der Platine von **20 MHz auf 22,1184 MHz** gewechselt wird. Zwar gibt der Hersteller die **maximale Taktrate** für den **ATmega328P im DIP-Gehäuse** mit **20 MHz** an, jedoch läuft der Mikrocontroller in der Praxis **problemlos mit 22 MHz**.  
 
-
+---
 
 ## Übersicht der C128/C64 und DOS-Kernals
 
@@ -200,7 +202,7 @@ Das Kernal ROM 27256 (U32) (C128/C64 Kernals) ist beim C128DCR grundsätzlich wi
 | `$2000 - $3FFF`     | C64 Kernal  `$E000 - $FFFF`  | 8KB   |
 | `$4000 - $7FFF`     | C128 Kernal/System           | 16 KB |
 
-
+---
 
 ### 1571 DOS Kernal (U101 Multi-Speeder)
 
@@ -250,7 +252,7 @@ JiffyDOS 128 läuft perfekt auf dem Multi-Speeder. Besonders mit dem RAM-Expansi
 
 **Beim umschalten kann es Probleme geben, wenn das Diskettenlaufwerk im 2MHz modus betrieben wird. Dann einfach mehrmals z.B. mit (LOAD"x@RNROM",8,1) das gewünschte ROM versuchen umschalten. Das Problem liegt am Timing in Verbindung mit dem ATMega und 74AHTC273 Flip-Flop unter 2MHz. Am besten funktioniert das System mit einem 74AHTC273.** 
 
-
+---
 
 ## Periphal interface Adapter (PIA)
 
@@ -260,26 +262,26 @@ Der Periphal interface Adapter (PIA) steuert die parallele Datenübertragung des
 2. **W65C21N6TPG-14** oder **W65C21S6TPG-14** (Western Design Center)   
 3. **EF68B21** (STMicroelectronics) (2MHz)
 4. **R65C21P2** (Rockwell) (2MHz)
-   
-   
+
+---   
 
 ## Diagnosetool
 
 Für den Multi-Speeder-DD3 habe ich ein Programm zu testen des RAM erstellt. Es testet den Zugriff auf das RAM und das RAM Bank-Switching. Das Tool ist für den C64 Modus geschrieben, damit es auf für die C64/1541 Version des Multi-Speeders-DD3 nutzbar ist.  [Link](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/tree/main/tools)
 
-
+---
 
 ## Benchmark
 
 Hier habe ich einige Benchmarks mit dem 8x Multi-Speeder V2.x erstellt > [[hier]](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/blob/main/benchmark/README.md)
 
-
+---
 
 ## Bill of Materials
 
 Die BOM-Liste steht hier zum Download bereit > [ hier](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/tree/main/bom) <.
 
-
+---
 
 ### Ein Beispiel für das RAM Bank Switching für Entwickler
 
@@ -297,7 +299,7 @@ Das **Umschalten der Bänke** erfolgt einfach über den **65C21/6821 PIA** mithi
 
 Standardmäßig sind **PB0 - PB5 auf 0**, sodass **Bank 0 aktiv** ist.
 
-  
+
 
 ```
 LDA #$00           ; PIA DDR for output ($00)
@@ -318,7 +320,7 @@ LDA #$03
 STA $5002         ; Set PIA Port PB0 high / PB1 high (RAM BANK 3 active)`
 ```
 
-
+---
 
 ## ATMega 328P
 
@@ -333,6 +335,8 @@ Der Atmel ATMega 328P Microcontroller überwacht den Datenbus und steuert die RO
 <img title="8x Multi-Speeder Install C128DCR  Mainboard" src="https://raw.githubusercontent.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/refs/heads/main/images/V2.0_C128DCR_Overview.jpg" alt="8x Multi-Speeder Install C128DCR  Mainboard" style="zoom:50%;" data-align="center">
 
 Die Installation des Multi-Speeders auf dem C128DCR Mainboard. Der Multi-Speeder wird anstelle der 6502 CPU (U101) eingesetzt. Die 6502 CPU wird auf den CPU-Sockel des Multi-Speeder gesetzt (unten rechts). Der Kernal-Switcher befindet sich unten links und wird anstelle des original Kernals auf den Sockel (U32) gesetzt. Der Parallel-Adapter kommt anstelle des CIA 6526 (U4) in einen Sockel. Der CIA 6526 wird auf den Parallel-Adapter-Platine gesetzt. Der Kernel-Switcher wird mit einem drei PIN Kabel mit dem Multi-Speeder verbunden. Der Parallel-Adapter wird mit einen 10 poligen Kabel ebenfalls mit der Multi-Speeder-Platine verbunden (Parallelport).
+
+---
 
 ## Downloads
 
@@ -349,8 +353,8 @@ Die Installation des Multi-Speeders auf dem C128DCR Mainboard. Der Multi-Speeder
 6. [Fotogalerie](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/tree/main/images)
 
 7. [Weitere Dokumente](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/tree/main/docs)
-   
-   
+
+---   
 
 ## Shared Projects auf PCBWay.com
 
@@ -359,8 +363,8 @@ Die Installation des Multi-Speeders auf dem C128DCR Mainboard. Der Multi-Speeder
 2. [C128/C64 Kernal-Switcher für 8x Multi-Floppy-Speeder C128DCR](https://www.pcbway.com/project/shareproject/C128_C64_U32_Kernal_Switcher_Adapter_for_Switchless_8x_Multi_Floppy_Speeder_with_f113e895.html)
 
 3. [Parallel-Port-Adapter für 8x Multi-Floppy-Speeder C128DCR](https://www.pcbway.com/project/shareproject/Parallelport_Adapter_U4_for_Switchless_8x_Multi_Floppy_Speeder_with_32_KB_RAM_Ex_558623e7.html)
-   
-   
+
+---   
 
 ### Weitere Projekte auf PCBWay.com:
 
@@ -379,16 +383,16 @@ Die Installation des Multi-Speeders auf dem C128DCR Mainboard. Der Multi-Speeder
 2. [1541-I/1541C Parallel Adapter - Parallel Cable Set for the Commodore 1541 Disk Drive (SpeedDOS, DolphinDOS) with the C64/C128](https://www.pcbway.com/project/shareproject/1541_I_1541C_Parallel_Adapter_Parallel_Cable_Set_for_the_Commodore_1541_Disk_D_a27176a6.html)
 
 3. [C64 User Port Adapter - Parallel Cable Set for the Commodore 1541 Disk Drive (SpeedDOS, DolphinDOS) with the C64/C128](https://www.pcbway.com/project/shareproject/C64_Userport_Adapter_Parallel_Cable_Set_for_the_Commodore_1541_Disk_Drive_Spe_3b86d1f8.html)
-   
-   
+
+---   
 
 ## Hilfreiche Links
 
 1. DolphinDos [Dolphin DOS – C64-Wiki](https://www.c64-wiki.de/wiki/Dolphin_DOS) & https://project64.c64.org/hw/dolphindos.txt
 
 2. RAMBoard: [RAMBOard – C64-Wiki](https://www.c64-wiki.de/wiki/RAMBOard) & [https://www.c64copyprotection.com/ramboard/](https://www.c64copyprotection.com/ramboard/) & [[CSDb] - Super-Card 6 Plus RAMboard [scpu] by Master (2018)
-   
-   
+
+---   
 
 ## Danke
 
@@ -405,20 +409,20 @@ Zu diesem Projekt haben viele beigetragen und ist das Ergebnis vieler Entwickler
 5. Ytmytm für seinen TrackCache: [GitHub - ytmytm/1571-TrackCacheROM: A firmware patch for Commodore 1571 drive and internal C128D drive enabling RAM expansion use for track cache](https://github.com/ytmytm/1571-TrackCacheROM)
 
 6. Stefan Kauf für seine Unterstützung bei der Idee des Mult-Speeders und seinen Vorlagen.
-   
-   
+
+---   
 
 ## Haftungsausschluß
 
 Ich habe dieses Projekt mit großer Sorgfalt gestaltet und getestet. Aber Fehler können immer passieren. Dieses Projekt ist ein Hobbyprojekt. Ich übernehme deshalb keine Garantie für die Funktion oder für etwaige Schäden, die durch den Einbau oder die Nutzung dieses Projektes in jeglicher Art entstehen könnten.
 
-
+---
 
 ## Spenden
 
 Ich habe viele Stunden an diesem Projekt gearbeitet. Wenn Du diese Arbeit unterstützen möchtest, dann kannst Du mir etwas für die Kaffekasse spenden. Vielen Dank! [Paypal Spende hier klicken!](https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=Q8HXKYARXKT4L&ssrt=1714757590172)
 
-
+---
 
 ## Nutzungsrecht / Copyright
 
@@ -435,10 +439,12 @@ Frank Eggen
 
 E-Mail: [retro@emden.net](mailto:retro@emden.net)
 
-
+---
 
 ## Update
 
 - 2025-03-08 Neue Version 3,3 mit 512KB RAM und DolphinDos 25
 - 2025-01-02 Hinzu weitere Links zum 1541 8x Switchless Multi-Speeder 32KB
 - 2024-12-07 PCB-Gerberdatei Update auf Version 2.0b - Fehler R2 und R3 bereinigt. Zwischen Pull-Up-Widerständen R2-R3 müssen 5V anliegen.
+
+
