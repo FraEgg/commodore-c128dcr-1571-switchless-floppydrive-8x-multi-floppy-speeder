@@ -1,4 +1,4 @@
-#  Switchless 8x Multi-Floppy-Speeder V3.3 with 512 KB RAM expansion for the Commodore C128 DCR and the internal 1571 floppy drive (DolphinDOS 3 / new DolphinDOS 25)
+# Switchless 8x Multi-Floppy-Speeder V3.3 with 512 KB RAM expansion for the Commodore C128 DCR and the internal 1571 floppy drive (DolphinDOS 3 / new DolphinDOS 25)
 
 <img title="8x Multi-Floppy-Speeder 32KB RAM Expasion for the internal 1571 Floppydrive C128DCR - DolphinDos 3" src="https://raw.githubusercontent.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/refs/heads/main/images/V2.0_C128DCR_Multi-Floppy-Speeder-Set-Title.jpg" alt="loading-ag-1227" data-align="center" style="zoom:25%;">
 
@@ -90,7 +90,7 @@ The "Switchless 8x Multi-Floppy-Speeder" for the Commodore C128DCR consists of t
 
 ### (1) Multi-Speeder Board
 
-<img title="8x Multi-Speeder 32KB RAM Expansion Module (DolphinDos 3)" src="https://raw.githubusercontent.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/refs/heads/main/images/V2.0a_Multi-Speeder.jpg" alt="loading-ag-1229" style="zoom:25%;" data-align="center">
+<img title="8x Multi-Speeder 32KB RAM Expansion Module (DolphinDos 3)" src="https://raw.githubusercontent.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/refs/heads/main/images/v3.3_C128DCR_1571_CPU_THT_DD3_Speeder (512KB)_pcb_real.jpg" alt="loading-ag-1229" style="zoom:25%;" data-align="center">
 
 The **Multi-Speeder board** is installed in place of the **6502 AD CPU (U101)** of the internal **1571 floppy drive** on the **motherboard**. The CPU is then placed into the **6502 socket (U1)** on the Multi-Speeder board. However, in most cases, the CPU is directly soldered onto the **C128DCR motherboard**. Therefore, it must first be desoldered and replaced with a **40-pin DIP socket** before the Multi-Speeder board can be installed.  
 

@@ -92,7 +92,7 @@ Der "Switchless 8x Multi-Floppy-Speeder" für den Commodore C128DCR besteht auf 
 
 ### (1) Multi-Speeder-Platine
 
-<img title="8x Multi-Speeder 32KB RAM Expansion Module (DolphinDos 3)" src="https://raw.githubusercontent.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/refs/heads/main/images/V2.0a_Multi-Speeder.jpg" alt="loading-ag-1229" style="zoom:25%;" data-align="center">
+<img title="8x Multi-Speeder 32KB RAM Expansion Module (DolphinDos 3)" src="https://raw.githubusercontent.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/refs/heads/main/images/v3.3_C128DCR_1571_CPU_THT_DD3_Speeder (512KB)_pcb_real.jpg" alt="loading-ag-1229" style="zoom:25%;" data-align="center">
 
 Die **Multi-Speeder-Platine** wird anstelle der **6502 AD-CPU (U101)** des internen **1571-Diskettenlaufwerks** auf das **Motherboard** eingesetzt. Die CPU wird dann auf den **6502-Sockel (U1)** der Multi-Speeder-Platine platziert. In den meisten Fällen ist die CPU jedoch direkt auf dem **C128DCR-Motherboard** aufgelötet. Daher muss sie zunächst ausgelötet und durch einen **40-Pin-DIP-Sockel** ersetzt werden, bevor die Multi-Speeder-Platine eingesetzt werden kann.  
 
@@ -446,5 +446,3 @@ E-Mail: [retro@emden.net](mailto:retro@emden.net)
 - 2025-03-08 Neue Version 3,3 mit 512KB RAM und DolphinDos 25
 - 2025-01-02 Hinzu weitere Links zum 1541 8x Switchless Multi-Speeder 32KB
 - 2024-12-07 PCB-Gerberdatei Update auf Version 2.0b - Fehler R2 und R3 bereinigt. Zwischen Pull-Up-Widerständen R2-R3 müssen 5V anliegen.
-
-

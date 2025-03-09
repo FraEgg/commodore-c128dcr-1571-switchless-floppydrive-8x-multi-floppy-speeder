@@ -2,7 +2,7 @@
 
 ## Photogallery
 
-![](https://raw.githubusercontent.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/refs/heads/main/images/V2.0_C128DCR_Multi-Floppy-Speeder-Set-Title.jpg)
+![](https://raw.githubusercontent.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/refs/heads/main/images/v3.3_C128DCR_1571_CPU_THT_DD3_Speeder%20(512KB)_pcb_real.jpg)
 
 
 
