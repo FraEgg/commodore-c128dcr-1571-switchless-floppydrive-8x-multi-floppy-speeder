@@ -1,19 +1,25 @@
-Switchless 8x Multi-Floppy Speeder with 32 KB RAM Expansion for the Commodore C128 DCR and Internal 1571 Floppy Drive (DolphinDOS 3 Compatible)
-=============================================================================================================================================
+# Switchless 8x Multi-Floppy-Speeder V3.3 with 512 KB RAM expansion for the Commodore C128 DCR and the internal 1571 floppy drive (DolphinDOS 3 / new DolphinDOS 25)
 
+=============================================================================================================================================
 
 
 ### C128/C64 and 1571 Test-Kernels
 
-<img title="8x Multi-Floppy-Speeder Kernal Switcher C128DCR" src="https://raw.githubusercontent.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/refs/heads/main/images/V2.0_U32_Kernal-Switcher-Platine.jpg" alt="8x Multi-Floppy-Speeder Kernal Switcher C128DCR" style="zoom:25%;" data-align="center">
+<img title="8x Multi-Floppy-Speeder Kernal Switcher C128DCR" src="file:///C:/Users/Frank%20Eggen/OneDrive/Dokumente/Git/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/images/V3.3_U32_Kernal-Switcher-Platine.jpg" alt="loading-ag-280" style="zoom:25%;" data-align="center">
 
-Here I have prepared two EPROMs for the Multi-Speeder and the C128/C64 U32 Kernal-Switcher. This contains the DolphinDos 3 and the original CBM-DOS. JiffyDOS can be added by each owner himself. Since JiffyDOS is still being marketed, I do not include it in the ROMs for copyright reasons.
+Here I have prepared two EPROMs for the Multi-Speeder and the C128/C64 U32 Kernal-Switcher. This contains the DolphinDos 3/DolphinDos 25 and the original CBM-DOS. 
 
-1. Kernals for internal 1571 (Multi-Speeder PCB): [1571-U101-Multi-Speeder-29F040-CBM-CBM-DolphinDos3-SD2IEC-RAM-Patch.BIN](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/raw/refs/heads/main/kernals/1571-U101-Multi-Speeder-29F040-CBM-CBM-DolphinDos3-SD2IEC-RAM-Patch.BIN)
+
+
+JiffyDOS can be added by each owner himself. Since JiffyDOS is still being marketed, I do not include it in the ROMs for copyright reasons.
+
+1. Kernals for internal 1571 (Multi-Speeder PCB): [1571-U101-Multi-Speeder-29F040-CBM-CBM-DD3-DD25-SD2IEC-RAM-Patch.BIN](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/raw/refs/heads/main/kernals/1571-U101-Multi-Speeder-29F040-CBM-CBM-DD3-DD25-SD2IEC-RAM-Patch.BIN)
 
 2. Kernals for C128/C64 U32 (Kernal-Switcher PCB): [C128-U32-Kernal-Switcher-29F040-CBM-CBM-DolphinDos3-SD2IEC-RAM-Patch.BIN](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/raw/refs/heads/main/kernals/C128-U32-Kernal-Switcher-29F040-CBM-CBM-DolphinDos3-SD2IEC-RAM-Patch.BIN)
    
    
+
+On the new Kernal-Switcher PCB above v1.2 the Adressline A15 is unused on J3. 
 
 # ROM Organization
 
@@ -31,16 +37,16 @@ The address decoder of the Multi-Speeder Board maps the ROM in the floppy drive 
 
 Here is the configuration of the example kernals:
 
-| Bank | Switch  | System            | U32 C128 | U32 C64      | U101 1571    | EPROM           |
-| ---- | ------- | ----------------- | -------- | ------------ | ------------ | --------------- |
-| 0    | 1@RNROM | CBM               | CBM      | CBM          | CBM          | `$08000-$0FFFF` |
-| 1    | 2@RNROM | CBM RAM Exp       | CBM      | CBM          | CBM RAM Exp. | `$18000-$1FFFF` |
-| 2    | 3@RNROM | DolphinDos 3      | DD3      | DD3          | DD3          | `$28000-$2FFFF` |
-| 3    | 4@RNROM | DolphinDos 3      | DD3      | DD3-Custom   | DD3          | `$38000-$3FFFF` |
-| 4    | 5@RNROM | CBM-DD-SD2IEC     | CBM      | DD-JD-SD2IEC | CBM RAM Exp. | `$48000-$4FFFF` |
-| 5    | 6@RNROM | CBM               | CBM      | JaffyDos 1.3 | CBM RAM Exp. | `$58000-$5FFFF` |
-| 6    | 7@RNROM | CBM (reserved JD) | CBM      | CBM          | CBM RAM Exp. | `$68000-$6FFFF` |
-| 7    | 8@RNROM | CBM (reserved JD) | CBM      | CBM          | CBM RAM Exp. | `$78000-$7FFFF` |
+| Bank | Switch  | System            | U32 C128 | U32 C64      | U101 1571    | EPROM                          |
+| ---- | ------- | ----------------- | -------- | ------------ | ------------ | ------------------------------ |
+| 0    | 1@RNROM | CBM               | CBM      | CBM          | CBM          | `$08000-$0FFFF`                |
+| 1    | 2@RNROM | CBM RAM Exp       | CBM      | CBM          | CBM RAM Exp. | `$18000-$1FFFF`                |
+| 2    | 3@RNROM | DolphinDos 3      | DD3      | DD3          | DD3          | `$28000-$2FFFF`                |
+| 3    | 4@RNROM | DolphinDos 25     | DD3      | DD3-Custom   | DD3          | `$33000-§3FFF & $38000-$3FFFF` |
+| 4    | 5@RNROM | CBM-DD-SD2IEC     | CBM      | DD-JD-SD2IEC | CBM RAM Exp. | `$48000-$4FFFF`                |
+| 5    | 6@RNROM | CBM               | CBM      | JaffyDos 1.3 | CBM RAM Exp. | `$58000-$5FFFF`                |
+| 6    | 7@RNROM | CBM (reserved JD) | CBM      | CBM          | CBM RAM Exp. | `$68000-$6FFFF`                |
+| 7    | 8@RNROM | CBM (reserved JD) | CBM      | CBM          | CBM RAM Exp. | `$78000-$7FFFF`                |
 
 
 
@@ -54,7 +60,11 @@ The kernel ROM 27256 (U32) in the C128DCR is structured as follows:
 | `$2000 - $3FFF`   | C64 Kernel `$E000 - $FFFF`   | 8 KB              |
 | `$4000 - $7FFF`   | C128 Kernel/System           | 16 KB             |
 
+
+
 The C128/C64 Kernel Switcher Board for the U32 socket is organized as follows. It is important to note that, for the 512 KB EPROM (27C040 and 29F040), only the upper 32 KB of the 64 KB banks (`$x8000 - $xFFFF`) are currently used. Therefore, the kernels must be placed starting at `$x8000`.
+
+
 
 Best regards,  
 Frank Eggen
