@@ -8,7 +8,7 @@ Dieses Projekt ist eine Weiterentwicklung des sehr schnellen und beliebten Dolph
 
 Die Version **3.x** verfügt jetzt über **512 KB RAM**, im Gegensatz zur Version **2.x** mit nur **32 KB RAM**. In Kombination mit dem **Peripheral Interface Adapter (PIA, Typ 6821 oder 6521)** ermöglicht sie eine ultraschnelle parallele Datenübertragung sowie die Steuerung der **64 x 8 KB RAM-Bänke (512 KB)**.  
 
-Mit dem erweiterten **DolphinDos 2.5** kann das Diskettenlaufwerk selbstständig über DOS-Befehle eine komplette Diskette in den **erweiterten 512 KB Speicher** in zwei RAM-Seiten einlesen und anschließend auf eine neu formatierte Diskette zurückschreiben. Dies geschieht besonders schnell, da keine Datenübertragung zum Computer erforderlich ist.  
+Mit dem erweiterten **DolphinDos 25** kann das Diskettenlaufwerk selbstständig über DOS-Befehle eine komplette Diskette in den **erweiterten 512 KB Speicher** in zwei RAM-Seiten einlesen und anschließend auf eine neu formatierte Diskette zurückschreiben. Dies geschieht besonders schnell, da keine Datenübertragung zum Computer erforderlich ist.  
 
 Alle Komponenten des Multi-Speeders für den **C128DCR** sind intern verbaut. Der interne **Kernal-Switcher** schaltet synchron das passende C128-/C64-Kernal um, während die interne **Parallelport-Adapter-Platine** für eine parallele Datenübertragung sorgt. Der **Userport** bleibt von außen ungenutzt.  
 
@@ -40,7 +40,7 @@ Diesen Multi-Speeder habe ich ebenfalls für die **externen Diskettenlaufwerke 1
 
 In einem **512 KB EPROM** (Typ **27C040** oder **29F040**, U3) können bis zu acht **Kernal-Betriebssysteme** für das **1571-Diskettenlaufwerk** gespeichert werden. Ein **Peripheral Interface Adapter (PIA)** vom Typ **6821** oder **W65C21** (U4) erweitert das Diskettenlaufwerk um einen zusätzlichen **8-Bit-Parallelport**.  
 
-Zusammen mit der **512 KB RAM-Erweiterung (U8)** ist es möglich, **DolphinDos 3** und mein neues, angepasstes **DolphinDos 2.5** zu betreiben. Dadurch kann das Laufwerk komplette **Tracks in einem Durchgang einlesen**, was beispielsweise das **Laden von Programmen mit DolphinDos im C128- und C64-Betrieb um den Faktor 38** beschleunigt. Mit **DolphinDos 2.5** (derzeit in Entwicklung) können ganze Disketten in den **512 KB RAM geladen und anschließend zurück auf Disketten geschrieben** werden.  
+Zusammen mit der **512 KB RAM-Erweiterung (U8)** ist es möglich, **DolphinDos 3** und mein neues, angepasstes **DolphinDos 25** zu betreiben. Dadurch kann das Laufwerk komplette **Tracks in einem Durchgang einlesen**, was beispielsweise das **Laden von Programmen mit DolphinDos im C128- und C64-Betrieb um den Faktor 38** beschleunigt. Mit **DolphinDos 25** (derzeit in Entwicklung) können ganze Disketten in den **512 KB RAM geladen und anschließend zurück auf Disketten geschrieben** werden.  
 
 Ein **Mikrocontroller (Atmel ATMEGA328p)** steuert die **Betriebsmodi des Speeders**. Er überwacht den **Datenbus der 6502-CPU** des Diskettenlaufwerks und schaltet die entsprechenden **ROM-Bänke** automatisch um, sobald ein bestimmtes Kommando (Zeichenkette) erkannt wird.  
 

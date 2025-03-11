@@ -8,7 +8,7 @@ This project is an advanced development of the highly popular and fast DolphinDo
 
 Version **3.x** now features **512 KB of RAM**, compared to version **2.x**, which had only **32 KB of RAM**. In combination with the **Peripheral Interface Adapter (PIA, type 6821 or 6521)**, it enables ultra-fast parallel data transfer as well as control of the **64 x 8 KB RAM banks (512 KB)**.  
 
-With the enhanced **DolphinDos 2.5**, the floppy drive can independently read an entire disk into the **expanded 512 KB memory** in two RAM pages via DOS commands and then write it back to a newly formatted disk. This process is particularly fast since no data transfer to the computer is required.  
+With the enhanced **DolphinDos 25**, the floppy drive can independently read an entire disk into the **expanded 512 KB memory** in two RAM pages via DOS commands and then write it back to a newly formatted disk. This process is particularly fast since no data transfer to the computer is required.  
 
 All components of the Multi-Speeder for the **C128DCR** are installed internally. The internal **kernel switcher** synchronously switches the appropriate C128/C64 kernel, while the internal **parallel port adapter board** ensures parallel data transfer. The **User port** remains unused externally.  
 
@@ -38,7 +38,7 @@ I have also developed this Multi-Speeder for **external 1571, 1541, and 1541-II 
 
 A **512 KB EPROM** (type **27C040** or **29F040**, U3) can store up to eight **kernel operating systems** for the **1571 floppy drive**. A **Peripheral Interface Adapter (PIA)** of type **6821** or **W65C21** (U4) expands the floppy drive with an additional **8-bit parallel port**.  
 
-Together with the **512 KB RAM expansion (U8)**, it is possible to run **DolphinDos 3** and my new, customized **DolphinDos 2.5**. This allows the drive to **read entire tracks in a single pass**, which speeds up **loading programs with DolphinDos in C128 and C64 mode by a factor of 38**. With **DolphinDos 2.5** (currently in development), entire disks can be **loaded into the 512 KB RAM and then written back to disks**.  
+Together with the **512 KB RAM expansion (U8)**, it is possible to run **DolphinDos 3** and my new, customized **DolphinDos 25**. This allows the drive to **read entire tracks in a single pass**, which speeds up **loading programs with DolphinDos in C128 and C64 mode by a factor of 38**. With **DolphinDos 25** (currently in development), entire disks can be **loaded into the 512 KB RAM and then written back to disks**.  
 
 A **microcontroller (Atmel ATMEGA328p)** controls the **Speeder's operating modes**. It monitors the **data bus of the 6502 CPU** in the floppy drive and automatically switches the appropriate **ROM banks** as soon as a specific command (character string) is detected.  
 
