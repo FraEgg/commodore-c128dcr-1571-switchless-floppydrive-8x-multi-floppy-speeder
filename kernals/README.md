@@ -4,7 +4,9 @@
 
 <img title="8x Multi-Floppy-Speeder Kernal Switcher C128DCR" src="https://raw.githubusercontent.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/refs/heads/main/images/V3.3_U32_Kernal-Switcher-Platine.jpg" alt="loading-ag-280" style="zoom:25%;" data-align="center">
 
-Here I have prepared two EPROMs for the Multi-Speeder and the C128/C64 U32 Kernal-Switcher. This contains the DolphinDos 3/DolphinDos 25 and the original CBM-DOS. 
+Here I have prepared two EPROMs for the Multi-Speeder and the C128/C64 U32 Kernal-Switcher. 
+
+This contains the DolphinDos 3/DolphinDos 25 and the original CBM-DOS. 
 
 
 
@@ -36,16 +38,32 @@ The address decoder of the Multi-Speeder Board maps the ROM in the floppy drive 
 
 Here is the configuration of the example kernals:
 
-| Bank | Switch  | System            | U32 C128 | U32 C64      | U101 1571    | EPROM                          |
-| ---- | ------- | ----------------- | -------- | ------------ | ------------ | ------------------------------ |
-| 0    | 1@RNROM | CBM               | CBM      | CBM          | CBM          | `$08000-$0FFFF`                |
-| 1    | 2@RNROM | CBM RAM Exp       | CBM      | CBM          | CBM RAM Exp. | `$18000-$1FFFF`                |
-| 2    | 3@RNROM | DolphinDos 3      | DD3      | DD3          | DD3          | `$28000-$2FFFF`                |
-| 3    | 4@RNROM | DolphinDos 25     | DD3      | DD3-Custom   | DD3          | `$33000-§3FFF & $38000-$3FFFF` |
-| 4    | 5@RNROM | CBM-DD-SD2IEC     | CBM      | DD-JD-SD2IEC | CBM RAM Exp. | `$48000-$4FFFF`                |
-| 5    | 6@RNROM | CBM               | CBM      | JaffyDos 1.3 | CBM RAM Exp. | `$58000-$5FFFF`                |
-| 6    | 7@RNROM | CBM (reserved JD) | CBM      | CBM          | CBM RAM Exp. | `$68000-$6FFFF`                |
-| 7    | 8@RNROM | CBM (reserved JD) | CBM      | CBM          | CBM RAM Exp. | `$78000-$7FFFF`                |
+| Bank  | Switch  | System            | U32 C128 | U32 C64        | U101 1571    | EPROM                          |
+| ----- | ------- | ----------------- | -------- | -------------- | ------------ | ------------------------------ |
+| 0     | 1@RNROM | CBM               | CBM      | CBM            | CBM          | `$08000-$0FFFF`                |
+| 1     | 2@RNROM | CBM RAM Exp       | CBM      | CBM            | CBM RAM Exp. | `$18000-$1FFFF`                |
+| 2     | 3@RNROM | DolphinDos 3      | DD3      | DD3            | DD3          | `$28000-$2FFFF`                |
+| **3** | 4@RNROM | **DolphinDos 25** | **DD3**  | **DD3-Custom** | **DD25 B1**  | `$33000-§3FFF & $38000-$3FFFF` |
+| 4     | 5@RNROM | CBM-DD-SD2IEC     | CBM      | DD-JD-SD2IEC   | CBM RAM Exp. | `$48000-$4FFFF`                |
+| 5     | 6@RNROM | CBM               | CBM      | JaffyDos 1.3   | CBM RAM Exp. | `$58000-$5FFFF`                |
+| 6     | 7@RNROM | CBM (reserved JD) | CBM      | CBM            | CBM RAM Exp. | `$68000-$6FFFF`                |
+| 7     | 8@RNROM | CBM (reserved JD) | CBM      | CBM            | CBM RAM Exp. | `$78000-$7FFFF`                |
+
+## Note Bank 3 DolphinDos 25 B1:
+
+**Bank 3 (4@RNROM**) contains my modified DolphinDos 25 B1 (Beta1). This DOS is based on 1571 DolphinDos 3 and is extended by a internal disk copy routine. This can save a complete floppy disk page to the internal 512KB RAM in one read operation and write it back to a formatted floppy disk.
+
+New DOS - Commands:
+
+@CDR1        (Read a disk page to memory 1)
+@CDW1       (Write memory 1 back to a formatted floppy disk)
+
+@CDR2        (Read a floppy disk page in memory 1)
+@CDW2        (Write memory 1 back to a formatted floppy disk)
+
+
+
+Memory 1 and 2 are retained until the floppy disk drive is switched off or the memory is overwritten with the copy routine.
 
 ---
 
