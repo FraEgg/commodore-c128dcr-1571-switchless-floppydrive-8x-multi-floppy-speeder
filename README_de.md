@@ -334,7 +334,7 @@ Der Atmel ATMega 328P Microcontroller überwacht den Datenbus und steuert die RO
 
 <img title="8x Multi-Speeder Install C128DCR  Mainboard" src="https://raw.githubusercontent.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/refs/heads/main/images/V2.0_C128DCR_Overview.jpg" alt="8x Multi-Speeder Install C128DCR  Mainboard" style="zoom:50%;" data-align="center">
 
-Die Installation des Multi-Speeders auf dem C128DCR Mainboard. Der Multi-Speeder wird anstelle der 6502 CPU (U101) eingesetzt. Die 6502 CPU wird auf den CPU-Sockel des Multi-Speeder gesetzt (unten rechts). Der Kernal-Switcher befindet sich unten links und wird anstelle des original Kernals auf den Sockel (U32) gesetzt. Der Parallel-Adapter kommt anstelle des CIA 6526 (U4) in einen Sockel. Der CIA 6526 wird auf den Parallel-Adapter-Platine gesetzt. Der Kernel-Switcher wird mit einem drei PIN Kabel mit dem Multi-Speeder verbunden. Der Parallel-Adapter wird mit einen 10 poligen Kabel ebenfalls mit der Multi-Speeder-Platine verbunden (Parallelport).
+Die Installation des Multi-Speeders auf dem C128DCR Mainboard. Der Multi-Speeder wird anstelle der 6502 CPU (U101) eingesetzt. Die 6502 CPU wird auf den CPU-Sockel des Multi-Speeder gesetzt (unten rechts). Der Kernal-Switcher befindet sich unten links und wird anstelle des original Kernals auf den Sockel (U32) gesetzt. Der Parallel-Adapter kommt anstelle des CIA 6526 (U4) in einen Sockel. Der CIA 6526 wird auf den Parallel-Adapter-Platine gesetzt. Der Kernal-Switcher wird mit einem drei PIN Kabel mit dem Multi-Speeder verbunden. Der Parallel-Adapter wird mit einen 10 poligen Kabel ebenfalls mit der Multi-Speeder-Platine verbunden (Parallelport).
 
 ---
 

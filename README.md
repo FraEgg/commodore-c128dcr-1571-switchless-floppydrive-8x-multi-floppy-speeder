@@ -4,13 +4,13 @@
 
 ## Description
 
-This project is an advanced development of the highly popular and fast DolphinDos 3 for the C128 and the 1571 floppy drive. It combines the best of the retro world with modern technology and was previously unavailable in this form. The **switchless 8x Multi-Floppy-Speeder** not only runs with DolphinDos 3 but also allows the operation of up to eight DOS kernels as well as C128 and C64 kernels, which can be conveniently activated via DOS commands. This means that, in addition to the original CBM-DOS and DolphinDos 3, JiffyDOS 128 can also be used, for example. Additionally, a **TrackCache** version of JiffyDOS is available, which significantly speeds up JiffyDOS. This ensures maximum compatibility.  
+This project is an advanced development of the highly popular and fast DolphinDos 3 for the C128 and the 1571 floppy drive. It combines the best of the retro world with modern technology and was previously unavailable in this form. The **switchless 8x Multi-Floppy-Speeder** not only runs with DolphinDos 3 but also allows the operation of up to eight DOS Kernals as well as C128 and C64 Kernals, which can be conveniently activated via DOS commands. This means that, in addition to the original CBM-DOS and DolphinDos 3, JiffyDOS 128 can also be used, for example. Additionally, a **TrackCache** version of JiffyDOS is available, which significantly speeds up JiffyDOS. This ensures maximum compatibility.  
 
 Version **3.x** now features **512 KB of RAM**, compared to version **2.x**, which had only **32 KB of RAM**. In combination with the **Peripheral Interface Adapter (PIA, type 6821 or 6521)**, it enables ultra-fast parallel data transfer as well as control of the **64 x 8 KB RAM banks (512 KB)**.  
 
 With the enhanced **DolphinDos 25**, the floppy drive can independently read an entire disk into the **expanded 512 KB memory** in two RAM pages via DOS commands and then write it back to a newly formatted disk. This process is particularly fast since no data transfer to the computer is required.  
 
-All components of the Multi-Speeder for the **C128DCR** are installed internally. The internal **kernel switcher** synchronously switches the appropriate C128/C64 kernel, while the internal **parallel port adapter board** ensures parallel data transfer. The **User port** remains unused externally.  
+All components of the Multi-Speeder for the **C128DCR** are installed internally. The internal **Kernal switcher** synchronously switches the appropriate C128/C64 Kernal, while the internal **parallel port adapter board** ensures parallel data transfer. The **User port** remains unused externally.  
 
 The **switchless 8x Multi-Floppy-Speeder** with **512 KB RAM expansion** for the **Commodore C128DCR** is one of the most versatile accelerators for the internal **1571 floppy drive** of the C128DCR.  
 
@@ -22,12 +22,12 @@ I have also developed this Multi-Speeder for **external 1571, 1541, and 1541-II 
 
 ## Features
 
-1. 8 x 64 KB kernel ROM banks for C128/C64 mode  
+1. 8 x 64 KB Kernal ROM banks for C128/C64 mode  
 2. 8 x 64 KB DOS ROM banks for the internal 1571 floppy drive  
-3. C64/C128 and DOS kernel can be switched (switchless) via DOS commands  
+3. C64/C128 and DOS Kernal can be switched (switchless) via DOS commands  
 4. 512 KB RAM expansion for the 1571 floppy drive (64 banks, switchable via PIA)  
 5. Parallel port for the 1571 floppy drive (PIA 6821/W65C21)  
-6. U32 kernel adapter socket for the C128/C64 8x kernel switching (switchless)  
+6. U32 Kernal adapter socket for the C128/C64 8x Kernal switching (switchless)  
 7. U4 6526-CIA adapter for the parallel port of the internal 1571 floppy drive  
 8. New useful functions with DolphinDos 25  
 9. Compatibility with RAMBoard for nibbler copy programs  
@@ -36,13 +36,13 @@ I have also developed this Multi-Speeder for **external 1571, 1541, and 1541-II 
 
 ## Functionality
 
-A **512 KB EPROM** (type **27C040** or **29F040**, U3) can store up to eight **kernel operating systems** for the **1571 floppy drive**. A **Peripheral Interface Adapter (PIA)** of type **6821** or **W65C21** (U4) expands the floppy drive with an additional **8-bit parallel port**.  
+A **512 KB EPROM** (type **27C040** or **29F040**, U3) can store up to eight **Kernal operating systems** for the **1571 floppy drive**. A **Peripheral Interface Adapter (PIA)** of type **6821** or **W65C21** (U4) expands the floppy drive with an additional **8-bit parallel port**.  
 
 Together with the **512 KB RAM expansion (U8)**, it is possible to run **DolphinDos 3** and my new, customized **DolphinDos 25**. This allows the drive to **read entire tracks in a single pass**, which speeds up **loading programs with DolphinDos in C128 and C64 mode by a factor of 38**. With **DolphinDos 25** (currently in development), entire disks can be **loaded into the 512 KB RAM and then written back to disks**.  
 
 A **microcontroller (Atmel ATMEGA328p)** controls the **Speeder's operating modes**. It monitors the **data bus of the 6502 CPU** in the floppy drive and automatically switches the appropriate **ROM banks** as soon as a specific command (character string) is detected.  
 
-The **U32 kernel adapter** for **C128/C64 mode** is also connected to the Speeder, allowing the microcontroller to **synchronize the switching of the eight ROM banks**. This means that the **C128 or C64 mode kernel corresponding to the 1571 DOS kernel** is automatically activated. The **eight C128/C64 kernels** are also stored in an **EPROM** of type **27C040** or **29F040**.  
+The **U32 Kernal adapter** for **C128/C64 mode** is also connected to the Speeder, allowing the microcontroller to **synchronize the switching of the eight ROM banks**. This means that the **C128 or C64 mode Kernal corresponding to the 1571 DOS Kernal** is automatically activated. The **eight C128/C64 Kernals** are also stored in an **EPROM** of type **27C040** or **29F040**.  
 
 ---
 
@@ -70,7 +70,7 @@ At the end of the documentation, there is a small **assembly program** that demo
 | `$4000 - $4FFF` | CIA 6526                                                     |
 | `$5000 - $5FFF` | PIA 6821/W65C21 [^1]                                         |
 | `$6000 - $7FFF` | SRAM 8KB / 512KB Bank 0 - 63 (64 banks) default: Bank 0 [^1] |
-| `$8000 - $FFFF` | 1571 DOS Kernel Bank [^1]                                    |
+| `$8000 - $FFFF` | 1571 DOS Kernal Bank [^1]                                    |
 
 [^1] Additionally provided by the Multi-Floppy-Speeder.  
 
@@ -84,7 +84,7 @@ The "Switchless 8x Multi-Floppy-Speeder" for the Commodore C128DCR consists of t
 
 2. Parallel port adapter board for CIA2 6526 (U4 C128) with parallel cable (optional for DolphinDos3/DolphinDos25)  
 
-3. C128/C64 Kernel Switcher board for 27256 ROM1 (U32)  
+3. C128/C64 Kernal Switcher board for 27256 ROM1 (U32)  
 
 ---   
 
@@ -94,7 +94,7 @@ The "Switchless 8x Multi-Floppy-Speeder" for the Commodore C128DCR consists of t
 
 The **Multi-Speeder board** is installed in place of the **6502 AD CPU (U101)** of the internal **1571 floppy drive** on the **motherboard**. The CPU is then placed into the **6502 socket (U1)** on the Multi-Speeder board. However, in most cases, the CPU is directly soldered onto the **C128DCR motherboard**. Therefore, it must first be desoldered and replaced with a **40-pin DIP socket** before the Multi-Speeder board can be installed.  
 
-The **Multi-Speeder board** serves as the **core** of the system. It provides the **selected DOS kernels for the 1571**, the **additional 512 KB RAM** (organized into **64 x 8 KB banks**), and the **PIA 6821/6521 I/O chip for the parallel port**. The **DOS kernels** are stored in a **512 KB EPROM** and organized into **8 x 64 KB banks**. The **ATMega microcontroller** activates the desired **ROM bank**, which in turn enables the corresponding **DOS kernel** as well as the appropriate **C128/C64 kernel** via the **kernel switcher**.  
+The **Multi-Speeder board** serves as the **core** of the system. It provides the **selected DOS Kernals for the 1571**, the **additional 512 KB RAM** (organized into **64 x 8 KB banks**), and the **PIA 6821/6521 I/O chip for the parallel port**. The **DOS Kernals** are stored in a **512 KB EPROM** and organized into **8 x 64 KB banks**. The **ATMega microcontroller** activates the desired **ROM bank**, which in turn enables the corresponding **DOS Kernal** as well as the appropriate **C128/C64 Kernal** via the **Kernal switcher**.  
 
 When a different **DOS bank** is activated via **DOS command**, the **ATMega microcontroller** performs a **reset of the floppy drive**, ensuring that the new **DOS ROM with the firmware** starts correctly.  
 
@@ -118,20 +118,20 @@ In the latest version, the **Parallel Port Adapter Board** features only a **red
 
 ---
 
-### (3) C128/C64 Kernel Switcher Board
+### (3) C128/C64 Kernal Switcher Board
 
 <img title="8x Multi-Floppy-Speeder Kernal Switcher C128DCR" src="https://raw.githubusercontent.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/refs/heads/main/images/V3.3_U32_Kernal-Switcher-Platine.jpg" alt="loading-ag-2816" style="zoom:25%;" data-align="center">
 
-The **Kernel Switcher Board** is an **adapter board** for a **512 KB EPROM (27C040 or 29F040)**, which contains **eight 64 KB C128/C64 kernel ROM banks**. It is installed in place of the original **kernel PROM** in the **socket (U32)** of the **C128DCR**.  
+The **Kernal Switcher Board** is an **adapter board** for a **512 KB EPROM (27C040 or 29F040)**, which contains **eight 64 KB C128/C64 Kernal ROM banks**. It is installed in place of the original **Kernal PROM** in the **socket (U32)** of the **C128DCR**.  
 
-The **switcher** features a **connector (J3) for A16/A17/A18**, which must be connected to the **Multi-Speeder Board** at **(J5) or (J6)**. The **Multi-Speeder Board** then switches not only the **floppy drive kernel** but also the **corresponding bank of the C128/C64 kernel ROM**. This allows the **1571 kernel** and the **C128/C64 kernel** to be switched in parallel using **DOS commands**, ensuring that the same **ROM banks** are always activated.  
+The **switcher** features a **connector (J3) for A16/A17/A18**, which must be connected to the **Multi-Speeder Board** at **(J5) or (J6)**. The **Multi-Speeder Board** then switches not only the **floppy drive Kernal** but also the **corresponding bank of the C128/C64 Kernal ROM**. This allows the **1571 Kernal** and the **C128/C64 Kernal** to be switched in parallel using **DOS commands**, ensuring that the same **ROM banks** are always activated.  
 
-- If **DOS kernel bank 0 is active**, then **C128/C64 kernel bank 0** is also active.  
+- If **DOS Kernal bank 0 is active**, then **C128/C64 Kernal bank 0** is also active.  
 - However, the **C128/C64 side** does **not receive an automatic reset**, unlike the **floppy drive**, where a reset occurs automatically. A **manual reset is required** in this case.  
 
-If **J4** on the **Multi-Switcher** is left open, then the **floppy drive will not be reinitialized (no reset) when switching the DOS kernel**.  
+If **J4** on the **Multi-Switcher** is left open, then the **floppy drive will not be reinitialized (no reset) when switching the DOS Kernal**.  
 
-The **Kernel Switcher V1.2** (newer version) also includes an additional **fourth connection (A15) at J3**, which is **not used in the C128DCR**.  
+The **Kernal Switcher V1.2** (newer version) also includes an additional **fourth connection (A15) at J3**, which is **not used in the C128DCR**.  
 
 ---
 
@@ -183,25 +183,25 @@ If the **1571 floppy drive** is running in **2 MHz mode** (**C128 mode/DolphinDO
 
 A more reliable operation can be achieved by replacing the **Y1 quartz crystal** on the board from **20 MHz to 22.1184 MHz**. Although the manufacturer specifies **20 MHz as the maximum clock speed** for the **ATmega328P in DIP packaging**, in practice, the microcontroller **operates smoothly at 22 MHz**.  
 
-### Overview of C128/C64 and DOS Kernels
+### Overview of C128/C64 and DOS Kernals
 
-### C128/C64 Kernels (U32)
+### C128/C64 Kernals (U32)
 
-The **C128/C64 Kernel Switcher Board** for the **U32 socket** is organized as follows. It is important to note that, for the **512 KB EPROM 27C040 and 29F040**, only the **upper 32 KB of the 64 KB banks** from `$x8000 - $xFFFF` are currently used. Therefore, the kernels must be placed starting from `$x8000`.  
+The **C128/C64 Kernal Switcher Board** for the **U32 socket** is organized as follows. It is important to note that, for the **512 KB EPROM 27C040 and 29F040**, only the **upper 32 KB of the 64 KB banks** from `$x8000 - $xFFFF` are currently used. Therefore, the Kernals must be placed starting from `$x8000`.  
 
-The **Kernel ROM 27256 (U32)** (C128/C64 Kernels) in the **C128DCR** is structured as follows:  
+The **Kernal ROM 27256 (U32)** (C128/C64 Kernals) in the **C128DCR** is structured as follows:  
 
 | ROM Address Range | ROM Type                     | Size  |
 | ----------------- | ---------------------------- | ----- |
 | `$0000 - $1FFF`   | C64 Basic V2 `$A000 - $BFFF` | 8 KB  |
-| `$2000 - $3FFF`   | C64 Kernel `$E000 - $FFFF`   | 8 KB  |
-| `$4000 - $7FFF`   | C128 Kernel/System           | 16 KB |
+| `$2000 - $3FFF`   | C64 Kernal `$E000 - $FFFF`   | 8 KB  |
+| `$4000 - $7FFF`   | C128 Kernal/System           | 16 KB |
 
 ---
 
-### 1571 DOS Kernel (U101 Multi-Speeder)
+### 1571 DOS Kernal (U101 Multi-Speeder)
 
-The drive's **Kernel ROM** starts at `$x3000 - $xFFFF`, and depending on the active **Bank (0-7)**, the corresponding area is mapped into the **CPU address space**.  
+The drive's **Kernal ROM** starts at `$x3000 - $xFFFF`, and depending on the active **Bank (0-7)**, the corresponding area is mapped into the **CPU address space**.  
 
 | Bank | Switch  | EPROM Address                       | CPU Address Space               |
 | ---- | ------- | ----------------------------------- | ------------------------------- |
@@ -244,7 +244,7 @@ JiffyDOS 128 runs **perfectly** on the Multi-Speeder. With the **RAM Expansion P
 
 ### **Important Notes for Multi-Speeder Operation**
 
-- When using the **Multi-Speeder board**, the **original DOS-ROM (U102) must be removed permanently**, as the Multi-Speeder provides the selected **DOS kernel** via its own **EPROM**.  
+- When using the **Multi-Speeder board**, the **original DOS-ROM (U102) must be removed permanently**, as the Multi-Speeder provides the selected **DOS Kernal** via its own **EPROM**.  
 - If U102 remains in place, it will cause an **address conflict**, and the **floppy drive will no longer function correctly**.  
 
 ---
@@ -363,10 +363,10 @@ The installation of the **Multi-Speeder** on the **C128DCR motherboard** involve
 
 - The **Multi-Speeder** is installed **in place of the 6502 CPU (U101)**.  
 - The **6502 CPU** is placed into the **CPU socket of the Multi-Speeder** (bottom right).  
-- The **Kernel Switcher** is installed **in place of the original kernel ROM (U32)** (bottom left).  
+- The **Kernal Switcher** is installed **in place of the original Kernal ROM (U32)** (bottom left).  
 - The **Parallel Adapter** is installed **in place of the CIA 6526 (U4)**.  
 - The **CIA 6526** is then placed into the **Parallel Adapter board**.  
-- The **Kernel Switcher** is connected to the **Multi-Speeder board** via a **3-pin cable**.  
+- The **Kernal Switcher** is connected to the **Multi-Speeder board** via a **3-pin cable**.  
 - The **Parallel Adapter** is connected to the **Multi-Speeder board** via a **10-pin cable** (Parallel Port).  
 
 ---
@@ -376,7 +376,7 @@ The installation of the **Multi-Speeder** on the **C128DCR motherboard** involve
 1. **[ATF16V8 (GAL16V8) Files](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/tree/main/pld-atf16v8-gal16v8)**  
 2. **[ATMEL ATMega328 P Files](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/tree/main/atmega328p)**  
 3. **[Gerber Files for PCB Manufacturing](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/tree/main/gerber)**  
-4. **[Firmware / Kernels](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/tree/main/kernals)**  
+4. **[Firmware / Kernals](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/tree/main/kernals)**  
 5. **[Schematics for the 8x Multi-Speeder](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/tree/main/schematics)**  
 6. **[Photo Gallery](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/tree/main/images)**  
 7. **[Additional Documents](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/tree/main/docs)**  
@@ -386,7 +386,7 @@ The installation of the **Multi-Speeder** on the **C128DCR motherboard** involve
 ## **Shared Projects on PCBWay.com**
 
 1. **[8x Multi-Floppy Speeder 32KB RAM Expansion for Commodore C128DCR](https://www.pcbway.com/project/shareproject/Switchless_8x_Multi_Floppy_Speeder_with_32_KB_RAM_Expansion_for_the_Commodore_C1_557a83c8.html)**  
-2. **[C128/C64 Kernel Switcher for 8x Multi-Floppy-Speeder C128DCR](https://www.pcbway.com/project/shareproject/C128_C64_U32_Kernal_Switcher_Adapter_for_Switchless_8x_Multi_Floppy_Speeder_with_f113e895.html)**  
+2. **[C128/C64 Kernal Switcher for 8x Multi-Floppy-Speeder C128DCR](https://www.pcbway.com/project/shareproject/C128_C64_U32_Kernal_Switcher_Adapter_for_Switchless_8x_Multi_Floppy_Speeder_with_f113e895.html)**  
 3. **[Parallel Port Adapter for 8x Multi-Floppy-Speeder C128DCR](https://www.pcbway.com/project/shareproject/Parallelport_Adapter_U4_for_Switchless_8x_Multi_Floppy_Speeder_with_32_KB_RAM_Ex_558623e7.html)**  
 
 ### **Additional Projects on PCBWay.com:**
