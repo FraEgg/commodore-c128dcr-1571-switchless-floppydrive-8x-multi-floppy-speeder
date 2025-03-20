@@ -339,7 +339,7 @@ STA $5002         ; Set PIA Port PB0 high / PB1 high (RAM BANK 3 active)`
 
 
 
-Hier ist die englische Übersetzung deines Textes:  
+
 
 ---
 
