@@ -1,6 +1,8 @@
+<img title="The Multi-Speeder Logo" src="https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/blob/main/images/Multi-Speeder_Logo.png?raw=true" alt="Multi-Speeder Logo" style="zoom:25%;" data-align="center">
+
 # Switchless 8x Multi-Floppy-Speeder V3.3 with 512 KB RAM expansion for the Commodore C128 DCR and the internal 1571 floppy drive (DolphinDOS 3 / new DolphinDOS 25)
 
-<img title="8x Multi-Floppy-Speeder 32KB RAM Expasion for the internal 1571 Floppydrive C128DCR - DolphinDos 3" src="https://raw.githubusercontent.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/refs/heads/main/images/V2.0_C128DCR_Multi-Floppy-Speeder-Set-Title.jpg" alt="loading-ag-1227" data-align="center" style="zoom:25%;">
+<img title="8x Multi-Speeder 512KB RAM Expasion for the internal 1571 Floppydrive C128DCR - DolphinDos 3 / DolphinDos 25" src="https://raw.githubusercontent.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/refs/heads/main/images/V2.0_C128DCR_Multi-Floppy-Speeder-Set-Title.jpg" alt="Photo 8x Multi-Speeder 512KB RAM Expasion for the internal 1571 Floppydrive C128DCR - DolphinDos 3 / DolphinDos 25" data-align="center" style="zoom:25%;">
 
 ## Description
 
@@ -449,6 +451,7 @@ Best regards,
 
 ## **Update**
 
+- **2025-03-23** Add new Multi-Speeder Logo
 - **2025-03-08** New **Version 3.3** with **512KB RAM** and **DolphinDOS 25**.  
 - **2025-01-02** Added more links to the **1541 8x Switchless Multi-Speeder 32KB**.  
 - **2024-12-07** PCB **Gerber file update** to **Version 2.0b** – Fixed issues with **R2 and R3**. **5V must be present between pull-up resistors R2 and R3**.
