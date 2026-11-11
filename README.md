@@ -58,7 +58,7 @@ With **DolphinDos26** for the 1571 and the **C128 kernal DolphinDos26**, the C12
 | [`C128DCR_KERNAL_29F040-DE.BIN`](rom/C128DCR_KERNAL_29F040-DE.BIN) | EPROM of the kernal switcher U32 (29F040, 512 KB) | template, German: banks 1–2 and 5–8 Commodore C64 BASIC/kernal and German C128 kernal 315078-03, bank 3 original Dolphin kernals, bank 4 `C64IIDolphinDos26.bin` and `C128DolphinDos26-DE.BIN` |
 | [`C128DCR_KERNAL_29F040-US.BIN`](rom/C128DCR_KERNAL_29F040-US.BIN) | EPROM of the kernal switcher U32 (29F040, 512 KB) | template, international/USA: as above with the C128 kernal 318020-05 and, in bank 4, `C128DolphinDos26-US.BIN` |
 | [`C1571_C128DCR_29F040.BIN`](rom/C1571_C128DCR_29F040.BIN) | EPROM U3 of the Multi-Speeder board (29F040, 512 KB) | template: original Commodore DOS 318047-01 (1571CR) in banks 1–2 and 5–8, original DolphinDOS 3 for the 1571 in bank 3, DolphinDos26 in bank 4 |
-| [`ms-tools.d64`](ms-tools/ms-tools.d64) | disk | MS-Tools for testing (`MS-MEMTEST512`) and copying, in C64 mode |
+| [`ms-tools.d64`](ms-tools/ms-tools.d64) | disk | MS-Tools for testing (`MS-MEMTEST`) and copying, in C64 mode |
 | [`hardware/gal`](hardware/gal) | GAL ATF16V8B (U7) | address decoder `ATF16V8_PAL_Adressendecoder_V3_0PIA_1571.jed` |
 | [`hardware/atmega328p`](hardware/atmega328p) | ATmega328P (U6) | ROM switcher firmware (`.hex`), source (`.ino`), XGecu project (`.mpj`) |
 
@@ -102,7 +102,7 @@ The complete bill of materials with DigiKey and Mouser links, the assembly order
 3. Program GAL and ATmega (do not program the ATmega EEPROM).
 4. Socket U101 and U4, **remove the DOS ROM U102**, fit the three boards, connect the parallel cable and J5 → J3.
 5. Switch with `OPEN 1,8,15,"I:4@RNROM":CLOSE 1`, reset the C128. `@` reports `73,DOLPHINDOS26 1571,00,00`, loading shows `LOADING DD:`.
-6. Test the RAM in C64 mode with `MS-MEMTEST512` from the MS-Tools disk.
+6. Test the RAM in C64 mode with `MS-MEMTEST` from the MS-Tools disk.
 
 <p align="center"><img src="assets/installation.png" alt="Installation in the C128DCR" width="560"></p>
 
@@ -111,7 +111,7 @@ The complete bill of materials with DigiKey and Mouser links, the assembly order
 - C1571DolphinDos26 always runs at 2 MHz like the original DolphinDOS 3. Before programs with their own fast loader enter `@X-` (1 MHz), or switch to the Commodore ROM with `@I:1@RNROM`.
 - At 2 MHz the microcontroller can miss a switching command; repeat it. A 22.1184 MHz crystal and a 74AHCT273 as U5 make switching reliable.
 - DolphinDos26 needs the original NMOS 6502, not a WDC 65C02.
-- MS-NIBCOPY512 and MS-15SECCOPY are written for the 1541, not for the 1571.
+- MS-NIBCOPY is written for the 1541, not for the 1571. MS-15SECCOPY itself sets a 1571 with DolphinDOS to 1 MHz with `X-` for BACKUP and VERIFY and back to 2 MHz with `X+` afterwards.
 
 ## What is in this repository?
 
@@ -193,7 +193,7 @@ Mit **DolphinDos26** für die 1571 und dem **C128-Kernal DolphinDos26** bekommt 
 | [`C128DCR_KERNAL_29F040-DE.BIN`](rom/C128DCR_KERNAL_29F040-DE.BIN) | EPROM des Kernal-Switchers U32 (29F040, 512 KB) | Vorlage deutsch: Bänke 1–2 und 5–8 Commodore-C64-BASIC/-Kernal und deutscher C128-Kernal 315078-03, Bank 3 originale Dolphin-Kernals, Bank 4 `C64IIDolphinDos26.bin` und `C128DolphinDos26-DE.BIN` |
 | [`C128DCR_KERNAL_29F040-US.BIN`](rom/C128DCR_KERNAL_29F040-US.BIN) | EPROM des Kernal-Switchers U32 (29F040, 512 KB) | Vorlage international/USA: wie oben mit dem C128-Kernal 318020-05 und in Bank 4 `C128DolphinDos26-US.BIN` |
 | [`C1571_C128DCR_29F040.BIN`](rom/C1571_C128DCR_29F040.BIN) | EPROM U3 der Multi-Speeder-Platine (29F040, 512 KB) | Vorlage: originales Commodore-DOS 318047-01 (1571CR) in den Bänken 1–2 und 5–8, originales DolphinDOS 3 für die 1571 in Bank 3, DolphinDos26 in Bank 4 |
-| [`ms-tools.d64`](ms-tools/ms-tools.d64) | Diskette | MS-Tools zum Testen (`MS-MEMTEST512`) und Kopieren, im C64-Modus |
+| [`ms-tools.d64`](ms-tools/ms-tools.d64) | Diskette | MS-Tools zum Testen (`MS-MEMTEST`) und Kopieren, im C64-Modus |
 | [`hardware/gal`](hardware/gal) | GAL ATF16V8B (U7) | Adressdecoder `ATF16V8_PAL_Adressendecoder_V3_0PIA_1571.jed` |
 | [`hardware/atmega328p`](hardware/atmega328p) | ATmega328P (U6) | Firmware des ROM-Umschalters (`.hex`), Quelle (`.ino`), XGecu-Projekt (`.mpj`) |
 
@@ -231,14 +231,14 @@ Die vollständige Stückliste mit DigiKey- und Mouser-Links, die Bestückungsrei
 3. GAL und ATmega programmieren (das EEPROM des ATmega nicht mitprogrammieren).
 4. U101 und U4 sockeln, **das DOS-ROM U102 entfernen**, die drei Platinen einsetzen, Parallelkabel und J5 → J3 verbinden.
 5. Mit `OPEN 1,8,15,"I:4@RNROM":CLOSE 1` umschalten, den C128 per Reset neu starten. `@` meldet `73,DOLPHINDOS26 1571,00,00`, beim Laden erscheint `LOADING DD:`.
-6. Im C64-Modus das RAM mit `MS-MEMTEST512` von der MS-Tools-Diskette testen.
+6. Im C64-Modus das RAM mit `MS-MEMTEST` von der MS-Tools-Diskette testen.
 
 ## Bekannte Grenzen
 
 - C1571DolphinDos26 läuft wie das Original-DolphinDOS 3 immer mit 2 MHz. Vor Programmen mit eigenem Schnelllader `@X-` (1 MHz) eingeben oder mit `@I:1@RNROM` auf das Commodore-ROM wechseln.
 - Bei 2 MHz kann der Mikrocontroller einen Umschaltbefehl verpassen; dann den Befehl wiederholen. Ein Quarz mit 22,1184 MHz und ein 74AHCT273 als U5 machen das Umschalten zuverlässig.
 - DolphinDos26 braucht die originale NMOS-6502, keine WDC 65C02.
-- MS-NIBCOPY512 und MS-15SECCOPY sind für die 1541 geschrieben, nicht für die 1571.
+- MS-NIBCOPY ist für die 1541 geschrieben, nicht für die 1571. MS-15SECCOPY stellt eine 1571 mit DolphinDOS für BACKUP und VERIFY selbst mit `X-` auf 1 MHz und danach mit `X+` wieder auf 2 MHz.
 
 ## Was liegt in diesem Repository?
 
