@@ -1,457 +1,288 @@
-<img title="The Multi-Speeder Logo" src="https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/blob/main/images/Multi-Speeder_Logo.png?raw=true" alt="Multi-Speeder Logo" style="zoom:25%;" data-align="center">
+<p align="center"><img src="assets/Multi-Speeder_Logo.png" alt="Multi-Speeder logo" width="320"></p>
 
-# Switchless 8x Multi-Floppy-Speeder V3.3 with 512 KB RAM expansion for the Commodore C128 DCR and the internal 1571 floppy drive (DolphinDOS 3 / new DolphinDOS 25)
+# Switchless 8x Multi-Floppy-Speeder V3 for the Commodore C128DCR (1571)
 
-<img title="8x Multi-Speeder 512KB RAM Expasion for the internal 1571 Floppydrive C128DCR - DolphinDos 3 / DolphinDos 25" src="https://raw.githubusercontent.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/refs/heads/main/images/V2.0_C128DCR_Multi-Floppy-Speeder-Set-Title.jpg" alt="Photo 8x Multi-Speeder 512KB RAM Expasion for the internal 1571 Floppydrive C128DCR - DolphinDos 3 / DolphinDos 25" data-align="center" style="zoom:25%;">
+**512 KB flash EPROM and 512 KB RAM for the internal 1571 of the C128DCR, with parallel port, kernal switcher and DolphinDos26.**
 
-## Description
+**Language:** [English](#english) · [Deutsch](#deutsch)
 
-This project is an advanced development of the highly popular and fast DolphinDos 3 for the C128 and the 1571 floppy drive. It combines the best of the retro world with modern technology and was previously unavailable in this form. The **switchless 8x Multi-Floppy-Speeder** not only runs with DolphinDos 3 but also allows the operation of up to eight DOS Kernals as well as C128 and C64 Kernals, which can be conveniently activated via DOS commands. This means that, in addition to the original CBM-DOS and DolphinDos 3, JiffyDOS 128 can also be used, for example. Additionally, a **TrackCache** version of JiffyDOS is available, which significantly speeds up JiffyDOS. This ensures maximum compatibility.  
+| | English | Deutsch |
+|---|---|---|
+| MS-ROM-Builder-C128DCR (browser tool for your own EPROM images) | [HTML](rom-builder/MS-ROM-Builder-C128DCR.html) | [HTML](rom-builder/MS-ROM-Builder-C128DCR.html) |
+| 1571 Multi-Speeder V3 manual (hardware, build instructions, BOM) | [PDF](manuals/en/MultiSpeederC128DCR-1571_Manual.pdf) | [PDF](manuals/de/MultiSpeederC128DCR-1571_Handbuch.pdf) |
+| DolphinDos26 manual (operation, commands, MS-Tools) | [DolphinDOS26](https://github.com/FraEgg/DolphinDOS26) | [DolphinDOS26](https://github.com/FraEgg/DolphinDOS26) |
 
-Version **3.x** now features **512 KB of RAM**, compared to version **2.x**, which had only **32 KB of RAM**. In combination with the **Peripheral Interface Adapter (PIA, type 6821 or 6521)**, it enables ultra-fast parallel data transfer as well as control of the **64 x 8 KB RAM banks (512 KB)**.  
+**Related projects:**
 
-With the enhanced **DolphinDos 25**, the floppy drive can independently read an entire disk into the **expanded 512 KB memory** in two RAM pages via DOS commands and then write it back to a newly formatted disk. This process is particularly fast since no data transfer to the computer is required.  
+| Project | Repository |
+|---|---|
+| DolphinDOS26: firmware, C64/C128 kernals, MS-Tools, manuals | [github.com/FraEgg/DolphinDOS26](https://github.com/FraEgg/DolphinDOS26) |
+| Switchless 8x Multi-Floppy-Speeder for the 1541 | [github.com/FraEgg/commodore-1541-switchless-floppydrive-8x-multi-floppy-speeder](https://github.com/FraEgg/commodore-1541-switchless-floppydrive-8x-multi-floppy-speeder) |
+| Previous release of this C128DCR project (V2.0/V3.3, DolphinDOS 25) | [github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder) |
+| Order the boards / Platinen bestellen | [Switchless 8x Multi-Floppy-Speeder for the C128DCR at PCBWay](https://www.pcbway.com/project/shareproject/Switchless_8x_Multi_Floppy_Speeder_with_32_KB_RAM_Expansion_for_the_Commodore_C1_557a83c8.html) |
 
-All components of the Multi-Speeder for the **C128DCR** are installed internally. The internal **Kernal switcher** synchronously switches the appropriate C128/C64 Kernal, while the internal **parallel port adapter board** ensures parallel data transfer. The **User port** remains unused externally.  
-
-The **switchless 8x Multi-Floppy-Speeder** with **512 KB RAM expansion** for the **Commodore C128DCR** is one of the most versatile accelerators for the internal **1571 floppy drive** of the C128DCR.  
-
-Additionally, the **switchless 8x Multi-Floppy-Speeder** is fully **RAMBoard-compatible**, allowing the use of appropriate **nibble copy programs** that support RAMBoard.  
-
-I have also developed this Multi-Speeder for **external 1571, 1541, and 1541-II floppy drives** with various matching **PCBs**. These can be operated in combination with each other.  
-
----
-
-## Features
-
-1. 8 x 64 KB Kernal ROM banks for C128/C64 mode  
-2. 8 x 64 KB DOS ROM banks for the internal 1571 floppy drive  
-3. C64/C128 and DOS Kernal can be switched (switchless) via DOS commands  
-4. 512 KB RAM expansion for the 1571 floppy drive (64 banks, switchable via PIA)  
-5. Parallel port for the 1571 floppy drive (PIA 6821/W65C21)  
-6. U32 Kernal adapter socket for the C128/C64 8x Kernal switching (switchless)  
-7. U4 6526-CIA adapter for the parallel port of the internal 1571 floppy drive  
-8. New useful functions with DolphinDos 25  
-9. Compatibility with RAMBoard for nibbler copy programs  
+<p align="center"><img src="assets/set.png" alt="The three boards of the 1571 Multi-Speeder V3" width="560"></p>
 
 ---
 
-## Functionality
+# English
 
-A **512 KB EPROM** (type **27C040** or **29F040**, U3) can store up to eight **Kernal operating systems** for the **1571 floppy drive**. A **Peripheral Interface Adapter (PIA)** of type **6821** or **W65C21** (U4) expands the floppy drive with an additional **8-bit parallel port**.  
+## What is this?
 
-Together with the **512 KB RAM expansion (U8)**, it is possible to run **DolphinDos 3** and my new, customized **DolphinDos 25**. This allows the drive to **read entire tracks in a single pass**, which speeds up **loading programs with DolphinDos in C128 and C64 mode by a factor of 38**. With **DolphinDos 25** (currently in development), entire disks can be **loaded into the 512 KB RAM and then written back to disks**.  
+The **1571 Switchless 8x Multi-Floppy-Speeder V3** speeds up the built-in 1571 drive of the **Commodore C128DCR**. It consists of three boards that all disappear inside the case; the user port stays free:
 
-A **microcontroller (Atmel ATMEGA328p)** controls the **Speeder's operating modes**. It monitors the **data bus of the 6502 CPU** in the floppy drive and automatically switches the appropriate **ROM banks** as soon as a specific command (character string) is detected.  
+| Board | Sits in the C128DCR | Task |
+|---|---|---|
+| **Multi-Speeder board** | socket of the 1571 CPU (U101), the 6502 sits on top | DOS EPROM with 8 banks, 512 KB RAM, PIA, microcontroller, address decoder |
+| **Parallel port adapter** | socket of CIA 2 (U4), the CIA sits on top | takes port B of the CIA to the Multi-Speeder over a 10-way cable |
+| **Kernal switcher** | socket of the kernal ROM (U32) | EPROM with 8 banks for C128 and C64 mode, switched together with the drive |
 
-The **U32 Kernal adapter** for **C128/C64 mode** is also connected to the Speeder, allowing the microcontroller to **synchronize the switching of the eight ROM banks**. This means that the **C128 or C64 mode Kernal corresponding to the 1571 DOS Kernal** is automatically activated. The **eight C128/C64 Kernals** are also stored in an **EPROM** of type **27C040** or **29F040**.  
+- **8 DOS banks** of 64 KB in a 512 KB flash EPROM **29F040**, switched by DOS command without a switch (`@I:n@RNROM`)
+- **8 kernal banks** for C128 and C64 mode, always switched together with the DOS bank
+- **512 KB RAM** in the drive, mapped as 64 banks of 8 KB at `$6000`–`$7FFF`
+- a **PIA 6821/W65C21** as an 8-bit parallel port and for selecting the RAM banks
+- RAMBoard-compatible for nibbler programs
 
----
+With **DolphinDos26** for the 1571 and the **C128 kernal DolphinDos26**, the C128DCR gets parallel transfer, track cache, whole disks in the drive RAM (`CDR`/`CDW`), a RAM disk (`CDM`), the MS-Addon-API and the MS-Tools – plus double-sided disks (`CDRD`/`CDWD`/`CDMD`).
 
-### 512 KB ROM and RAM Expansion for the 1571 Floppy Drive
+<p align="center"><img src="assets/c128-start-screen.png" alt="C128 start-up screen with the kernal C128DolphinDos26" width="480"></p>
 
-The **32 KB ROM** containing the **firmware for the 1571 floppy drive** is normally located in the **address range** `$8000 - $FFFF`. The **Multi-Speeder** provides additional **ROM areas for further DOS routines** in the range `$3000 - $3FFF`. This allows the **27C040 or 29F040 EPROM** of the Multi-Speeder (U3) to store **custom firmware** in the address ranges `$x3000 - $x3FFF` and `$x8000 - $FFFF`.  
+## Which files do I need?
 
-The **1571 floppy drive**, like the **1541 floppy drive**, has only **2 KB of working memory** by default. This is extremely limited, which severely restricts the drive when **reading a track**. **DolphinDos 3** therefore uses **8 KB of additional memory**, allowing an entire track to be read into memory in **a single disk rotation** and then written back. This significantly increases the **reading speed**. Normally, the floppy drive has only a **256-byte buffer** available.  
+| File | Goes into | Content |
+|---|---|---|
+| [`C1571_DOLPHINDOS26.bin`](rom/C1571_DOLPHINDOS26.bin) | EPROM U3 of the Multi-Speeder board, bank 4 (offset `$30000`) | DolphinDos26 for the 1571 (64 KB) |
+| [`C128DolphinDos26-US.BIN`](rom/C128DolphinDos26-US.BIN) | EPROM of the kernal switcher, bank 4 at `$3C000` | C128 kernal DolphinDos26 (16 KB, C128 mode), international and USA |
+| [`C128DolphinDos26-DE.BIN`](rom/C128DolphinDos26-DE.BIN) | EPROM of the kernal switcher, bank 4 at `$3C000` | C128 kernal DolphinDos26 (16 KB, C128 mode) with the German DIN keyboard driver: the CAPS LOCK key is the ASCII/DIN key |
+| [`C64IIDolphinDos26.bin`](rom/C64IIDolphinDos26.bin) | EPROM of the kernal switcher, bank 4 at `$38000` | C64 BASIC and kernal DolphinDos26 (16 KB, C64 mode) |
+| [`C128DCR_KERNAL_29F040-DE.BIN`](rom/C128DCR_KERNAL_29F040-DE.BIN) | EPROM of the kernal switcher U32 (29F040, 512 KB) | template, German: banks 1–2 and 5–8 Commodore C64 BASIC/kernal and German C128 kernal 315078-03, bank 3 original Dolphin kernals, bank 4 `C64IIDolphinDos26.bin` and `C128DolphinDos26-DE.BIN` |
+| [`C128DCR_KERNAL_29F040-US.BIN`](rom/C128DCR_KERNAL_29F040-US.BIN) | EPROM of the kernal switcher U32 (29F040, 512 KB) | template, international/USA: as above with the C128 kernal 318020-05 and, in bank 4, `C128DolphinDos26-US.BIN` |
+| [`C1571_C128DCR_29F040.BIN`](rom/C1571_C128DCR_29F040.BIN) | EPROM U3 of the Multi-Speeder board (29F040, 512 KB) | template: original Commodore DOS 318047-01 (1571CR) in banks 1–2 and 5–8, original DolphinDOS 3 for the 1571 in bank 3, DolphinDos26 in bank 4 |
+| [`ms-tools.d64`](ms-tools/ms-tools.d64) | disk | MS-Tools for testing (`MS-MEMTEST512`) and copying, in C64 mode |
+| [`hardware/gal`](hardware/gal) | GAL ATF16V8B (U7) | address decoder `ATF16V8_PAL_Adressendecoder_V3_0PIA_1571.jed` |
+| [`hardware/atmega328p`](hardware/atmega328p) | ATmega328P (U6) | ROM switcher firmware (`.hex`), source (`.ino`), XGecu project (`.mpj`) |
 
-The **Multi-Speeder** includes an **AS6C4008 512 KB SRAM**. This additional RAM is integrated into **64 banks** within the **CPU address space** at `$6000 - $7FFF` in the **1571 floppy drive’s memory**. When using a **512 KB SRAM**, the **8 KB memory banks** can be switched via the **PIA chip** in the address range `$5002 - $5003` using **Port PB0 to PB5**. **Bank 0** is activated by default.  
+The DolphinDos26 ROMs are the same as in the [DolphinDOS26](https://github.com/FraEgg/DolphinDOS26) release. `C1571_C128DCR_29F040.BIN` is a ready-made template for the EPROM of the Multi-Speeder board: in banks 1–2 and 5–8 the 32 KB Commodore DOS and in bank 3 the 32 KB DolphinDOS 3 sit in the upper half (bank start + `$8000`), the lower half is `$FF`; only bank 4 holds the complete 64 KB of DolphinDos26. Program it as it is, or replace single banks with other DOS versions. For the kernal switcher, `C128DCR_KERNAL_29F040-DE.BIN` (German) and `C128DCR_KERNAL_29F040-US.BIN` (international, USA) are ready-made templates whose banks match the drive template: only the upper half of each bank is used (`$x8000` C64 BASIC, `$xA000` C64 kernal, `$xC000` C128 kernal), the lower half is `$FF`. How to assemble the EPROM images is described in chapter 7.6 of the manual.
 
-At the end of the documentation, there is a small **assembly program** that demonstrates how **bank switching** works.  
+## Hardware
 
----
+| Folder | Content |
+|---|---|
+| [`hardware/gerber`](hardware/gerber) | Gerber files V3.3 for all three boards (two layers) |
+| [`hardware/schematics`](hardware/schematics) | Schematics V3.3 as PDF |
+| [`hardware/bom`](hardware/bom) | KiCad bills of materials V3.3 (CSV, HTML, XLS) |
+| [`hardware/gal`](hardware/gal) | JED file, equations and diagram of the address decoder |
+| [`hardware/atmega328p`](hardware/atmega328p) | Firmware of the microcontroller |
 
-### Memory Map 1571 Floppy Drive + C128DCR 1571 Multi-Speeder V3.3
+The complete bill of materials with DigiKey and Mouser links, the assembly order, fuse bytes (L `0xFF`, H `0xDE`, E `0xFD`, lock `0xCF`) and the installation in the C128DCR are in the [manual](manuals/en/MultiSpeederC128DCR-1571_Manual.pdf), chapters 7 and 8.
 
-| Address         | Region                                                       |
-| --------------- | ------------------------------------------------------------ |
-| `$0000 - $07FF` | 2KB RAM (Standard)                                           |
-| `$1800 - $180F` | VIA 1 6522 (Serial Bus)                                      |
-| `$1C00 - $1C0F` | VIA 2 6522 (Drive Control)                                   |
-| `$2000 - $2FFF` | (Gate Array / WD 1770 / MFM)                                 |
-| `$3000 - $3FFF` | Expanded DOS-ROM (e.g., DolphinDos 25 routines) [^1]         |
-| `$4000 - $4FFF` | CIA 6526                                                     |
-| `$5000 - $5FFF` | PIA 6821/W65C21 [^1]                                         |
-| `$6000 - $7FFF` | SRAM 8KB / 512KB Bank 0 - 63 (64 banks) default: Bank 0 [^1] |
-| `$8000 - $FFFF` | 1571 DOS Kernal Bank [^1]                                    |
+**Ordering the boards:** The boards can be made by any common PCB manufacturer from the Gerber files, or ordered directly via my project at PCBWay: [Switchless 8x Multi-Floppy-Speeder for the C128DCR at PCBWay](https://www.pcbway.com/project/shareproject/Switchless_8x_Multi_Floppy_Speeder_with_32_KB_RAM_Expansion_for_the_Commodore_C1_557a83c8.html).
 
-[^1] Additionally provided by the Multi-Floppy-Speeder.  
+<p align="center">
+<img src="assets/multi-speeder-board.png" alt="Multi-Speeder board" width="300">
+<img src="assets/parallel-port-adapter.png" alt="Parallel port adapter" width="300">
+<img src="assets/kernal-switcher.png" alt="Kernal switcher" width="300">
+</p>
 
----
+## MS-ROM-Builder-C128DCR (build your own EPROM images)
 
-## Components
+[`rom-builder/MS-ROM-Builder-C128DCR.html`](rom-builder/MS-ROM-Builder-C128DCR.html) is a browser tool for assembling both 512 KB EPROM images yourself: the drive EPROM U3 and the kernal switcher U32. Download the file and open it in a current browser – no installation, works offline on Windows, macOS and Linux, and the ROM files never leave your computer. The tool contains no ROMs.
 
-The "Switchless 8x Multi-Floppy-Speeder" for the Commodore C128DCR consists of the following components:  
+- Both EPROMs with their eight banks and the slots for 4, 8, 16, 32 and 64 KB; our templates `C1571_C128DCR_29F040.BIN` and `C128DCR_KERNAL_29F040-DE/-US.BIN` are preset.
+- Drop your ROM files in: they are assigned by their checksum, or placed directly onto a slot. Finished images can be opened, split into their parts and single banks replaced.
+- Checks for missing, different or unknown ROMs, JiffyDOS content, reset vectors and matching drive/kernal banks; shows solder jumper J2 for 29F040, SST39SF040 or 27C040.
+- Download the finished 512 KB file with its MD5; save and load the layout as a small project file (no ROM data). German and English.
 
-1. Multi-Speeder board for the socket of the 1571 CPU 6502 AD (U101)  
+<p align="center"><img src="assets/ms-rom-builder.png" alt="MS-ROM-Builder-C128DCR" width="640"></p>
 
-2. Parallel port adapter board for CIA2 6526 (U4 C128) with parallel cable (optional for DolphinDos3/DolphinDos25)  
+## Installation in short
 
-3. C128/C64 Kernal Switcher board for 27256 ROM1 (U32)  
+1. Program the **29F040** for the Multi-Speeder board with the template `C1571_C128DCR_29F040.BIN` (Commodore DOS, DolphinDOS 3 in bank 3, DolphinDos26 in bank 4) or with your own image (alternatives: 27C040 or SST39SF040). Set solder jumper **J2** for the EPROM type: 29F040/SST39SF040 pad 1–2, 27C040 pad 2–3.
+2. Program the **29F040** of the kernal switcher with the template `C128DCR_KERNAL_29F040-DE.BIN` or `C128DCR_KERNAL_29F040-US.BIN`, or with your own image: `C64IIDolphinDos26.bin` at `$38000` and `C128DolphinDos26-US.BIN` (international, USA) or `C128DolphinDos26-DE.BIN` (German keyboard) at `$3C000` (bank 4); J2 as above.
+3. Program GAL and ATmega (do not program the ATmega EEPROM).
+4. Socket U101 and U4, **remove the DOS ROM U102**, fit the three boards, connect the parallel cable and J5 → J3.
+5. Switch with `OPEN 1,8,15,"I:4@RNROM":CLOSE 1`, reset the C128. `@` reports `73,DOLPHINDOS26 1571,00,00`, loading shows `LOADING DD:`.
+6. Test the RAM in C64 mode with `MS-MEMTEST512` from the MS-Tools disk.
 
----   
+<p align="center"><img src="assets/installation.png" alt="Installation in the C128DCR" width="560"></p>
 
-### (1) Multi-Speeder Board
+## Known limits
 
-<img title="8x Multi-Speeder 32KB RAM Expansion Module (DolphinDos 3)" src="https://raw.githubusercontent.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/refs/heads/main/images/v3.3_C128DCR_1571_CPU_THT_DD3_Speeder (512KB)_pcb_real.jpg" alt="loading-ag-1229" style="zoom:25%;" data-align="center">
+- C1571DolphinDos26 always runs at 2 MHz like the original DolphinDOS 3. Before programs with their own fast loader enter `@X-` (1 MHz), or switch to the Commodore ROM with `@I:1@RNROM`.
+- At 2 MHz the microcontroller can miss a switching command; repeat it. A 22.1184 MHz crystal and a 74AHCT273 as U5 make switching reliable.
+- DolphinDos26 needs the original NMOS 6502, not a WDC 65C02.
+- MS-NIBCOPY512 and MS-15SECCOPY are written for the 1541, not for the 1571.
 
-The **Multi-Speeder board** is installed in place of the **6502 AD CPU (U101)** of the internal **1571 floppy drive** on the **motherboard**. The CPU is then placed into the **6502 socket (U1)** on the Multi-Speeder board. However, in most cases, the CPU is directly soldered onto the **C128DCR motherboard**. Therefore, it must first be desoldered and replaced with a **40-pin DIP socket** before the Multi-Speeder board can be installed.  
-
-The **Multi-Speeder board** serves as the **core** of the system. It provides the **selected DOS Kernals for the 1571**, the **additional 512 KB RAM** (organized into **64 x 8 KB banks**), and the **PIA 6821/6521 I/O chip for the parallel port**. The **DOS Kernals** are stored in a **512 KB EPROM** and organized into **8 x 64 KB banks**. The **ATMega microcontroller** activates the desired **ROM bank**, which in turn enables the corresponding **DOS Kernal** as well as the appropriate **C128/C64 Kernal** via the **Kernal switcher**.  
-
-When a different **DOS bank** is activated via **DOS command**, the **ATMega microcontroller** performs a **reset of the floppy drive**, ensuring that the new **DOS ROM with the firmware** starts correctly.  
-
-The Multi-Speeder board features a **(J3) connector**, allowing the Multi-Speeder to be **manually reset to Bank 0** (**RSTROM/PIN 3**) or to cycle the **ROM bank by +1** (**SELROM/PIN 1**). The **microcontroller** responds when either of these **pins is connected to (GND/PIN 2)**.  
-
-This function is particularly useful if the **floppy drive crashes** and no longer responds to **DOS commands** from the computer—for example, when an incorrect or experimental **DOS ROM in the EPROM** has been activated.  
-
----
-
-### (2) Parallel Port Adapter Board
-
-<img title="8x Multi-Speeder Parallelport Adapter C128DCR for U4" src="https://raw.githubusercontent.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/refs/heads/main/images/V2.0a_Parallelport-Adapter.jpg" alt="8x Multi-Speeder Parallelport Adapter C128D for U4CR" style="zoom:25%;" data-align="center">
-
-The **Parallel Port Adapter Board** is installed in place of the **CIA2 6526 (U4)** on the **C128DCR motherboard**. The **CIA 6526** is then placed into the **40-pin DIP socket** of the adapter.  
-
-This adapter replaces the **User Port board connector**, which is normally used. As a result, the **User Port of the C128DCR** remains free externally, and no external **parallel cable** is required.  
-
-The **Parallel Port Adapter Board** also includes a **10-pin ribbon cable**, which must be connected to the **Multi-Speeder board**. However, this **adapter board** and the **ribbon cable** are only necessary if the **1571 floppy drive is to be operated in parallel port mode with DolphinDos 3**.  
-
-In the latest version, the **Parallel Port Adapter Board** features only a **red Micromatch connector**.  
-
----
-
-### (3) C128/C64 Kernal Switcher Board
-
-<img title="8x Multi-Floppy-Speeder Kernal Switcher C128DCR" src="https://raw.githubusercontent.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/refs/heads/main/images/V3.3_U32_Kernal-Switcher-Platine.jpg" alt="loading-ag-2816" style="zoom:25%;" data-align="center">
-
-The **Kernal Switcher Board** is an **adapter board** for a **512 KB EPROM (27C040 or 29F040)**, which contains **eight 64 KB C128/C64 Kernal ROM banks**. It is installed in place of the original **Kernal PROM** in the **socket (U32)** of the **C128DCR**.  
-
-The **switcher** features a **connector (J3) for A16/A17/A18**, which must be connected to the **Multi-Speeder Board** at **(J5) or (J6)**. The **Multi-Speeder Board** then switches not only the **floppy drive Kernal** but also the **corresponding bank of the C128/C64 Kernal ROM**. This allows the **1571 Kernal** and the **C128/C64 Kernal** to be switched in parallel using **DOS commands**, ensuring that the same **ROM banks** are always activated.  
-
-- If **DOS Kernal bank 0 is active**, then **C128/C64 Kernal bank 0** is also active.  
-- However, the **C128/C64 side** does **not receive an automatic reset**, unlike the **floppy drive**, where a reset occurs automatically. A **manual reset is required** in this case.  
-
-If **J4** on the **Multi-Switcher** is left open, then the **floppy drive will not be reinitialized (no reset) when switching the DOS Kernal**.  
-
-The **Kernal Switcher V1.2** (newer version) also includes an additional **fourth connection (A15) at J3**, which is **not used in the C128DCR**.  
-
----
-
-### Switchless - Selecting Operating Modes (ROM Bank)
-
-### Switching the ROM Bank
-
-Banks 0 - 7 can be selected using commands **1@RNROM to 8@RNROM**.  
-
-The Speeder can be switched directly from the computer using simple commands. The following example demonstrates switching in **C64 mode**:  
-
-1. **Switch to Bank 2 (JiffyDOS 64):**  
-   
-   ```plaintext
-   LOAD"3@RNROM",8,1
-   ```
-   
-   The drive switches to Bank 2 and automatically restarts.  
-
-2. **Switch to Bank 0 (DolphinDOS 3):**  
-   
-   ```plaintext
-   OPEN 1,8,15,"I:1@RNROM":CLOSE 1
-   ```
-   
-   The microcontroller switches to Bank 0, the drive LED blinks, and the drive restarts.  
-
-3. **Switch to Bank 7 (CBM DOS):**  
-   
-   ```plaintext
-   @I:8@RNROM
-   ```
-   
-   The microcontroller recognizes the command, switches to Bank 7, the LED blinks, and the drive restarts.  
-
-4. **Temporarily Disable Switchless Mode:**  
-   
-   ```plaintext
-   @I:0@RNROM or LOAD"0@RNROM",8,1
-   ```
-   
-   The switchless mode is temporarily disabled until the drive is restarted.  
-
----
-
-### **Note:**
-
-If the **1571 floppy drive** is running in **2 MHz mode** (**C128 mode/DolphinDOS**), the **ROM switching may not always work reliably**. The **ATmega328 microcontroller** may experience **timing issues** when **reading commands from the data bus**.  
-
-A more reliable operation can be achieved by replacing the **Y1 quartz crystal** on the board from **20 MHz to 22.1184 MHz**. Although the manufacturer specifies **20 MHz as the maximum clock speed** for the **ATmega328P in DIP packaging**, in practice, the microcontroller **operates smoothly at 22 MHz**.  
-
-### Overview of C128/C64 and DOS Kernals
-
-### C128/C64 Kernals (U32)
-
-The **C128/C64 Kernal Switcher Board** for the **U32 socket** is organized as follows. It is important to note that, for the **512 KB EPROM 27C040 and 29F040**, only the **upper 32 KB of the 64 KB banks** from `$x8000 - $xFFFF` are currently used. Therefore, the Kernals must be placed starting from `$x8000`.  
-
-The **Kernal ROM 27256 (U32)** (C128/C64 Kernals) in the **C128DCR** is structured as follows:  
-
-| ROM Address Range | ROM Type                     | Size  |
-| ----------------- | ---------------------------- | ----- |
-| `$0000 - $1FFF`   | C64 Basic V2 `$A000 - $BFFF` | 8 KB  |
-| `$2000 - $3FFF`   | C64 Kernal `$E000 - $FFFF`   | 8 KB  |
-| `$4000 - $7FFF`   | C128 Kernal/System           | 16 KB |
-
----
-
-### 1571 DOS Kernal (U101 Multi-Speeder)
-
-The drive's **Kernal ROM** starts at `$x3000 - $xFFFF`, and depending on the active **Bank (0-7)**, the corresponding area is mapped into the **CPU address space**.  
-
-| Bank | Switch  | EPROM Address                       | CPU Address Space               |
-| ---- | ------- | ----------------------------------- | ------------------------------- |
-| 0    | 1@RNROM | `$03000 - $03FFF & $08000 - $0FFFF` | `$3000 - $3FFF & $8000 - $FFFF` |
-| 1    | 2@RNROM | `$13000 - $13FFF & $18000 - $1FFFF` | `$3000 - $3FFF & $8000 - $FFFF` |
-| 2    | 3@RNROM | `$23000 - $23FFF & $28000 - $2FFFF` | `$3000 - $3FFF & $8000 - $FFFF` |
-| 3    | 4@RNROM | `$33000 - $33FFF & $38000 - $3FFFF` | `$3000 - $3FFF & $8000 - $FFFF` |
-| 4    | 5@RNROM | `$43000 - $43FFF & $48000 - $4FFFF` | `$3000 - $3FFF & $8000 - $FFFF` |
-| 5    | 6@RNROM | `$53000 - $53FFF & $58000 - $5FFFF` | `$3000 - $3FFF & $8000 - $FFFF` |
-| 6    | 7@RNROM | `$63000 - $63FFF & $68000 - $6FFFF` | `$3000 - $3FFF & $8000 - $FFFF` |
-| 7    | 8@RNROM | `$73000 - $73FFF & $78000 - $7FFFF` | `$3000 - $3FFF & $8000 - $FFFF` |
-
----
-
-### ROM Bank Allocation Based on Example Configuration
-
-| Bank | Switch  | System            | U32 C128 | U32 C64      | U101 1571    | EPROM Address                     |
-| ---- | ------- | ----------------- | -------- | ------------ | ------------ | --------------------------------- |
-| 0    | 1@RNROM | CBM               | CBM      | CBM          | CBM          | `$08000-$0FFFF`                   |
-| 1    | 2@RNROM | CBM RAM Exp       | CBM      | CBM          | CBM RAM Exp. | `$18000-$1FFFF`                   |
-| 2    | 3@RNROM | DolphinDos 3      | DD3      | DD3          | DD3          | `$28000-$2FFFF`                   |
-| 3    | 4@RNROM | DolphinDos 25     | DD3      | DD3-Custom   | DD3          | `$33000 - $33FFF - $38000-$3FFFF` |
-| 4    | 5@RNROM | CBM-DD-SD2IEC     | CBM      | DD-JD-SD2IEC | CBM RAM Exp. | `$48000-$4FFFF`                   |
-| 5    | 6@RNROM | CBM               | CBM      | JaffyDOS 1.3 | CBM RAM Exp. | `$58000-$5FFFF`                   |
-| 6    | 7@RNROM | CBM (reserved JD) | CBM      | CBM          | CBM RAM Exp. | `$68000-$6FFFF`                   |
-| 7    | 8@RNROM | CBM (reserved JD) | CBM      | CBM          | CBM RAM Exp. | `$78000-$7FFFF`                   |
-
-"CBM RAM Exp." is the original **CBM DOS** of the 1571 with a **patch for the Multi-Speeder RAM expansion**. This patch includes a **TrackCache**, allowing the **1571 floppy drive** to read an **entire track at once**. **JiffyDOS 128** is also available in a **patched version**, further increasing read speed by **20%**.  
-
-For more details, check out **ytmytm's GitHub repository**:  
-🔗 **[GitHub - ytmytm/1571-TrackCacheROM: A firmware patch for Commodore 1571 drive and internal C128D drive enabling RAM expansion use for track cache](https://github.com/ytmytm/1571-TrackCacheROM)**  
-
----
-
-### **JiffyDOS on the Multi-Speeder**
-
-JiffyDOS 128 runs **perfectly** on the Multi-Speeder. With the **RAM Expansion Patch**, JiffyDOS is significantly **faster in both C128 and C64 modes**.  
-
-📌 **Note:** JiffyDOS is still being **sold commercially**, so it is **not provided for download**.  
-
-### **Important Notes for Multi-Speeder Operation**
-
-- When using the **Multi-Speeder board**, the **original DOS-ROM (U102) must be removed permanently**, as the Multi-Speeder provides the selected **DOS Kernal** via its own **EPROM**.  
-- If U102 remains in place, it will cause an **address conflict**, and the **floppy drive will no longer function correctly**.  
-
----
-
-### **Issues When Switching ROMs in 2 MHz Mode**
-
-- **ROM switching may be unreliable** when the floppy drive is operating in **2 MHz mode**.  
-- If this happens, **try switching multiple times** (e.g., using `LOAD"x@RNROM",8,1`).  
-- The issue is related to **timing problems** between the **ATMega and the 74AHTC273 flip-flop under 2 MHz**.  
-- The system works best when using a **74AHTC273**.  
-
----
-
-## **Peripheral Interface Adapter (PIA)**
-
-The **Peripheral Interface Adapter (PIA)** controls the **parallel data transfer** between the **floppy drive** and the **C128/C64**, either via the **Parallel Port Adapter Board** or a **Parallel User Port Cable**.  
-
-### **Tested PIA Versions:**
-
-1. **MC68B21P** (Motorola) (2 MHz)  
-2. **W65C21N6TPG-14** or **W65C21S6TPG-14** (Western Design Center)  
-3. **EF68B21** (STMicroelectronics) (2 MHz)  
-4. **R65C21P2** (Rockwell) (2 MHz)  
-
----
-
-## **Diagnostic Tool**
-
-For the **Multi-Speeder DD3**, I have created a **RAM testing program**.  
-
-- It tests **RAM access** and **RAM bank switching**.  
-- The tool is designed for **C64 mode** so that it can also be used for the **C64/1541 version of the Multi-Speeder DD3**.  
-
-🔗 **[Download the tool here](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/tree/main/tools)**  
-
----
-
-## **Benchmark**
-
-I have created some **benchmarks** using the **8x Multi-Speeder V2.x**.  
-
-🔗 **[Check the results here](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/blob/main/benchmark/README.md)**  
-
----
-
-## **Bill of Materials (BOM)**
-
-The **BOM list** is available for download.  
-
-🔗 **[Download here](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/tree/main/bom)**  
-
----
-
-## **Example: RAM Bank Switching for Developers**
-
-I would love to see **developers contribute** to unlocking the full **potential of the Multi-Speeder**!  
-
-Below is an **assembly example** demonstrating how to **switch memory banks** on the **1571** using the **Multi-Speeder**.  
-
-### **Memory Bank Organization:**
-
-The **memory is divided into four 8 KB banks**, mapped to **$6000-$7FFF** in the **1571**.  
-
-### **Switching Banks Using the 65C21/6821 PIA:**
-
-The **banks are switched** using the **PIA** through **ports PB0 to PB5**:  
-
-- **PB0 = A13**  
-- **PB1 = A14**  
-- …  
-
-By default, **PB0 - PB5 are set to 0**, meaning **Bank 0 is active**.  
+## What is in this repository?
 
 ```
-LDA #$00           ; PIA DDR for output ($00)
-STA $5003          ; Init PIA DDR Port PB0-PB7 output direction
-LDA #$FF           ; Set PIA output for Port PB0-PB7
-STA $5002          ; Init PIA Port PB0-PB7 aktiv
-
-LDA #$00
-STA $5002          ; Set PIA Port PB0-PB1 low        (RAM BANK 0 active)
-...
-LDA #$01
-STA $5002         ; Set PIA Port PB0 high / PB1 low  (RAM BANK 1 active)
-...
-LDA #$02
-STA $5002         ; Set PIA Port PB0 low / PB1 high  (RAM BANK 2 active)
-...
-LDA #$03
-STA $5002         ; Set PIA Port PB0 high / PB1 high (RAM BANK 3 active)`
+manuals/en, de   1571 Multi-Speeder V3 manual as PDF
+rom/             DolphinDos26 ROMs for the 1571 and the C128 (C128 and C64 mode),
+                 EPROM templates C1571_C128DCR_29F040.BIN (drive),
+                 C128DCR_KERNAL_29F040-DE.BIN and -US.BIN (kernal switcher)
+ms-tools/        ms-tools.d64
+hardware/        Gerber, schematics, BOM, GAL and ATmega files (V3.3)
+assets/          Images for this page
+rom-builder/     MS-ROM-Builder-C128DCR: browser tool for your own EPROM images
+tools/           Maintenance script for this repository
+CHECKSUMS.*      MD5 and SHA-256 of all published files
 ```
 
+Apart from the templates `C1571_C128DCR_29F040.BIN` (Commodore DOS 1571CR, DolphinDOS 3 and DolphinDos26) and `C128DCR_KERNAL_29F040-DE.BIN`/`C128DCR_KERNAL_29F040-US.BIN` (Commodore and original Dolphin kernals, DolphinDos26 kernals), no EPROM image is included. JiffyDOS is commercial software and not part of this project; a licence is available from [RETRO Innovations](https://www.jiffydos.com). The C128 and C64 kernals contain JiffyDOS transfer routines – see [JiffyDOS licence: please check](#jiffydos-licence-please-check).
 
+Verify your download with `sha256sum -c CHECKSUMS.sha256` or `md5sum -c CHECKSUMS.md5`.
 
+## JiffyDOS licence: please check
 
+The C128 kernals [`C128DolphinDos26-US.BIN`](rom/C128DolphinDos26-US.BIN) and [`C128DolphinDos26-DE.BIN`](rom/C128DolphinDos26-DE.BIN) and the C64 mode kernal [`C64IIDolphinDos26.bin`](rom/C64IIDolphinDos26.bin) contain JiffyDOS transfer routines that are instruction-identical to a JiffyDOS kernal (C128: JiffyDOS C128 kernal, C64: JiffyDOS sd2iec kernal). The same applies to bank 4 of the kernal switcher templates `C128DCR_KERNAL_29F040-DE.BIN` and `-US.BIN`, which holds these kernals; all other banks contain no JiffyDOS code. The JiffyDOS drive firmware is not included. Jim Brain of RETRO Innovations, which holds the JiffyDOS licence rights, confirmed that publishing the DolphinDos26 kernals on GitHub is fine. As he describes it, code that implements the same transfer behaviour without being an exact copy needs no licence. If the transfer code is the same, as it is here, he believes the end user would need one.
 
----
+**Please check for yourself whether your use calls for an official JiffyDOS licence:** <https://www.jiffydos.com>
 
-## **ATMega 328P**
+Details: [DolphinDOS26 – JiffyDOS licence](https://github.com/FraEgg/DolphinDOS26#jiffydos-licence-please-check), technical notes on the [C128 kernal](https://github.com/FraEgg/DolphinDOS26/blob/main/docs/en/c128-kernal.md).
 
-The **Atmel ATMega 328P microcontroller** monitors the data bus, controls the ROM banks, and manages the **switching of operating modes**. The firmware can be programmed using an **Arduino board** or an **AV programmer**. I use the **XGecu T48 Universal Programmer** with an **.mpj project file**.  
+## Credits
 
-📌 **Important:** When programming with **XGecu** using the **.mpj file**, make sure **not to program the EEPROM**, as this may cause an error message. This option can be **disabled in the XGecu menu**.  
+| Who | What |
+|---|---|
+| Günther Jilg, Jan Bubela (Dolphin Software) | DolphinDOS 3.0, the base of DolphinDos26 |
+| Per Bengtsson (RetroNynjah) | [Switchless Multi-ROM](https://github.com/RetroNynjah/Switchless-Multi-ROM-for-27128-27256), the ROM switcher sketch |
+| Jim Drew, Joeri van Haren | Help and review of the hardware (V2.1) |
+| silverdr | [Technical documentation on DolphinDOS 3](https://e4aws.silverdr.com/projects/dolphindos3/) |
+| ytmytm | [1571 TrackCache ROM patch](https://github.com/ytmytm/1571-TrackCacheROM) |
+| Stefan Kauf | Support with the idea of the Multi-Speeder |
+| Mark Fellows / Creative Micro Designs; Jim Brain, RETRO Innovations | JiffyDOS |
 
-![XGecu T48 Universal Programmer EEPROM](https://raw.githubusercontent.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/refs/heads/main/images/XGecuT48UniversalProgrammerEEPROM.png)  
+**Special thanks to Jim Brain of RETRO Innovations** for his support with the JiffyDOS implementation of the DolphinDos26 kernals.
 
-![XGecu T48 Universal Programmer Config](https://raw.githubusercontent.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/refs/heads/main/images/XGecuT48UniversalProgrammerConfig.png)  
+Multi-Speeder, DolphinDos26 and the manuals: **Frank Eggen**. If you would like to support the project: [donation via PayPal](https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=Q8HXKYARXKT4L&ssrt=1714757590172).
 
----
+## Licence
 
-## **Installation on C128DCR**
-
-![8x Multi-Speeder Installation on C128DCR Mainboard](https://raw.githubusercontent.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/refs/heads/main/images/V2.0_C128DCR_Overview.jpg)  
-
-The installation of the **Multi-Speeder** on the **C128DCR motherboard** involves the following steps:  
-
-- The **Multi-Speeder** is installed **in place of the 6502 CPU (U101)**.  
-- The **6502 CPU** is placed into the **CPU socket of the Multi-Speeder** (bottom right).  
-- The **Kernal Switcher** is installed **in place of the original Kernal ROM (U32)** (bottom left).  
-- The **Parallel Adapter** is installed **in place of the CIA 6526 (U4)**.  
-- The **CIA 6526** is then placed into the **Parallel Adapter board**.  
-- The **Kernal Switcher** is connected to the **Multi-Speeder board** via a **3-pin cable**.  
-- The **Parallel Adapter** is connected to the **Multi-Speeder board** via a **10-pin cable** (Parallel Port).  
-
----
-
-## **Downloads**
-
-1. **[ATF16V8 (GAL16V8) Files](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/tree/main/pld-atf16v8-gal16v8)**  
-2. **[ATMEL ATMega328 P Files](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/tree/main/atmega328p)**  
-3. **[Gerber Files for PCB Manufacturing](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/tree/main/gerber)**  
-4. **[Firmware / Kernals](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/tree/main/kernals)**  
-5. **[Schematics for the 8x Multi-Speeder](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/tree/main/schematics)**  
-6. **[Photo Gallery](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/tree/main/images)**  
-7. **[Additional Documents](https://github.com/FraEgg/commodore-c128dcr-1571-switchless-floppydrive-8x-multi-floppy-speeder/tree/main/docs)**  
+Free for private, non-commercial use. No sale and no commercial use (boards, kits, ROM files, programmed EPROMs) without consulting the developer. Private hobby project without any warranty; building and installation at your own risk. Details: [LICENSE.md](LICENSE.md).
 
 ---
 
-## **Shared Projects on PCBWay.com**
+# Deutsch
 
-1. **[8x Multi-Floppy Speeder 32KB RAM Expansion for Commodore C128DCR](https://www.pcbway.com/project/shareproject/Switchless_8x_Multi_Floppy_Speeder_with_32_KB_RAM_Expansion_for_the_Commodore_C1_557a83c8.html)**  
-2. **[C128/C64 Kernal Switcher for 8x Multi-Floppy-Speeder C128DCR](https://www.pcbway.com/project/shareproject/C128_C64_U32_Kernal_Switcher_Adapter_for_Switchless_8x_Multi_Floppy_Speeder_with_f113e895.html)**  
-3. **[Parallel Port Adapter for 8x Multi-Floppy-Speeder C128DCR](https://www.pcbway.com/project/shareproject/Parallelport_Adapter_U4_for_Switchless_8x_Multi_Floppy_Speeder_with_32_KB_RAM_Ex_558623e7.html)**  
+## Was ist das?
 
-### **Additional Projects on PCBWay.com:**
+Der **1571 Switchless 8x Multi-Floppy-Speeder V3** beschleunigt die eingebaute 1571 des **Commodore C128DCR**. Er besteht aus drei Platinen, die alle im Gehäuse verschwinden; der Userport bleibt frei:
 
-#### **Commodore 1541 Switchless 8x Multi-Speeder**
+| Platine | Sitzt im C128DCR | Aufgabe |
+|---|---|---|
+| **Multi-Speeder-Platine** | Sockel der 1571-CPU (U101), die 6502 sitzt obenauf | DOS-EPROM mit 8 Bänken, 512 KB RAM, PIA, Mikrocontroller, Adressdecoder |
+| **Parallelport-Adapter** | Sockel der CIA 2 (U4), die CIA sitzt obenauf | führt Port B der CIA über ein 10-poliges Kabel zum Multi-Speeder |
+| **Kernal-Switcher** | Sockel des Kernal-ROMs (U32) | EPROM mit 8 Bänken für C128- und C64-Modus, wird mit dem Laufwerk umgeschaltet |
 
-1. **[Switchless Floppy Drive 8x Multi Floppy Speeder (THT) for Commodore 1541 (V2.2c)](https://www.pcbway.com/project/shareproject/Switchless_Floppy_Drive_8x_Multi_Floppy_Speeder_for_the_Commodore_1541_Disk_Driv_369dbba4.html)**  
-2. **[Switchless Floppy Drive 8x Multi Floppy Speeder (SMD) for Commodore 1541 (V2.2c)](https://www.pcbway.com/project/shareproject/Switchless_Floppy_Drive_8x_Multi_Floppy_Speeder_for_the_Commodore_1541_Disk_Driv_33eedf94.html)**  
-3. **[Parallel Cable Sets for Commodore 1541 (SpeedDOS, DolphinDOS) with C64/C128](https://www.pcbway.com/project/shareproject/C64_Userport_Adapter_Parallel_Cable_Set_for_the_Commodore_1541_Disk_Drive_Spe_3b86d1f8.html)**  
+- **8 DOS-Bänke** zu 64 KB in einem 512-KB-Flash-EPROM **29F040**, umschaltbar per DOS-Befehl ohne Schalter (`@I:n@RNROM`)
+- **8 Kernal-Bänke** für C128- und C64-Modus, immer zusammen mit der DOS-Bank umgeschaltet
+- **512 KB RAM** im Laufwerk, als 64 Bänke zu 8 KB bei `$6000`–`$7FFF` eingeblendet
+- eine **PIA 6821/W65C21** als 8-Bit-Parallelport und zur Auswahl der RAM-Bänke
+- RAMBoard-kompatibel für Nibbler-Programme
 
----
+Mit **DolphinDos26** für die 1571 und dem **C128-Kernal DolphinDos26** bekommt der C128DCR Parallelübertragung, Track-Cache, ganze Disketten im Laufwerks-RAM (`CDR`/`CDW`), eine RAM-Disk (`CDM`), die MS-Addon-API und die MS-Tools – und dazu doppelseitige Disketten (`CDRD`/`CDWD`/`CDMD`).
 
-## **Useful Links**
+## Welche Dateien brauche ich?
 
-1. **DolphinDOS:** [C64-Wiki](https://www.c64-wiki.de/wiki/Dolphin_DOS) & [Project64 Documentation](https://project64.c64.org/hw/dolphindos.txt)  
-2. **RAMBoard:** [C64-Wiki](https://www.c64-wiki.de/wiki/RAMBOard) & [C64 Copy Protection](https://www.c64copyprotection.com/ramboard/)  
+| Datei | Gehört in | Inhalt |
+|---|---|---|
+| [`C1571_DOLPHINDOS26.bin`](rom/C1571_DOLPHINDOS26.bin) | EPROM U3 der Multi-Speeder-Platine, Bank 4 (Offset `$30000`) | DolphinDos26 für die 1571 (64 KB) |
+| [`C128DolphinDos26-US.BIN`](rom/C128DolphinDos26-US.BIN) | EPROM des Kernal-Switchers, Bank 4 bei `$3C000` | C128-Kernal DolphinDos26 (16 KB, C128-Modus), international und USA |
+| [`C128DolphinDos26-DE.BIN`](rom/C128DolphinDos26-DE.BIN) | EPROM des Kernal-Switchers, Bank 4 bei `$3C000` | C128-Kernal DolphinDos26 (16 KB, C128-Modus) mit deutschem DIN-Tastaturtreiber: die CAPS-LOCK-Taste ist die ASCII/DIN-Taste |
+| [`C64IIDolphinDos26.bin`](rom/C64IIDolphinDos26.bin) | EPROM des Kernal-Switchers, Bank 4 bei `$38000` | C64-BASIC und -Kernal DolphinDos26 (16 KB, C64-Modus) |
+| [`C128DCR_KERNAL_29F040-DE.BIN`](rom/C128DCR_KERNAL_29F040-DE.BIN) | EPROM des Kernal-Switchers U32 (29F040, 512 KB) | Vorlage deutsch: Bänke 1–2 und 5–8 Commodore-C64-BASIC/-Kernal und deutscher C128-Kernal 315078-03, Bank 3 originale Dolphin-Kernals, Bank 4 `C64IIDolphinDos26.bin` und `C128DolphinDos26-DE.BIN` |
+| [`C128DCR_KERNAL_29F040-US.BIN`](rom/C128DCR_KERNAL_29F040-US.BIN) | EPROM des Kernal-Switchers U32 (29F040, 512 KB) | Vorlage international/USA: wie oben mit dem C128-Kernal 318020-05 und in Bank 4 `C128DolphinDos26-US.BIN` |
+| [`C1571_C128DCR_29F040.BIN`](rom/C1571_C128DCR_29F040.BIN) | EPROM U3 der Multi-Speeder-Platine (29F040, 512 KB) | Vorlage: originales Commodore-DOS 318047-01 (1571CR) in den Bänken 1–2 und 5–8, originales DolphinDOS 3 für die 1571 in Bank 3, DolphinDos26 in Bank 4 |
+| [`ms-tools.d64`](ms-tools/ms-tools.d64) | Diskette | MS-Tools zum Testen (`MS-MEMTEST512`) und Kopieren, im C64-Modus |
+| [`hardware/gal`](hardware/gal) | GAL ATF16V8B (U7) | Adressdecoder `ATF16V8_PAL_Adressendecoder_V3_0PIA_1571.jed` |
+| [`hardware/atmega328p`](hardware/atmega328p) | ATmega328P (U6) | Firmware des ROM-Umschalters (`.hex`), Quelle (`.ino`), XGecu-Projekt (`.mpj`) |
 
----
+Die DolphinDos26-ROMs sind dieselben wie im Release von [DolphinDOS26](https://github.com/FraEgg/DolphinDOS26). `C1571_C128DCR_29F040.BIN` ist eine fertige Vorlage für das EPROM der Multi-Speeder-Platine: In den Bänken 1–2 und 5–8 liegt das 32-KB-Commodore-DOS, in Bank 3 das 32-KB-DolphinDOS 3 in der oberen Hälfte (Bankanfang + `$8000`), die untere Hälfte ist `$FF`; nur Bank 4 enthält die vollen 64 KB von DolphinDos26. Sie kann so gebrannt werden, oder einzelne Bänke werden durch andere DOS-Versionen ersetzt. Für den Kernal-Switcher sind `C128DCR_KERNAL_29F040-DE.BIN` (deutsch) und `C128DCR_KERNAL_29F040-US.BIN` (international, USA) fertige Vorlagen, deren Bänke zur Laufwerks-Vorlage passen: Je Bank wird nur die obere Hälfte genutzt (`$x8000` C64-BASIC, `$xA000` C64-Kernal, `$xC000` C128-Kernal), die untere Hälfte ist `$FF`. Wie die EPROM-Abbilder zusammengesetzt werden, steht im Handbuch in Kapitel 7.6.
 
-## **Acknowledgments**
+## Hardware
 
-Many people contributed to this project, and it is the result of **collaborative development**. Special thanks to:  
+| Ordner | Inhalt |
+|---|---|
+| [`hardware/gerber`](hardware/gerber) | Gerber-Dateien V3.3 für alle drei Platinen (zweilagig) |
+| [`hardware/schematics`](hardware/schematics) | Schaltpläne V3.3 als PDF |
+| [`hardware/bom`](hardware/bom) | KiCad-Stücklisten V3.3 (CSV, HTML, XLS) |
+| [`hardware/gal`](hardware/gal) | JED-Datei, Gleichungen und Diagramm des Adressdecoders |
+| [`hardware/atmega328p`](hardware/atmega328p) | Firmware des Mikrocontrollers |
 
-- **Jan Bubela and Gunther Jilg** for developing **DolphinDOS**.  
-- **RetroNynjah** for helping integrate his **Switchless Multi-ROM** into the **8x Multi-Speeder**. [GitHub - RetroNynjah/Switchless Multi-ROM](https://github.com/RetroNynjah/Switchless-Multi-ROM-for-27128-27256)  
-- **Jim Drew and Joeri van Haren**, for support and the **review version 2.1 by Jim Drew**.  
-- **Silverdr**, for his **technical documentation on DD3**: [DolphinDOS3 Documentation](https://e4aws.silverdr.com/projects/dolphindos3/)  
-- **Ytmytm**, for the **TrackCache ROM patch**: [GitHub - ytmytm/1571-TrackCacheROM](https://github.com/ytmytm/1571-TrackCacheROM)  
-- **Stefan Kauf**, for support with the **Multi-Speeder concept** and templates.  
+Die vollständige Stückliste mit DigiKey- und Mouser-Links, die Bestückungsreihenfolge, die Fuse-Bytes (L `0xFF`, H `0xDE`, E `0xFD`, Lock `0xCF`) und der Einbau in den C128DCR stehen im [Handbuch](manuals/de/MultiSpeederC128DCR-1571_Handbuch.pdf), Kapitel 7 und 8.
 
----
+**Platinen bestellen:** Die Platinen fertigt jeder übliche Leiterplattenhersteller aus den Gerber-Dateien, oder sie werden direkt über mein Projekt bei PCBWay bestellt: [Switchless 8x Multi-Floppy-Speeder für den C128DCR bei PCBWay](https://www.pcbway.com/project/shareproject/Switchless_8x_Multi_Floppy_Speeder_with_32_KB_RAM_Expansion_for_the_Commodore_C1_557a83c8.html).
 
-## **Disclaimer**
+## MS-ROM-Builder-C128DCR (EPROM-Abbilder selbst bauen)
 
-This project has been designed and tested with great care. However, **errors can always occur**. Since this is a **hobby project**, I do **not provide any guarantees** for functionality or **liability for damages** resulting from its use.  
+[`rom-builder/MS-ROM-Builder-C128DCR.html`](rom-builder/MS-ROM-Builder-C128DCR.html) ist ein Browser-Tool, mit dem sich beide 512-KB-EPROM-Abbilder selbst zusammenstellen lassen: das Laufwerks-EPROM U3 und der Kernal-Switcher U32. Die Datei herunterladen und in einem aktuellen Browser öffnen – ohne Installation, offline unter Windows, macOS und Linux, und die ROM-Dateien verlassen den Rechner nicht. Das Tool enthält keine ROMs.
 
----
+- Beide EPROMs mit ihren acht Bänken und den Steckplätzen für 4, 8, 16, 32 und 64 KB; unsere Vorlagen `C1571_C128DCR_29F040.BIN` und `C128DCR_KERNAL_29F040-DE/-US.BIN` sind voreingestellt.
+- ROM-Dateien hineinziehen: Sie werden über ihre Prüfsumme zugeordnet oder direkt auf einen Steckplatz gelegt. Fertige Abbilder lassen sich öffnen, in ihre Teile zerlegen und einzelne Bänke tauschen.
+- Prüfung auf fehlende, abweichende oder unbekannte ROMs, JiffyDOS-Inhalt, Reset-Vektoren und zueinander passende Laufwerks- und Kernal-Bänke; zeigt die Lötbrücke J2 für 29F040, SST39SF040 oder 27C040.
+- Die fertige 512-KB-Datei mit MD5 herunterladen; die Belegung als kleine Projektdatei speichern und laden (ohne ROM-Daten). Deutsch und Englisch.
 
-## **Donations**
+<p align="center"><img src="assets/ms-rom-builder.png" alt="MS-ROM-Builder-C128DCR" width="640"></p>
 
-I have spent countless hours working on this project. If you would like to **support my work**, you can donate to my **coffee fund**.  
+## Einbau in Kürze
 
-☕ **[Donate via PayPal](https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=Q8HXKYARXKT4L&ssrt=1714757590172)**  
+1. Den **29F040** für die Multi-Speeder-Platine mit der Vorlage `C1571_C128DCR_29F040.BIN` (Commodore-DOS, DolphinDOS 3 in Bank 3, DolphinDos26 in Bank 4) oder einem eigenen Abbild brennen (Alternativen: 27C040 oder SST39SF040). Die Lötbrücke **J2** passend zum EPROM-Typ setzen: 29F040/SST39SF040 Pad 1–2, 27C040 Pad 2–3.
+2. Den **29F040** des Kernal-Switchers mit der Vorlage `C128DCR_KERNAL_29F040-DE.BIN` oder `C128DCR_KERNAL_29F040-US.BIN` brennen, oder mit einem eigenen Abbild: `C64IIDolphinDos26.bin` bei `$38000` und `C128DolphinDos26-US.BIN` (international, USA) oder `C128DolphinDos26-DE.BIN` (deutsche Tastatur) bei `$3C000` (Bank 4) brennen; J2 wie oben.
+3. GAL und ATmega programmieren (das EEPROM des ATmega nicht mitprogrammieren).
+4. U101 und U4 sockeln, **das DOS-ROM U102 entfernen**, die drei Platinen einsetzen, Parallelkabel und J5 → J3 verbinden.
+5. Mit `OPEN 1,8,15,"I:4@RNROM":CLOSE 1` umschalten, den C128 per Reset neu starten. `@` meldet `73,DOLPHINDOS26 1571,00,00`, beim Laden erscheint `LOADING DD:`.
+6. Im C64-Modus das RAM mit `MS-MEMTEST512` von der MS-Tools-Diskette testen.
 
----
+## Bekannte Grenzen
 
-## **Usage Rights / Copyright**
+- C1571DolphinDos26 läuft wie das Original-DolphinDOS 3 immer mit 2 MHz. Vor Programmen mit eigenem Schnelllader `@X-` (1 MHz) eingeben oder mit `@I:1@RNROM` auf das Commodore-ROM wechseln.
+- Bei 2 MHz kann der Mikrocontroller einen Umschaltbefehl verpassen; dann den Befehl wiederholen. Ein Quarz mit 22,1184 MHz und ein 74AHCT273 als U5 machen das Umschalten zuverlässig.
+- DolphinDos26 braucht die originale NMOS-6502, keine WDC 65C02.
+- MS-NIBCOPY512 und MS-15SECCOPY sind für die 1541 geschrieben, nicht für die 1571.
 
-This project is **free for personal use**. However, **commercial use**, such as **selling or distributing** my **Multi-Floppy-Speeder**, is **prohibited without permission**.  
+## Was liegt in diesem Repository?
 
----
+```
+manuals/en, de   Handbuch 1571 Multi-Speeder V3 als PDF
+rom/             DolphinDos26-ROMs für die 1571 und den C128 (C128- und C64-Modus),
+                 EPROM-Vorlagen C1571_C128DCR_29F040.BIN (Laufwerk),
+                 C128DCR_KERNAL_29F040-DE.BIN und -US.BIN (Kernal-Switcher)
+ms-tools/        ms-tools.d64
+hardware/        Gerber, Schaltpläne, Stückliste, GAL- und ATmega-Dateien (V3.3)
+assets/          Bilder für diese Seite
+rom-builder/     MS-ROM-Builder-C128DCR: Browser-Tool für eigene EPROM-Abbilder
+tools/           Pflegeskript für dieses Repository
+CHECKSUMS.*      MD5 und SHA-256 aller veröffentlichten Dateien
+```
 
-I hope you **enjoy the 8x Multi-Floppy-Speeder 32KB RAM Expansion for the C128DCR**!  
+Außer den Vorlagen `C1571_C128DCR_29F040.BIN` (Commodore-DOS 1571CR, DolphinDOS 3 und DolphinDos26) und `C128DCR_KERNAL_29F040-DE.BIN`/`C128DCR_KERNAL_29F040-US.BIN` (Commodore- und originale Dolphin-Kernals, DolphinDos26-Kernals) ist kein EPROM-Abbild enthalten. JiffyDOS ist kommerzielle Software und nicht Teil des Projekts; eine Lizenz gibt es bei [RETRO Innovations](https://www.jiffydos.com). Der C128- und der C64-Kernal enthalten JiffyDOS-Übertragungsroutinen – siehe [JiffyDOS-Lizenz: bitte prüfen](#jiffydos-lizenz-bitte-pr%C3%BCfen).
 
-Best regards,  
-**Frank Eggen**  
-📧 **[retro@emden.net](mailto:retro@emden.net)**
+Den Download prüfen mit `sha256sum -c CHECKSUMS.sha256` oder `md5sum -c CHECKSUMS.md5`.
 
----
+## JiffyDOS-Lizenz: bitte prüfen
 
-## **Update**
+Die C128-Kernals [`C128DolphinDos26-US.BIN`](rom/C128DolphinDos26-US.BIN) und [`C128DolphinDos26-DE.BIN`](rom/C128DolphinDos26-DE.BIN) sowie der Kernal für den C64-Modus [`C64IIDolphinDos26.bin`](rom/C64IIDolphinDos26.bin) enthalten JiffyDOS-Übertragungsroutinen, die befehlsgleich aus einem JiffyDOS-Kernal stammen (C128: JiffyDOS-C128-Kernal, C64: JiffyDOS-sd2iec-Kernal). Das gilt auch für Bank 4 der Kernal-Switcher-Vorlagen `C128DCR_KERNAL_29F040-DE.BIN` und `-US.BIN`, in der diese Kernals liegen; alle anderen Bänke enthalten keinen JiffyDOS-Code. Die JiffyDOS-Firmware für das Laufwerk ist nicht enthalten. Jim Brain von RETRO Innovations, das die JiffyDOS-Lizenzrechte hält, hat die Veröffentlichung der DolphinDos26-Kernals auf GitHub erlaubt. Nach seiner Beschreibung ist für Code, der dasselbe Übertragungsverhalten umsetzt, aber keine genaue Kopie ist, keine Lizenz nötig. Ist der Übertragungscode gleich, wie hier, wäre nach seiner Einschätzung beim Endnutzer eine Lizenz erforderlich.
 
-- **2025-03-23** Add new Multi-Speeder Logo
-- **2025-03-08** New **Version 3.3** with **512KB RAM** and **DolphinDOS 25**.  
-- **2025-01-02** Added more links to the **1541 8x Switchless Multi-Speeder 32KB**.  
-- **2024-12-07** PCB **Gerber file update** to **Version 2.0b** – Fixed issues with **R2 and R3**. **5V must be present between pull-up resistors R2 and R3**.
+**Bitte prüfe selbst, ob du wegen der Nutzung eine offizielle JiffyDOS-Lizenz erwerben solltest:** <https://www.jiffydos.com>
+
+Einzelheiten: [DolphinDOS26 – JiffyDOS-Lizenz](https://github.com/FraEgg/DolphinDOS26#jiffydos-lizenz-bitte-pr%C3%BCfen), technische Notizen zum [C128-Kernal](https://github.com/FraEgg/DolphinDOS26/blob/main/docs/de/c128-kernal.md).
+
+## Danksagung
+
+| Wer | Was |
+|---|---|
+| Günther Jilg, Jan Bubela (Dolphin Software) | DolphinDOS 3.0, die Grundlage von DolphinDos26 |
+| Per Bengtsson (RetroNynjah) | [Switchless Multi-ROM](https://github.com/RetroNynjah/Switchless-Multi-ROM-for-27128-27256), der Sketch des ROM-Umschalters |
+| Jim Drew, Joeri van Haren | Hilfe und Review der Hardware (V2.1) |
+| silverdr | [Technische Dokumentation zu DolphinDOS 3](https://e4aws.silverdr.com/projects/dolphindos3/) |
+| ytmytm | [1571 TrackCache ROM-Patch](https://github.com/ytmytm/1571-TrackCacheROM) |
+| Stefan Kauf | Unterstützung bei der Idee des Multi-Speeders |
+| Mark Fellows / Creative Micro Designs; Jim Brain, RETRO Innovations | JiffyDOS |
+
+**Besonderer Dank gilt Jim Brain von RETRO Innovations** für seine Unterstützung bei der JiffyDOS-Implementierung der DolphinDos26-Kernals.
+
+Multi-Speeder, DolphinDos26 und die Handbücher: **Frank Eggen**. Wer das Projekt unterstützen möchte: [Spende per PayPal](https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=Q8HXKYARXKT4L&ssrt=1714757590172).
+
+## Lizenz
+
+Frei für den privaten, nicht kommerziellen Gebrauch. Kein Verkauf und keine kommerzielle Nutzung (Platinen, Bausätze, ROM-Dateien, gebrannte EPROMs) ohne Rücksprache mit dem Entwickler. Privates Hobbyprojekt ohne jede Gewährleistung; Nachbau und Einbau auf eigene Gefahr. Details: [LICENSE.md](LICENSE.md).

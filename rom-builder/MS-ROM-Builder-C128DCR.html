@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MS-ROM-Builder-C128DCR</title>
+<style>
+:root {
+  --bg: #f4f5f7; --panel: #ffffff; --ink: #1d2330; --muted: #667085; --line: #d9dde5;
+  --accent: #2f5bd3; --accent-ink: #ffffff; --ok: #1f8a4c; --warn: #b7791f; --err: #c0392b;
+  --ok-bg: #e6f4ec; --warn-bg: #fdf3e2; --err-bg: #fbe9e7; --free: #e9ecf1; --chip: #eef2ff;
+  --seg1: #5b7fe0; --seg2: #43a372; --seg3: #d08a2e; --seg4: #8c5bd6; --seg5: #3aa0b5;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14171d; --panel: #1d222b; --ink: #e6e9ef; --muted: #98a2b3; --line: #2f3643;
+    --accent: #6e8ff0; --accent-ink: #0d1117; --ok: #4cc283; --warn: #e2a849; --err: #f07167;
+    --ok-bg: #16301f; --warn-bg: #352a14; --err-bg: #3a1c19; --free: #262c37; --chip: #222b45;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+header { background: var(--panel); border-bottom: 1px solid var(--line); padding: 14px 20px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+header h1 { font-size: 19px; margin: 0; letter-spacing: .2px; }
+header .sub { color: var(--muted); font-size: 13px; }
+.badge { background: var(--chip); color: var(--accent); border: 1px solid var(--accent); border-radius: 999px; padding: 1px 9px; font-size: 12px; font-weight: 600; }
+.spacer { flex: 1; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.seg button { border: 0; background: transparent; color: var(--ink); padding: 6px 12px; cursor: pointer; font: inherit; }
+.seg button.on { background: var(--accent); color: var(--accent-ink); }
+main { max-width: 1280px; margin: 0 auto; padding: 16px 20px 40px; display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: 16px; }
+@media (max-width: 960px) { main { grid-template-columns: 1fr; } }
+.toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; }
+.tabs { display: flex; gap: 4px; }
+.tabs button { border: 1px solid var(--line); background: var(--panel); color: var(--ink); padding: 8px 14px; border-radius: 8px 8px 0 0; cursor: pointer; font: inherit; font-weight: 600; }
+.tabs button.on { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn { border: 1px solid var(--line); background: var(--panel); color: var(--ink); padding: 6px 11px; border-radius: 7px; cursor: pointer; font: inherit; }
+.btn:hover { border-color: var(--accent); }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+.btn.small { padding: 2px 8px; font-size: 12px; }
+.btn[disabled] { opacity: .45; cursor: not-allowed; }
+select { font: inherit; padding: 5px 8px; border-radius: 7px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); }
+.dropzone { border: 2px dashed var(--line); border-radius: 10px; padding: 10px 14px; color: var(--muted); text-align: center; margin-bottom: 12px; background: var(--panel); }
+.dropzone.over { border-color: var(--accent); color: var(--accent); }
+.banks { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 12px; }
+.bank { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+.bank h3 { margin: 0; font-size: 15px; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.bank h3 .addr { color: var(--muted); font-weight: 400; font-size: 12px; font-family: ui-monospace, monospace; }
+.bank h3 .cmd { background: var(--chip); border-radius: 5px; padding: 0 6px; font-size: 12px; font-family: ui-monospace, monospace; }
+.bank .mode { margin: 6px 0; display: flex; gap: 6px; align-items: center; font-size: 12px; color: var(--muted); }
+.map { display: flex; height: 16px; border-radius: 4px; overflow: hidden; margin: 6px 0 8px; background: var(--free); border: 1px solid var(--line); }
+.map div { height: 100%; font-size: 10px; color: #fff; overflow: hidden; white-space: nowrap; text-align: center; line-height: 16px; }
+.slot { display: grid; grid-template-columns: 1fr auto; gap: 4px 8px; align-items: center; padding: 6px 8px; border-radius: 7px; border: 1px solid var(--line); margin-top: 6px; }
+.slot.inactive { opacity: .45; }
+.more { margin-top: 8px; display: flex; gap: 6px; flex-wrap: wrap; align-items: center; font-size: 12px; color: var(--muted); }
+.more .xslot { border: 1px dashed var(--line); border-radius: 6px; padding: 2px 8px; cursor: pointer; background: transparent; color: var(--ink); font: inherit; }
+.more .xslot:hover, .more .xslot.over { border-color: var(--accent); }
+.map div.pend { opacity: .35; outline: 1px dashed var(--ink); outline-offset: -1px; }
+.slot.over { border-color: var(--accent); background: var(--chip); }
+.slot .lbl { font-size: 12px; color: var(--muted); }
+.slot .lbl b { color: var(--ink); font-weight: 600; }
+.slot .file { grid-column: 1 / -1; font-size: 13px; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.pill { border-radius: 999px; padding: 1px 8px; font-size: 12px; border: 1px solid transparent; }
+.pill.ok { background: var(--ok-bg); color: var(--ok); border-color: var(--ok); }
+.pill.warn { background: var(--warn-bg); color: var(--warn); border-color: var(--warn); }
+.pill.err { background: var(--err-bg); color: var(--err); border-color: var(--err); }
+.pill.free { background: var(--free); color: var(--muted); }
+.mono { font-family: ui-monospace, monospace; font-size: 12px; }
+.muted { color: var(--muted); }
+aside .card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; margin-bottom: 12px; }
+aside h2 { font-size: 14px; margin: 0 0 8px; }
+.msgs { list-style: none; padding: 0; margin: 0; font-size: 13px; }
+.msgs li { padding: 5px 8px; border-radius: 6px; margin-bottom: 4px; }
+.msgs li.ok { background: var(--ok-bg); color: var(--ok); }
+.msgs li.warn { background: var(--warn-bg); color: var(--warn); }
+.msgs li.err { background: var(--err-bg); color: var(--err); }
+.msgs li.info { background: var(--chip); }
+.kv { display: grid; grid-template-columns: auto 1fr; gap: 3px 10px; font-size: 13px; }
+.kv .mono { word-break: break-all; }
+footer a { color: var(--accent); }
+footer { max-width: 1280px; margin: 0 auto; padding: 0 20px 30px; color: var(--muted); font-size: 12px; }
+#toast { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 8px 14px; border-radius: 8px; opacity: 0; transition: opacity .2s; pointer-events: none; max-width: 90vw; }
+#toast.show { opacity: .95; }
+input[type=file] { display: none; }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>MS-ROM-Builder-C128DCR <span class="badge" id="ver"></span></h1>
+    <div class="sub" data-t="subtitle"></div>
+  </div>
+  <div class="spacer"></div>
+  <div class="seg" id="lang"><button data-lang="de">DE</button><button data-lang="en">EN</button></div>
+</header>
+
+<main>
+  <section>
+    <div class="toolbar">
+      <div class="tabs" id="tabs">
+        <button data-target="u3" data-t="tab_u3"></button>
+        <button data-target="u32" data-t="tab_u32"></button>
+      </div>
+      <div class="spacer"></div>
+      <label class="muted" data-t="preset"></label>
+      <select id="preset"></select>
+      <button class="btn" id="btnFiles" data-t="assign"></button>
+      <button class="btn" id="btnImage" data-t="open_image"></button>
+      <button class="btn" id="btnReset" data-t="reset"></button>
+      <input type="file" id="inFiles" multiple>
+      <input type="file" id="inImage">
+      <input type="file" id="inSlot">
+    </div>
+    <div class="dropzone" id="dropzone" data-t="drop"></div>
+    <div class="banks" id="banks"></div>
+  </section>
+
+  <aside>
+    <div class="card">
+      <h2 data-t="eprom"></h2>
+      <select id="eprom">
+        <option value="29F040">29F040</option>
+        <option value="SST39SF040">SST39SF040</option>
+        <option value="27C040">27C040</option>
+      </select>
+      <p class="muted" id="j2hint" style="margin:8px 0 0"></p>
+    </div>
+    <div class="card">
+      <h2 data-t="check"></h2>
+      <ul class="msgs" id="msgs"></ul>
+    </div>
+    <div class="card">
+      <h2 data-t="result"></h2>
+      <div class="kv">
+        <span data-t="filename"></span><span class="mono" id="outName"></span>
+        <span data-t="size"></span><span class="mono">524288 Bytes (512 KB)</span>
+        <span>MD5</span><span class="mono" id="outMd5"></span>
+        <span data-t="template_md5"></span><span class="mono" id="outTpl"></span>
+      </div>
+      <p style="margin:10px 0 0; display:flex; gap:8px; flex-wrap:wrap">
+        <button class="btn primary" id="btnDownload" data-t="download"></button>
+        <button class="btn" id="btnSave" data-t="save_project"></button>
+        <button class="btn" id="btnLoad" data-t="load_project"></button>
+        <input type="file" id="inProject" accept=".json,application/json">
+      </p>
+    </div>
+    <div class="card muted" style="font-size:12px" data-t="privacy"></div>
+  </aside>
+</main>
+<footer><span data-t="footer"></span> <a href="https://github.com/FraEgg/Switchless-Multi-Speeder-Commodore-C128DCR-1571" target="_blank" rel="noopener">github.com/FraEgg/Switchless-Multi-Speeder-Commodore-C128DCR-1571</a></footer>
+<div id="toast"></div>
+
+<script>
+// CORE-BEGIN ---------------------------------------------------------------
+// Bank and slot model, ROM database, image building and splitting. No DOM here,
+// so test/test_core.js can run the same code in Node.
+const BANK = 0x10000, IMAGE = 0x80000;
+
+function md5(bytes) {           // RFC 1321, bytes: Uint8Array -> hex string
+  const K = new Uint32Array(64), S = [7,12,17,22,7,12,17,22,7,12,17,22,7,12,17,22,5,9,14,20,5,9,14,20,5,9,14,20,5,9,14,20,
+    4,11,16,23,4,11,16,23,4,11,16,23,4,11,16,23,6,10,15,21,6,10,15,21,6,10,15,21,6,10,15,21];
+  for (let i = 0; i < 64; i++) K[i] = Math.floor(Math.abs(Math.sin(i + 1)) * 4294967296) >>> 0;
+  const n = bytes.length, total = ((n + 8) >>> 6) + 1 << 6, buf = new Uint8Array(total);
+  buf.set(bytes); buf[n] = 0x80;
+  const bits = n * 8, dv = new DataView(buf.buffer);
+  dv.setUint32(total - 8, bits >>> 0, true); dv.setUint32(total - 4, Math.floor(bits / 4294967296), true);
+  let a0 = 0x67452301, b0 = 0xefcdab89, c0 = 0x98badcfe, d0 = 0x10325476;
+  const M = new Uint32Array(16);
+  for (let off = 0; off < total; off += 64) {
+    for (let i = 0; i < 16; i++) M[i] = dv.getUint32(off + i * 4, true);
+    let A = a0, B = b0, C = c0, D = d0;
+    for (let i = 0; i < 64; i++) {
+      let F, g;
+      if (i < 16) { F = (B & C) | (~B & D); g = i; }
+      else if (i < 32) { F = (D & B) | (~D & C); g = (5 * i + 1) % 16; }
+      else if (i < 48) { F = B ^ C ^ D; g = (3 * i + 5) % 16; }
+      else { F = C ^ (B | ~D); g = (7 * i) % 16; }
+      F = (F + A + K[i] + M[g]) >>> 0; A = D; D = C; C = B;
+      B = (B + ((F << S[i]) | (F >>> (32 - S[i])))) >>> 0;
+    }
+    a0 = (a0 + A) >>> 0; b0 = (b0 + B) >>> 0; c0 = (c0 + C) >>> 0; d0 = (d0 + D) >>> 0;
+  }
+  let hex = '';
+  for (const w of [a0, b0, c0, d0]) for (let i = 0; i < 4; i++) hex += ((w >>> (8 * i)) & 255).toString(16).padStart(2, '0');
+  return hex;
+}
+
+// Slots per 64 KB bank (offset inside the bank, length). Conflicting slots overlap.
+const SLOTS = {
+  u3: [
+    { id: 'S64', off: 0x0000, len: 0x10000, de: 'Ganze Bank (64 KB)', en: 'Whole bank (64 KB)' },
+    { id: 'S32', off: 0x8000, len: 0x8000, de: 'DOS-ROM (32 KB)', en: 'DOS ROM (32 KB)' },
+    { id: 'S4',  off: 0x3000, len: 0x1000, de: 'Zusatz-ROM (4 KB)', en: 'Extra ROM (4 KB)' },
+  ],
+  u32: [
+    { id: 'K32',   off: 0x8000, len: 0x8000, de: 'Komplettes U32-ROM (32 KB)', en: 'Complete U32 ROM (32 KB)' },
+    { id: 'C64II', off: 0x8000, len: 0x4000, de: 'C64-Modus kombiniert (16 KB)', en: 'C64 mode combined (16 KB)' },
+    { id: 'B8',    off: 0x8000, len: 0x2000, de: 'C64-BASIC (8 KB)', en: 'C64 BASIC (8 KB)' },
+    { id: 'K8',    off: 0xA000, len: 0x2000, de: 'C64-Kernal (8 KB)', en: 'C64 kernal (8 KB)' },
+    { id: 'K128',  off: 0xC000, len: 0x4000, de: 'C128-Kernal (16 KB)', en: 'C128 kernal (16 KB)' },
+  ],
+};
+function slotDef(target, id) { return SLOTS[target].find(s => s.id === id); }
+function overlaps(a, b) { return a.off < b.off + b.len && b.off < a.off + a.len; }
+
+// Known ROMs (MD5 of the file). fam: family for the cross-check between drive and kernal.
+const KNOWN = {
+  'f9158328494b3e269f86ef419792c2e5': { de: 'CBM DOS V3.1 1571CR (318047-01)', en: 'CBM DOS V3.1 1571CR (318047-01)', fam: 'cbm' },
+  'dae964d64b7843ff86c008d396dda208': { de: 'CBM DOS 1571 (310654-05)', en: 'CBM DOS 1571 (310654-05)', fam: 'cbm' },
+  'e39a154877cc3a1a893688bc8cabccf2': { de: 'DolphinDOS 3 für die 1571 (Original)', en: 'DolphinDOS 3 for the 1571 (original)', fam: 'dd3' },
+  'eb1d93539eeb094e835dfcab35f0a100': { de: 'C1571DolphinDos26', en: 'C1571DolphinDos26', fam: 'dd26' },
+  '57af4ae21d4b705c2991d98ed5c1f7b8': { de: 'C64-BASIC V2 (901226-01)', en: 'C64 BASIC V2 (901226-01)', fam: 'any' },
+  '39065497630802346bce17963f13c092': { de: 'C64-Kernal (901227-03)', en: 'C64 kernal (901227-03)', fam: 'cbm' },
+  'fc8fb5ec89b34ae41c8dc20907447e06': { de: 'DolphinDOS-3.0-C64-Kernal', en: 'DolphinDOS 3.0 C64 kernal', fam: 'dd3' },
+  '01f6903033b90cd506cde7802ec743c3': { de: 'C128-Kernal (318020-05)', en: 'C128 kernal (318020-05)', fam: 'cbm' },
+  '9837409b6bdb7ce055409fa3eb3e9cf0': { de: 'C128-Kernal deutsch (315078-03)', en: 'C128 kernal German (315078-03)', fam: 'cbm' },
+  '854901919a2446bccf68e8392325c021': { de: 'Dolphin-C128-Kernal (Original)', en: 'Dolphin C128 kernal (original)', fam: 'dd3' },
+  '54fa1120daf6baafe39c31495a22f448': { de: 'C64IIDolphinDos26', en: 'C64IIDolphinDos26', fam: 'dd26', jdok: true },
+  '859493314e98777a595d0f2a039e6800': { de: 'C128DolphinDos26-US', en: 'C128DolphinDos26-US', fam: 'dd26', jdok: true },
+  '20aea19be1369bceddc0d6dccb7d373f': { de: 'C128DolphinDos26-DE (DIN)', en: 'C128DolphinDos26-DE (DIN)', fam: 'dd26', jdok: true },
+};
+const TEMPLATE_MD5 = {
+  'f04f94f04158f6c610bf8d9e5f7e5cca': 'C1571_C128DCR_29F040.BIN',
+  'e467abc52085c8e46d4ff0734ac0e21c': 'C128DCR_KERNAL_29F040-DE.BIN',
+  '8068cd0346f8fc2a34d5ddabe582a561': 'C128DCR_KERNAL_29F040-US.BIN',
+};
+
+// Templates: per bank a list of [slot, expected file name, expected MD5].
+function cbmU32(k128name, k128md5) {
+  return [['B8', 'basic64-901226-01.bin', '57af4ae21d4b705c2991d98ed5c1f7b8'],
+          ['K8', 'kernal64-901227-03.bin', '39065497630802346bce17963f13c092'],
+          ['K128', k128name, k128md5]];
+}
+function u32Template(variant) {
+  const de = variant === 'DE';
+  const cbm = de ? cbmU32('kernal-315078-03.bin', '9837409b6bdb7ce055409fa3eb3e9cf0')
+                 : cbmU32('kernal-318020-05.bin', '01f6903033b90cd506cde7802ec743c3');
+  const dd3 = [['B8', 'basic64-901226-01.bin', '57af4ae21d4b705c2991d98ed5c1f7b8'],
+               ['K8', 'kernal64-dolphindos3.bin', 'fc8fb5ec89b34ae41c8dc20907447e06'],
+               ['K128', 'kernal-dolphin128.rom', '854901919a2446bccf68e8392325c021']];
+  const dd26 = [['C64II', 'C64IIDolphinDos26.bin', '54fa1120daf6baafe39c31495a22f448'],
+                de ? ['K128', 'C128DolphinDos26-DE.BIN', '20aea19be1369bceddc0d6dccb7d373f']
+                   : ['K128', 'C128DolphinDos26-US.BIN', '859493314e98777a595d0f2a039e6800']];
+  return { name: 'C128DCR_KERNAL_29F040-' + variant + '.BIN', banks: [cbm, cbm, dd3, dd26, cbm, cbm, cbm, cbm] };
+}
+function u3Template() {
+  const cbm = [['S32', 'dos1571cr-318047-01.bin', 'f9158328494b3e269f86ef419792c2e5']];
+  return { name: 'C1571_C128DCR_29F040.BIN', banks: [cbm, cbm,
+    [['S32', '1571-DolphinDos3.ROM.BIN', 'e39a154877cc3a1a893688bc8cabccf2']],
+    [['S64', 'C1571_DOLPHINDOS26.bin', 'eb1d93539eeb094e835dfcab35f0a100']], cbm, cbm, cbm, cbm] };
+}
+
+// State of one EPROM: banks[0..7] = { mode: 'own'|'copy'|'empty', copyOf, slots: {id: {file, expect}} }
+function newState(target, template) {
+  const banks = [];
+  for (let b = 0; b < 8; b++) {
+    const slots = {};
+    for (const s of SLOTS[target]) slots[s.id] = { file: null, expect: null };
+    if (template) for (const [id, name, m] of template.banks[b]) slots[id].expect = { name, md5: m };
+    banks.push({ mode: 'own', copyOf: 0, slots });
+  }
+  return { target, banks, outName: template ? template.name : (target === 'u3' ? 'C1571_C128DCR_29F040.BIN' : 'C128DCR_KERNAL_29F040.BIN') };
+}
+function makeFile(name, data) {
+  const m = md5(data);
+  return { name, size: data.length, md5: m, data, known: KNOWN[m] || null, jiffy: hasJiffy(data) };
+}
+function bankList(ns) {           // [1,2,5,6,7,8] -> "1, 2, 5–8"
+  const out = []; let i = 0;
+  while (i < ns.length) { let j = i; while (j + 1 < ns.length && ns[j + 1] === ns[j] + 1) j++;
+    out.push(j - i >= 2 ? ns[i] + '–' + ns[j] : ns.slice(i, j + 1).join(', ')); i = j + 1; }
+  return out.join(', ');
+}
+function hasJiffy(d) {           // "JIFFY" in ASCII/PETSCII (upper case), as the release tools check it
+  for (let i = 0; i + 5 <= d.length; i++)
+    if ((d[i] & 0xDF) === 0x4A && (d[i+1] & 0xDF) === 0x49 && (d[i+2] & 0xDF) === 0x46 && (d[i+3] & 0xDF) === 0x46 && (d[i+4] & 0xDF) === 0x59) return true;
+  return false;
+}
+// Active slots of a bank: filled slots; an empty slot is inactive if it overlaps a filled one.
+function slotActive(state, b, id) {
+  const bank = state.banks[b], me = slotDef(state.target, id);
+  if (bank.slots[id].file) return true;
+  return !SLOTS[state.target].some(s => s.id !== id && bank.slots[s.id].file && overlaps(s, me));
+}
+function placeFile(state, b, id, file) {   // returns error key or null
+  const def = slotDef(state.target, id);
+  if (file.size !== def.len) return 'err_size';
+  const bank = state.banks[b];
+  for (const s of SLOTS[state.target]) if (s.id !== id && overlaps(s, def)) bank.slots[s.id].file = null;
+  bank.slots[id].file = file; bank.mode = 'own';
+  return null;
+}
+function autoAssign(state, files) {        // by MD5 onto the expected template slots; returns unassigned files
+  const rest = [];
+  for (const f of files) {
+    let used = false;
+    state.banks.forEach((bank, b) => {
+      for (const id in bank.slots) {
+        const sl = bank.slots[id];
+        if (sl.expect && sl.expect.md5 === f.md5) { placeFile(state, b, id, f); used = true; }
+      }
+    });
+    if (!used) rest.push(f);
+  }
+  return rest;
+}
+function buildBank(state, b, out, depth) {
+  const bank = state.banks[b], base = b * BANK;
+  if (bank.mode === 'empty') return;
+  if (bank.mode === 'copy') {
+    if (depth > 8 || bank.copyOf === b) return;
+    buildBank(state, bank.copyOf, out, depth + 1);
+    out.copyWithin(base, bank.copyOf * BANK, bank.copyOf * BANK + BANK);
+    return;
+  }
+  for (const s of SLOTS[state.target]) {
+    const f = bank.slots[s.id].file;
+    if (f) out.set(f.data, base + s.off);
+  }
+}
+function buildImage(state) {
+  const out = new Uint8Array(IMAGE).fill(0xFF);
+  for (let b = 0; b < 8; b++) if (state.banks[b].mode !== 'copy') buildBank(state, b, out, 0);
+  for (let b = 0; b < 8; b++) if (state.banks[b].mode === 'copy') buildBank(state, b, out, 0);
+  return out;
+}
+// Split an existing 512 KB image into slots (known ROMs are named, the rest becomes "bank n …").
+function splitImage(state, img, baseName) {
+  const allFF = (a, s, e) => { for (let i = s; i < e; i++) if (a[i] !== 0xFF) return false; return true; };
+  const notes = [];
+  for (let b = 0; b < 8; b++) {
+    const base = b * BANK, bank = state.banks[b];
+    for (const id in bank.slots) bank.slots[id].file = null;
+    bank.mode = 'own';
+    const part = (o, l) => img.slice(base + o, base + o + l);
+    const fileOf = (o, l, label) => {
+      const d = part(o, l), m = md5(d);
+      return makeFile(KNOWN[m] ? (bank.slots && Object.values(bank.slots).map(x => x.expect).find(e => e && e.md5 === m) || { name: label }).name : label, d);
+    };
+    if (allFF(img, base, base + BANK)) { bank.mode = 'empty'; continue; }
+    if (state.target === 'u3') {
+      if (allFF(img, base, base + 0x8000)) placeFile(state, b, 'S32', fileOf(0x8000, 0x8000, baseName + '_bank' + (b + 1) + '_dos32.bin'));
+      else placeFile(state, b, 'S64', fileOf(0, BANK, baseName + '_bank' + (b + 1) + '.bin'));
+    } else {
+      if (!allFF(img, base, base + 0x8000)) notes.push(b + 1);
+      const k32 = part(0x8000, 0x8000), c64 = part(0x8000, 0x4000);
+      if (KNOWN[md5(k32)]) placeFile(state, b, 'K32', fileOf(0x8000, 0x8000, baseName + '_bank' + (b + 1) + '_u32.bin'));
+      else {
+        if (KNOWN[md5(c64)]) placeFile(state, b, 'C64II', fileOf(0x8000, 0x4000, baseName + '_bank' + (b + 1) + '_c64.bin'));
+        else {
+          placeFile(state, b, 'B8', fileOf(0x8000, 0x2000, baseName + '_bank' + (b + 1) + '_basic64.bin'));
+          placeFile(state, b, 'K8', fileOf(0xA000, 0x2000, baseName + '_bank' + (b + 1) + '_kernal64.bin'));
+        }
+        placeFile(state, b, 'K128', fileOf(0xC000, 0x4000, baseName + '_bank' + (b + 1) + '_kernal128.bin'));
+      }
+    }
+  }
+  return notes;   // banks whose lower half was not empty (U32)
+}
+// Checks: list of {lvl: ok|info|warn|err, key, args}
+function checkState(state, other) {
+  const msgs = [], img = buildImage(state), missing = {};
+  state.banks.forEach((bank, b) => {
+    const n = b + 1;
+    if (bank.mode === 'empty') { msgs.push({ lvl: 'warn', key: 'm_empty', args: [n] }); return; }
+    if (bank.mode === 'copy') { msgs.push({ lvl: 'info', key: 'm_copy', args: [n, bank.copyOf + 1] }); return; }
+    let any = false;
+    for (const id in bank.slots) {
+      const sl = bank.slots[id];
+      if (sl.file) {
+        any = true;
+        if (sl.expect && sl.expect.md5 !== sl.file.md5) msgs.push({ lvl: 'warn', key: 'm_differs', args: [n, sl.file.name] });
+        if (!sl.file.known) msgs.push({ lvl: 'info', key: 'm_unknown', args: [n, sl.file.name] });
+        if (sl.file.jiffy) msgs.push({ lvl: sl.file.known && sl.file.known.jdok ? 'info' : 'warn', key: sl.file.known && sl.file.known.jdok ? 'm_jd_dd26' : 'm_jiffy', args: [n, sl.file.name] });
+      } else if (sl.expect && slotActive(state, b, id)) (missing[sl.expect.name] = missing[sl.expect.name] || []).push(n);
+    }
+    if (!any && !Object.values(bank.slots).some(x => x.expect)) msgs.push({ lvl: 'warn', key: 'm_nofile', args: [n] });
+    const v = b * BANK + 0xFFFA;
+    if (any && img.slice(v, v + 6).every(x => x === 0xFF)) msgs.push({ lvl: 'warn', key: 'm_vectors', args: [n] });
+  });
+  for (const name in missing) msgs.unshift({ lvl: 'err', key: 'm_missing', args: [bankList(missing[name]), name] });
+  if (other) {                      // bank b of the drive and of the kernal switcher should belong together
+    const fam = (st, b) => { const f = Object.values(st.banks[b].slots).map(s => s.file).filter(Boolean);
+      return f.some(x => x.known && x.known.fam === 'dd26') ? 'dd26' : f.some(x => x.known && x.known.fam === 'dd3') ? 'dd3' : null; };
+    for (let b = 0; b < 8; b++) {
+      const a = fam(state, b), o = fam(other, b);
+      if ((a === 'dd26') !== (o === 'dd26') && (a || o)) msgs.push({ lvl: 'warn', key: 'm_pair', args: [b + 1] });
+    }
+  }
+  if (!msgs.some(m => m.lvl === 'err' || m.lvl === 'warn')) msgs.unshift({ lvl: 'ok', key: 'm_allok', args: [] });
+  return { msgs, img, md5: md5(img) };
+}
+const VERSION = '1.0';
+function projectOf(states, extra) {
+  const t = {};
+  for (const k in states) t[k] = { outName: states[k].outName, banks: states[k].banks.map(b => ({ mode: b.mode, copyOf: b.copyOf,
+    slots: Object.fromEntries(Object.entries(b.slots).filter(([, s]) => s.file || s.expect).map(([id, s]) => [id,
+      s.file ? { name: s.file.name, md5: s.file.md5 } : { name: s.expect.name, md5: s.expect.md5, missing: true }])) })) };
+  return Object.assign({ tool: 'MS-ROM-Builder-C128DCR', version: VERSION, targets: t }, extra || {});
+}
+function stateFromProject(target, obj) {   // expectations from the project; files are assigned again by MD5
+  const st = newState(target, null), src = obj.targets[target];
+  st.outName = src.outName || st.outName;
+  src.banks.slice(0, 8).forEach((b, i) => {
+    const bank = st.banks[i];
+    bank.mode = ['own', 'copy', 'empty'].includes(b.mode) ? b.mode : 'own'; bank.copyOf = (b.copyOf | 0) & 7;
+    for (const id in b.slots) if (bank.slots[id]) bank.slots[id].expect = { name: String(b.slots[id].name), md5: String(b.slots[id].md5) };
+  });
+  return st;
+}
+if (typeof module !== 'undefined') module.exports = { VERSION, projectOf, stateFromProject, md5, SLOTS, KNOWN, TEMPLATE_MD5, u3Template, u32Template, newState, makeFile,
+  placeFile, autoAssign, buildImage, splitImage, checkState, bankList, IMAGE, BANK };
+// CORE-END -----------------------------------------------------------------
+</script>
+
+<script>
+const T = {
+  de: {
+    subtitle: 'ROMs für den 1571 Switchless Multi-Speeder V3 im C128DCR selbst zusammenstellen – Laufwerk (U3) und Kernal-Switcher (U32)',
+    tab_u3: 'Laufwerk (U3)', tab_u32: 'Kernal-Switcher (U32)', preset: 'Vorlage:', assign: 'Dateien zuordnen …', open_image: 'Image öffnen …', reset: 'Zurücksetzen',
+    drop: 'ROM-Dateien hierher ziehen: Sie werden über ihre Prüfsumme den Steckplätzen der Vorlage zugeordnet. Einzelne Dateien lassen sich auch direkt auf einen Steckplatz ziehen.',
+    eprom: 'EPROM-Typ', check: 'Prüfung', result: 'Ergebnis', filename: 'Datei', size: 'Größe', template_md5: 'Vorlage', download: 'BIN herunterladen', save_project: 'Projekt speichern', load_project: 'Projekt laden …', project_saved: 'Projekt gespeichert (nur Belegung, Dateinamen und Prüfsummen – keine ROM-Daten).',
+    project_loaded: 'Projekt geladen. Jetzt die ROM-Dateien hineinziehen; sie werden über die Prüfsumme zugeordnet.', project_bad: 'Das ist keine Projektdatei des MS-ROM-Builders.',
+    privacy: 'Alle Dateien werden nur in diesem Browser verarbeitet und nirgendwohin übertragen. Das Tool enthält selbst keine ROMs.',
+    footer: 'MS-ROM-Builder-C128DCR – Multi-Speeder und DolphinDos26: Frank Eggen. Projekt und Handbuch:',
+    p_tpl_u3: 'C1571_C128DCR_29F040 (Standard)', p_tpl_de: 'C128DCR_KERNAL_29F040-DE (deutsch)', p_tpl_us: 'C128DCR_KERNAL_29F040-US (international/USA)', p_empty: 'Leer',
+    bank: 'Bank', own: 'eigene Dateien', copy: 'wie Bank', empty: 'leer ($FF)', content: 'Inhalt:',
+    pick: 'Datei …', remove: 'entfernen', more: 'Weitere Steckplätze:', pending_seg: 'ausstehend', free: 'frei', expected: 'erwartet', missing: 'fehlt', match: 'passt zur Vorlage', differs: 'weicht von der Vorlage ab', unknown: 'unbekannt',
+    j2: { '29F040': 'Lötbrücke J2 auf Pad 1–2 (A18 an Pin 1).', 'SST39SF040': 'Lötbrücke J2 auf Pad 1–2 (A18 an Pin 1).', '27C040': 'Lötbrücke J2 auf Pad 2–3 (A18 an Pin 31).' },
+    err_size: 'Die Datei hat {0} Bytes, der Steckplatz erwartet {1} Bytes.', err_image: 'Ein Image muss genau 524288 Bytes (512 KB) groß sein.',
+    assigned: '{0} Datei(en) zugeordnet, {1} nicht zugeordnet.', image_loaded: 'Image geladen und in Steckplätze zerlegt.', lower_used: 'Hinweis: In Bank {0} ist die untere Hälfte belegt; der Kernal-Switcher nutzt nur die obere.',
+    m_allok: 'Alles in Ordnung.', m_empty: 'Bank {0} ist leer ($FF) – ein Wechsel dorthin führt ins Leere.', m_copy: 'Bank {0} ist eine Kopie von Bank {1}.',
+    m_differs: 'Bank {0}: {1} weicht von der Vorlage ab.', m_unknown: 'Bank {0}: {1} ist kein bekanntes ROM.', m_missing: '{1} fehlt noch (Bank {0}).',
+    m_nofile: 'Bank {0} enthält keine Datei.', m_vectors: 'Bank {0}: keine Reset-Vektoren bei $FFFA–$FFFF.',
+    m_jiffy: 'Bank {0}: {1} enthält JiffyDOS – bitte die Lizenz prüfen (jiffydos.com).', m_jd_dd26: 'Bank {0}: {1} enthält die JiffyDOS-Übertragungsroutinen von DolphinDos26 (Lizenzhinweis beachten).',
+    m_pair: 'Bank {0}: Laufwerk und Kernal-Switcher passen nicht zusammen (DolphinDos26 nur auf einer Seite).', tpl_yes: 'identisch mit {0}', tpl_no: '–',
+  },
+  en: {
+    subtitle: 'Assemble the ROMs for the 1571 Switchless Multi-Speeder V3 in the C128DCR yourself – drive (U3) and kernal switcher (U32)',
+    tab_u3: 'Drive (U3)', tab_u32: 'Kernal switcher (U32)', preset: 'Template:', assign: 'Assign files …', open_image: 'Open image …', reset: 'Reset',
+    drop: 'Drop ROM files here: they are assigned to the template slots by their checksum. Single files can also be dropped directly onto a slot.',
+    eprom: 'EPROM type', check: 'Check', result: 'Result', filename: 'File', size: 'Size', template_md5: 'Template', download: 'Download BIN', save_project: 'Save project', load_project: 'Load project …', project_saved: 'Project saved (layout, file names and checksums only – no ROM data).',
+    project_loaded: 'Project loaded. Now drop the ROM files; they are assigned by their checksum.', project_bad: 'This is not a project file of the MS-ROM-Builder.',
+    privacy: 'All files are processed only in this browser and are not sent anywhere. The tool itself contains no ROMs.',
+    footer: 'MS-ROM-Builder-C128DCR – Multi-Speeder and DolphinDos26: Frank Eggen. Project and manual:',
+    p_tpl_u3: 'C1571_C128DCR_29F040 (default)', p_tpl_de: 'C128DCR_KERNAL_29F040-DE (German)', p_tpl_us: 'C128DCR_KERNAL_29F040-US (international/USA)', p_empty: 'Empty',
+    bank: 'Bank', own: 'own files', copy: 'same as bank', empty: 'empty ($FF)', content: 'Content:',
+    pick: 'File …', remove: 'remove', more: 'More slots:', pending_seg: 'pending', free: 'free', expected: 'expected', missing: 'missing', match: 'matches the template', differs: 'differs from the template', unknown: 'unknown',
+    j2: { '29F040': 'Solder jumper J2 on pad 1–2 (A18 to pin 1).', 'SST39SF040': 'Solder jumper J2 on pad 1–2 (A18 to pin 1).', '27C040': 'Solder jumper J2 on pad 2–3 (A18 to pin 31).' },
+    err_size: 'The file has {0} bytes, the slot expects {1} bytes.', err_image: 'An image must be exactly 524288 bytes (512 KB).',
+    assigned: '{0} file(s) assigned, {1} not assigned.', image_loaded: 'Image loaded and split into slots.', lower_used: 'Note: the lower half of bank {0} is used; the kernal switcher only uses the upper half.',
+    m_allok: 'Everything is fine.', m_empty: 'Bank {0} is empty ($FF) – switching there leads nowhere.', m_copy: 'Bank {0} is a copy of bank {1}.',
+    m_differs: 'Bank {0}: {1} differs from the template.', m_unknown: 'Bank {0}: {1} is not a known ROM.', m_missing: '{1} is still missing (bank {0}).',
+    m_nofile: 'Bank {0} contains no file.', m_vectors: 'Bank {0}: no reset vectors at $FFFA–$FFFF.',
+    m_jiffy: 'Bank {0}: {1} contains JiffyDOS – please check the licence (jiffydos.com).', m_jd_dd26: 'Bank {0}: {1} contains the JiffyDOS transfer routines of DolphinDos26 (see the licence note).',
+    m_pair: 'Bank {0}: drive and kernal switcher do not match (DolphinDos26 on one side only).', tpl_yes: 'identical to {0}', tpl_no: '–',
+  },
+};
+const COLORS = ['--seg1', '--seg2', '--seg3', '--seg4', '--seg5'];
+let lang = 'de', target = 'u3', variant = 'DE';
+const states = { u3: newState('u3', u3Template()), u32: newState('u32', u32Template('DE')) };
+let presetKey = { u3: 'tpl', u32: 'tpl' };
+const $ = id => document.getElementById(id);
+const tr = (k, ...a) => (T[lang][k] || k).replace(/\{(\d)\}/g, (_, i) => a[i]);
+const hx = (n, w) => '$' + n.toString(16).toUpperCase().padStart(w, '0');
+function toast(msg) { const t = $('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toast.h); toast.h = setTimeout(() => t.classList.remove('show'), 3500); }
+function readFiles(list) { return Promise.all([...list].map(f => f.arrayBuffer().then(b => makeFile(f.name, new Uint8Array(b))))); }
+
+function renderStatic() {
+  document.documentElement.lang = lang;
+  $('ver').textContent = 'V' + VERSION;
+  document.querySelectorAll('[data-t]').forEach(el => { el.textContent = tr(el.dataset.t); });
+  document.querySelectorAll('#lang button').forEach(b => b.classList.toggle('on', b.dataset.lang === lang));
+  document.querySelectorAll('#tabs button').forEach(b => b.classList.toggle('on', b.dataset.target === target));
+  const p = $('preset');
+  p.innerHTML = target === 'u3'
+    ? `<option value="tpl">${tr('p_tpl_u3')}</option><option value="empty">${tr('p_empty')}</option>`
+    : `<option value="DE">${tr('p_tpl_de')}</option><option value="US">${tr('p_tpl_us')}</option><option value="empty">${tr('p_empty')}</option>`;
+  p.value = target === 'u3' ? presetKey.u3 : (presetKey.u32 === 'empty' ? 'empty' : variant);
+  $('j2hint').textContent = T[lang].j2[$('eprom').value];
+}
+
+function render() {
+  renderStatic();
+  const st = states[target], wrap = $('banks');
+  wrap.innerHTML = '';
+  st.banks.forEach((bank, b) => {
+    const el = document.createElement('div'); el.className = 'bank';
+    const base = b * BANK;
+    let opts = `<option value="own">${tr('own')}</option><option value="empty">${tr('empty')}</option>`;
+    for (let k = 0; k < 8; k++) if (k !== b) opts += `<option value="c${k}">${tr('copy')} ${k + 1}</option>`;
+    el.innerHTML = `<h3>${tr('bank')} ${b + 1} <span class="cmd">${b + 1}@RNROM</span><span class="addr">${hx(base, 5)}–${hx(base + BANK - 1, 5)}</span></h3>
+      <div class="mode">${tr('content')} <select data-b="${b}" class="modesel">${opts}</select></div><div class="map"></div>`;
+    el.querySelector('.modesel').value = bank.mode === 'copy' ? 'c' + bank.copyOf : bank.mode;
+    // memory map of the bank
+    const map = el.querySelector('.map');
+    if (bank.mode === 'own') {
+      let pos = 0, ci = 0;
+      SLOTS[target].filter(s => bank.slots[s.id].file || (bank.slots[s.id].expect && slotActive(st, b, s.id))).sort((a, c) => a.off - c.off).forEach(s => {
+        if (s.off > pos) { const g = document.createElement('div'); g.style.width = ((s.off - pos) / BANK * 100) + '%'; map.appendChild(g); }
+        const d = document.createElement('div'); d.style.width = (s.len / BANK * 100) + '%';
+        const f = bank.slots[s.id].file;
+        d.style.background = `var(${COLORS[ci++ % COLORS.length]})`; d.textContent = s.id;
+        if (!f) d.className = 'pend';
+        d.title = f ? f.name : tr('pending_seg') + ': ' + bank.slots[s.id].expect.name; map.appendChild(d); pos = s.off + s.len;
+      });
+    }
+    const extra = [];
+    if (bank.mode === 'own') for (const s of SLOTS[target]) {
+      const sl = bank.slots[s.id], active = slotActive(st, b, s.id);
+      if (!sl.file && !sl.expect) { if (active) extra.push(s); continue; }
+      const row = document.createElement('div'); row.className = 'slot' + (active ? '' : ' inactive');
+      row.dataset.b = b; row.dataset.id = s.id;
+      let pill, info = '';
+      if (sl.file) {
+        const ok = !sl.expect || sl.expect.md5 === sl.file.md5;
+        pill = `<span class="pill ${sl.expect ? (ok ? 'ok' : 'warn') : (sl.file.known ? 'ok' : 'warn')}">${sl.expect ? (ok ? tr('match') : tr('differs')) : (sl.file.known ? sl.file.known[lang] : tr('unknown'))}</span>`;
+        info = `<b>${sl.file.name}</b>${sl.file.known ? ' – ' + sl.file.known[lang] : ''} <span class="mono muted">${sl.file.md5.slice(0, 8)}</span>`;
+      } else if (sl.expect) {
+        pill = `<span class="pill err">${tr('missing')}</span>`; info = `<span class="muted">${tr('expected')}: ${sl.expect.name}</span>`;
+      } else { pill = `<span class="pill free">${tr('free')}</span>`; }
+      row.innerHTML = `<div class="lbl"><b>${s[lang]}</b> · +${hx(s.off, 4)}–${hx(s.off + s.len - 1, 4)}</div>
+        <div><button class="btn small pick">${tr('pick')}</button> ${sl.file ? `<button class="btn small rm">${tr('remove')}</button>` : ''}</div>
+        <div class="file">${pill} ${info}</div>`;
+      el.appendChild(row);
+    }
+    if (extra.length) {
+      const m = document.createElement('div'); m.className = 'more';
+      m.innerHTML = tr('more') + ' ' + extra.map(s => `<button class="xslot" data-b="${b}" data-id="${s.id}" title="+${hx(s.off, 4)}–${hx(s.off + s.len - 1, 4)}">${s[lang]}</button>`).join('');
+      el.appendChild(m);
+    }
+    wrap.appendChild(el);
+  });
+  // check + result
+  const other = target === 'u3' ? states.u32 : states.u3;
+  const res = checkState(st, other);
+  $('msgs').innerHTML = res.msgs.map(m => `<li class="${m.lvl}">${tr(m.key, ...m.args)}</li>`).join('');
+  $('outName').textContent = st.outName;
+  $('outMd5').textContent = res.md5;
+  $('outTpl').textContent = TEMPLATE_MD5[res.md5] ? tr('tpl_yes', TEMPLATE_MD5[res.md5]) : tr('tpl_no');
+  $('btnDownload').disabled = res.msgs.some(m => m.lvl === 'err');
+  render.last = res;
+}
+
+// events
+document.querySelectorAll('#lang button').forEach(b => b.onclick = () => { lang = b.dataset.lang; try { localStorage.setItem('msrb-lang', lang); } catch (e) {} render(); });
+document.querySelectorAll('#tabs button').forEach(b => b.onclick = () => { target = b.dataset.target; render(); });
+$('eprom').onchange = render;
+$('preset').onchange = e => {
+  const v = e.target.value;
+  if (target === 'u3') { presetKey.u3 = v; states.u3 = newState('u3', v === 'empty' ? null : u3Template()); }
+  else { presetKey.u32 = v === 'empty' ? 'empty' : 'tpl'; if (v !== 'empty') variant = v; states.u32 = newState('u32', v === 'empty' ? null : u32Template(variant)); }
+  render();
+};
+$('btnReset').onclick = () => { $('preset').dispatchEvent(new Event('change')); };
+$('btnFiles').onclick = () => $('inFiles').click();
+$('btnImage').onclick = () => $('inImage').click();
+$('inFiles').onchange = async e => { const files = await readFiles(e.target.files); assignMany(files); e.target.value = ''; };
+$('inImage').onchange = async e => {
+  const [f] = await readFiles(e.target.files); e.target.value = '';
+  if (!f) return;
+  if (f.size !== IMAGE) { toast(tr('err_image')); return; }
+  const st = states[target], low = splitImage(st, f.data, f.name.replace(/\.[^.]*$/, ''));
+  st.outName = f.name; render(); toast(tr('image_loaded') + (low.length ? ' ' + tr('lower_used', low.join(', ')) : ''));
+};
+function assignMany(files) {
+  const rest = autoAssign(states[target], files);
+  render(); toast(tr('assigned', files.length - rest.length, rest.length));
+}
+let pending = null;
+$('inSlot').onchange = async e => {
+  const [f] = await readFiles(e.target.files); e.target.value = '';
+  if (f && pending) putSlot(pending.b, pending.id, f);
+};
+function putSlot(b, id, f) {
+  const err = placeFile(states[target], b, id, f);
+  if (err) toast(tr(err, f.size, slotDef(target, id).len)); else render();
+}
+$('banks').addEventListener('click', e => {
+  const x = e.target.closest('.xslot');
+  if (x) { pending = { b: +x.dataset.b, id: x.dataset.id }; $('inSlot').click(); return; }
+  const row = e.target.closest('.slot'); if (!row) return;
+  const b = +row.dataset.b, id = row.dataset.id;
+  if (e.target.classList.contains('pick')) { pending = { b, id }; $('inSlot').click(); }
+  if (e.target.classList.contains('rm')) { states[target].banks[b].slots[id].file = null; render(); }
+});
+$('banks').addEventListener('change', e => {
+  if (!e.target.classList.contains('modesel')) return;
+  const bank = states[target].banks[+e.target.dataset.b], v = e.target.value;
+  if (v[0] === 'c') { bank.mode = 'copy'; bank.copyOf = +v.slice(1); } else bank.mode = v;
+  render();
+});
+// drag & drop: onto a slot = place there, elsewhere = assign by checksum
+['dragover', 'dragenter'].forEach(ev => document.addEventListener(ev, e => {
+  e.preventDefault();
+  document.querySelectorAll('.over').forEach(x => x.classList.remove('over'));
+  const t = e.target.closest && (e.target.closest('.slot') || e.target.closest('.xslot') || e.target.closest('#dropzone')); if (t) t.classList.add('over');
+}));
+document.addEventListener('dragleave', e => { if (e.target.classList) e.target.classList.remove('over'); });
+document.addEventListener('drop', async e => {
+  e.preventDefault(); document.querySelectorAll('.over').forEach(x => x.classList.remove('over'));
+  const files = await readFiles(e.dataTransfer.files); if (!files.length) return;
+  const row = e.target.closest && (e.target.closest('.slot') || e.target.closest('.xslot'));
+  if (row && files.length === 1) putSlot(+row.dataset.b, row.dataset.id, files[0]);
+  else if (files.length === 1 && files[0].size === IMAGE) { $('inImage').files = e.dataTransfer.files; $('inImage').dispatchEvent(new Event('change')); }
+  else assignMany(files);
+});
+$('btnSave').onclick = () => {
+  const json = JSON.stringify(projectOf(states, { variant, eprom: $('eprom').value }), null, 1);
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([json], { type: 'application/json' }));
+  a.download = 'MS-ROM-Builder-C128DCR-Projekt.json'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  toast(tr('project_saved'));
+};
+$('btnLoad').onclick = () => $('inProject').click();
+$('inProject').onchange = async e => {
+  const f = e.target.files[0]; e.target.value = ''; if (!f) return;
+  try {
+    const obj = JSON.parse(await f.text());
+    if (obj.tool !== 'MS-ROM-Builder-C128DCR' || !obj.targets || !obj.targets.u3 || !obj.targets.u32) throw 0;
+    states.u3 = stateFromProject('u3', obj); states.u32 = stateFromProject('u32', obj);
+    if (obj.variant === 'DE' || obj.variant === 'US') variant = obj.variant;
+    if (obj.eprom) $('eprom').value = obj.eprom;
+    presetKey = { u3: 'tpl', u32: 'tpl' }; render(); toast(tr('project_loaded'));
+  } catch (err) { toast(tr('project_bad')); }
+};
+$('btnDownload').onclick = () => {
+  const res = render.last; if (!res) return;
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([res.img], { type: 'application/octet-stream' }));
+  a.download = states[target].outName; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+};
+try { const l = localStorage.getItem('msrb-lang'); if (l === 'de' || l === 'en') lang = l; else if (!navigator.language.startsWith('de')) lang = 'en'; } catch (e) {}
+render();
+</script>
+</body>
+</html>
