@@ -208,7 +208,8 @@ const KNOWN = {
   'f9158328494b3e269f86ef419792c2e5': { de: 'CBM DOS V3.1 1571CR (318047-01)', en: 'CBM DOS V3.1 1571CR (318047-01)', fam: 'cbm' },
   'dae964d64b7843ff86c008d396dda208': { de: 'CBM DOS 1571 (310654-05)', en: 'CBM DOS 1571 (310654-05)', fam: 'cbm' },
   'e39a154877cc3a1a893688bc8cabccf2': { de: 'DolphinDOS 3 für die 1571 (Original)', en: 'DolphinDOS 3 for the 1571 (original)', fam: 'dd3' },
-  'a1a1bf9e5ba2ea91dc35b807fc56e8ca': { de: 'C1571DolphinDos26', en: 'C1571DolphinDos26', fam: 'dd26' },
+  '947041a25c15acaa979fa87181f07ab1': { de: 'C1571DolphinDos26', en: 'C1571DolphinDos26', fam: 'dd26' },
+  'a1a1bf9e5ba2ea91dc35b807fc56e8ca': { de: 'C1571DolphinDos26 (ältere Fassung)', en: 'C1571DolphinDos26 (older version)', fam: 'dd26' },
   'f593f5efcb714819b22db6ca6536a97d': { de: 'C1571DolphinDos26 (ältere Fassung)', en: 'C1571DolphinDos26 (older version)', fam: 'dd26' },
   'eb1d93539eeb094e835dfcab35f0a100': { de: 'C1571DolphinDos26 (ältere Fassung ohne ROM-Prüfsumme)', en: 'C1571DolphinDos26 (older version without ROM checksum)', fam: 'dd26' },
   '57af4ae21d4b705c2991d98ed5c1f7b8': { de: 'C64-BASIC V2 (901226-01)', en: 'C64 BASIC V2 (901226-01)', fam: 'any' },
@@ -222,6 +223,7 @@ const KNOWN = {
   '20aea19be1369bceddc0d6dccb7d373f': { de: 'C128DolphinDos26-DE (DIN)', en: 'C128DolphinDos26-DE (DIN)', fam: 'dd26', jdok: true },
 };
 const TEMPLATE_MD5 = {
+  'bba2f64edaf2e15af82057bc07ab5014': 'C1571_C128DCR_29F040.BIN',
   '88a123d4492b9bbc30ce092deca02d79': 'C1571_C128DCR_29F040.BIN',
   'dc66eaa7f83b4b31dca49e7fbdfd2998': 'C1571_C128DCR_29F040.BIN',
   'f04f94f04158f6c610bf8d9e5f7e5cca': 'C1571_C128DCR_29F040.BIN',
@@ -251,7 +253,7 @@ function u3Template() {
   const cbm = [['S32', 'dos1571cr-318047-01.bin', 'f9158328494b3e269f86ef419792c2e5']];
   return { name: 'C1571_C128DCR_29F040.BIN', banks: [cbm, cbm,
     [['S32', '1571-DolphinDos3.ROM.BIN', 'e39a154877cc3a1a893688bc8cabccf2']],
-    [['S64', 'C1571_DOLPHINDOS26.bin', 'a1a1bf9e5ba2ea91dc35b807fc56e8ca']], cbm, cbm, cbm, cbm] };
+    [['S64', 'C1571_DOLPHINDOS26.bin', '947041a25c15acaa979fa87181f07ab1']], cbm, cbm, cbm, cbm] };
 }
 
 // State of one EPROM: banks[0..7] = { mode: 'own'|'copy'|'empty', copyOf, slots: {id: {file, expect}} }
@@ -394,7 +396,7 @@ function checkState(state, other) {
   if (!msgs.some(m => m.lvl === 'err' || m.lvl === 'warn')) msgs.unshift({ lvl: 'ok', key: 'm_allok', args: [] });
   return { msgs, img, md5: md5(img) };
 }
-const VERSION = '1.2';
+const VERSION = '1.3';
 function projectOf(states, extra) {
   const t = {};
   for (const k in states) t[k] = { outName: states[k].outName, banks: states[k].banks.map(b => ({ mode: b.mode, copyOf: b.copyOf,
