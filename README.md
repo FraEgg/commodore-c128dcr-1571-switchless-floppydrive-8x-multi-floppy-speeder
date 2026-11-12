@@ -111,7 +111,7 @@ The complete bill of materials with DigiKey and Mouser links, the assembly order
 - C1571DolphinDos26 always runs at 2 MHz like the original DolphinDOS 3. Before programs with their own fast loader enter `@X-` (1 MHz), or switch to the Commodore ROM with `@I:1@RNROM`.
 - At 2 MHz the microcontroller can miss a switching command; repeat it. A 22.1184 MHz crystal and a 74AHCT273 as U5 make switching reliable.
 - DolphinDos26 needs the original NMOS 6502, not a WDC 65C02.
-- MS-NIBCOPY is written for the 1541, not for the 1571. MS-15SECCOPY itself sets a 1571 with DolphinDOS to 1 MHz with `X-` for BACKUP and VERIFY and back to 2 MHz with `X+` afterwards.
+- MS-NIBCOPY detects the 1571 and loads its own drive code (1 MHz for disk access, 2 MHz for the transfer); it uses the index hole sensor of the 1571, so every track of the copy keeps the same position relative to the index hole as on the original, and it computes at 2 MHz in C64 mode of the C128. MS-15SECCOPY itself sets a 1571 with DolphinDOS to 1 MHz with `X-` for BACKUP and VERIFY and back to 2 MHz with `X+` afterwards.
 
 ## What is in this repository?
 
@@ -238,7 +238,7 @@ Die vollständige Stückliste mit DigiKey- und Mouser-Links, die Bestückungsrei
 - C1571DolphinDos26 läuft wie das Original-DolphinDOS 3 immer mit 2 MHz. Vor Programmen mit eigenem Schnelllader `@X-` (1 MHz) eingeben oder mit `@I:1@RNROM` auf das Commodore-ROM wechseln.
 - Bei 2 MHz kann der Mikrocontroller einen Umschaltbefehl verpassen; dann den Befehl wiederholen. Ein Quarz mit 22,1184 MHz und ein 74AHCT273 als U5 machen das Umschalten zuverlässig.
 - DolphinDos26 braucht die originale NMOS-6502, keine WDC 65C02.
-- MS-NIBCOPY ist für die 1541 geschrieben, nicht für die 1571. MS-15SECCOPY stellt eine 1571 mit DolphinDOS für BACKUP und VERIFY selbst mit `X-` auf 1 MHz und danach mit `X+` wieder auf 2 MHz.
+- MS-NIBCOPY erkennt die 1571 und lädt einen eigenen Laufwerkscode (1 MHz für den Diskettenzugriff, 2 MHz für die Übertragung); es nutzt den Indexloch-Sensor der 1571, so dass jede Spur der Kopie dieselbe Lage zum Indexloch hat wie im Original, und rechnet im C64-Modus des C128 mit 2 MHz. MS-15SECCOPY stellt eine 1571 mit DolphinDOS für BACKUP und VERIFY selbst mit `X-` auf 1 MHz und danach mit `X+` wieder auf 2 MHz.
 
 ## Was liegt in diesem Repository?
 
